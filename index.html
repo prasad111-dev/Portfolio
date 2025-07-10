@@ -346,6 +346,32 @@
     }
   });
 </script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const speakWelcome = () => {
+      const message = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s portfolio website.");
+      message.lang = "en-IN";
+      message.pitch = 1;
+      message.rate = 1;
+      message.volume = 1;
+
+      // Try to get a preferred voice
+      const voices = speechSynthesis.getVoices();
+      const preferredVoice = voices.find(v => v.name.includes("Google") || v.lang === "en-IN");
+      if (preferredVoice) message.voice = preferredVoice;
+
+      speechSynthesis.speak(message);
+    };
+
+    // Wait for voices to load properly
+    if (speechSynthesis.getVoices().length === 0) {
+      speechSynthesis.onvoiceschanged = () => speakWelcome();
+    } else {
+      speakWelcome();
+    }
+  });
+</script>
+
 
 
 </body>
