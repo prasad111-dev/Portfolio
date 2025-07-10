@@ -367,40 +367,7 @@
   }
 </style>
 
-<script>
-  function closeWelcome() {
-    document.getElementById("welcomePopup").style.display = "none";
-    speakWelcome();
-  }
 
-  function speakWelcome() {
-    const message = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s profile website.");
-    message.lang = "en-IN";
-    message.pitch = 1;
-    message.rate = 1;
-    message.volume = 1;
-    const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v => v.lang === "en-IN" || v.name.includes("Google"));
-    if (preferred) message.voice = preferred;
-    speechSynthesis.speak(message);
-  }
-
-  // Load voice properly
-  if (speechSynthesis.getVoices().length === 0) {
-    speechSynthesis.onvoiceschanged = speakWelcome;
-  }
-
-  // Add flower emojis
-  function createFlower() {
-    const flower = document.createElement("div");
-    flower.className = "flower";
-    flower.innerHTML = "🌸";
-    flower.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(flower);
-    setTimeout(() => flower.remove(), 6000);
-  }
-  setInterval(createFlower, 300);
-</script>
 
 
 
