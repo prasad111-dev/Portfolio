@@ -1,3 +1,4 @@
+<!-- Your entire existing HTML code -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,9 +89,15 @@
           <p class="text-gray-300 text-sm mb-2">Tool to analyze and improve business task efficiency.</p>
           <a href="https://efficiencyanalyzer-prasad111.streamlit.app/" target="_blank" class="font-semibold">View Project</a>
         </div>
+        <!-- ✅ New Rolex Project -->
+        <div class="glass-card p-6 rounded-xl text-center">
+          <i class="fas fa-microchip text-4xl text-green-400 mb-4"></i>
+          <h3 class="text-xl font-bold text-white mb-2">🤖 Rolex - Your Personal AI Assistant</h3>
+          <p class="text-gray-300 text-sm mb-2">Voice-enabled AI assistant that responds to your questions and automates tasks.</p>
+          <a href="https://rolexchatbot-x8kkvdwbkj324ca7r2es72.streamlit.app/" target="_blank" class="font-semibold">View Project</a>
+        </div>
       </div>
     </section>
-
     <section id="publications" data-aos="fade-up">
       <h2 class="section-title text-center">Publications</h2>
       <div class="glass-card p-6 rounded-xl text-white">
@@ -119,7 +126,7 @@
     </section>
 
     <section id="contact" data-aos="zoom-in">
-      <h2 class="section-title text-center">📬 Contact Me</h2>
+      <h2 class="section-title text-center"> Contact Me</h2>
       <div class="grid md:grid-cols-2 gap-10 mt-10">
         <div class="space-y-4 text-lg">
           <p><i class="fas fa-envelope icon" style="color:#FFD700;"></i><strong>Email:</strong> <a href="mailto:prasadghavghave0@gmail.com">prasadghavghave0@gmail.com</a></p>
@@ -147,9 +154,11 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ once: false, mirror: true, duration: 1000 });
+
     const roles = ["AIML Engineer ", "Data Analytics Engineer "];
     let part = 0, partIndex = 0, isDeleting = false;
     const el = document.getElementById("typed-text"), speed = 50;
@@ -163,77 +172,52 @@
     document.addEventListener("DOMContentLoaded", type);
   </script>
 
-  <!-- Chatbot (Chatbase Embed) -->
-<script>
-  window.chatbaseConfig = {
-    chatbotId: "6g4XQ1XY2ajdt0UTcNv7q",
-  }
-</script>
-<script
-  src="https://www.chatbase.co/embed.min.js"
-  id="chatbase-script"
-  defer>
-</script>
-  <!-- Typing Text Script -->
-  <script>
-    // your typing animation code here
-  </script>
-
-  <!-- Chatbot (Chatbase Embed) -->
+  <!-- Chatbot Integration (Chatbase) -->
   <script>
     window.chatbaseConfig = {
       chatbotId: "6g4XQ1XY2ajdt0UTcNv7q",
     }
   </script>
-  <script
-    src="https://www.chatbase.co/embed.min.js"
-    id="chatbase-script"
-    defer>
-  </script>
-<!-- 💬 Custom Floating Chatbot Button + Modal -->
-<button id="chatbotBtn">💬 Chat with Prasad's AI</button>
+  <script src="https://www.chatbase.co/embed.min.js" id="chatbase-script" defer></script>
 
-<div id="chatbotModal" class="fixed inset-0 hidden bg-black bg-opacity-60 z-50 items-center justify-center">
-  <div id="chatbotIframeContainer" class="relative w-[95%] max-w-3xl h-[85vh] bg-white rounded-xl overflow-hidden shadow-lg">
-    <button id="closeChatbot" class="absolute top-2 right-4 text-xl font-bold text-black">✖</button>
-    <iframe
-      src="https://www.chatbase.co/chatbot-iframe/6g4XQ1XY2ajdt0UTcNv7q"
-      width="100%"
-      height="100%"
-      style="border: none"
-    ></iframe>
+  <!-- Floating Chat Button -->
+  <button id="chatbotBtn">💬 Chat with Prasad's AI</button>
+  <div id="chatbotModal" class="fixed inset-0 hidden bg-black bg-opacity-60 z-50 items-center justify-center">
+    <div id="chatbotIframeContainer" class="relative w-[95%] max-w-3xl h-[85vh] bg-white rounded-xl overflow-hidden shadow-lg">
+      <button id="closeChatbot" class="absolute top-2 right-4 text-xl font-bold text-black">✖</button>
+      <iframe src="https://www.chatbase.co/chatbot-iframe/6g4XQ1XY2ajdt0UTcNv7q" width="100%" height="100%" style="border: none"></iframe>
+    </div>
   </div>
-</div>
 
-<style>
-  #chatbotBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #FFD700;
-    color: #1e1e2f;
-    border: none;
-    padding: 12px 18px;
-    font-weight: bold;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    z-index: 40;
-  }
-</style>
+  <!-- Chatbot Button Style -->
+  <style>
+    #chatbotBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      color: #1e1e2f;
+      border: none;
+      padding: 12px 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 40;
+    }
+  </style>
 
-<script>
-  const chatbotBtn = document.getElementById("chatbotBtn");
-  const chatbotModal = document.getElementById("chatbotModal");
-  const closeChatbot = document.getElementById("closeChatbot");
+  <!-- Chatbot Modal Logic -->
+  <script>
+    const chatbotBtn = document.getElementById("chatbotBtn");
+    const chatbotModal = document.getElementById("chatbotModal");
+    const closeChatbot = document.getElementById("closeChatbot");
 
-  chatbotBtn.addEventListener("click", () => chatbotModal.classList.remove("hidden"));
-  closeChatbot.addEventListener("click", () => chatbotModal.classList.add("hidden"));
-  window.addEventListener("click", (e) => {
-    if (e.target === chatbotModal) chatbotModal.classList.add("hidden");
-  });
-</script>
-
+    chatbotBtn.addEventListener("click", () => chatbotModal.classList.remove("hidden"));
+    closeChatbot.addEventListener("click", () => chatbotModal.classList.add("hidden"));
+    window.addEventListener("click", (e) => {
+      if (e.target === chatbotModal) chatbotModal.classList.add("hidden");
+    });
+  </script>
 </body>
 </html>
-
