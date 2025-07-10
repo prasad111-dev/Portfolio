@@ -346,32 +346,38 @@
     }
   });
 </script>
-  <script>
-  window.addEventListener('DOMContentLoaded', () => {
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
     const speakWelcome = () => {
-      const message = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s portfolio website.");
-      message.lang = "en-IN";
-      message.pitch = 1;
-      message.rate = 1;
-      message.volume = 1;
+      const utterance = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s portfolio website.");
+      utterance.lang = "en-IN";
+      utterance.pitch = 1;
+      utterance.rate = 1;
+      utterance.volume = 1;
 
-      // Try to get a preferred voice
+      // Wait for voices to load and pick one
       const voices = speechSynthesis.getVoices();
-      const preferredVoice = voices.find(v => v.name.includes("Google") || v.lang === "en-IN");
-      if (preferredVoice) message.voice = preferredVoice;
-
-      speechSynthesis.speak(message);
+      if (voices.length > 0) {
+        const preferred = voices.find(v => v.lang.includes("en-IN") || v.name.includes("Google"));
+        if (preferred) utterance.voice = preferred;
+        speechSynthesis.speak(utterance);
+      } else {
+        console.warn("Voices not loaded yet.");
+      }
     };
 
-    // Wait for voices to load properly
+    // Ensure voices are loaded
     if (speechSynthesis.getVoices().length === 0) {
-      speechSynthesis.onvoiceschanged = () => speakWelcome();
+      speechSynthesis.onvoiceschanged = () => {
+        console.log("Voices loaded (onvoiceschanged)");
+        speakWelcome();
+      };
     } else {
+      console.log("Voices already loaded");
       speakWelcome();
     }
   });
 </script>
-
 
 
 </body>
