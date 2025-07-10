@@ -346,38 +346,62 @@
     }
   });
 </script>
+<!-- 🌸 Welcome Popup with Button and Flower Animation -->
+<div id="welcomePopup" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col justify-center items-center text-center p-6">
+  <h1 class="text-3xl md:text-5xl font-bold text-yellow-400 mb-6 animate-bounce">🌸 Welcome to Prasad's Portfolio 🌸</h1>
+  <button onclick="closeWelcome()" class="bg-yellow-400 text-black font-bold px-6 py-3 rounded-full shadow-lg hover:bg-yellow-300 transition">Enter Website</button>
+</div>
+
+<style>
+  .flower {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall 6s linear infinite;
+    pointer-events: none;
+    z-index: 50;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+
 <script>
-  window.addEventListener("load", () => {
-    function speakWelcome() {
-      const welcome = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s portfolio website.");
-      welcome.lang = "en-IN";
-      welcome.pitch = 1;
-      welcome.rate = 1;
-      welcome.volume = 1;
+  function closeWelcome() {
+    document.getElementById("welcomePopup").style.display = "none";
+    speakWelcome();
+  }
 
-      // Try to use an Indian English voice or default
-      const voices = speechSynthesis.getVoices();
-      const preferredVoice = voices.find(v => v.lang === "en-IN" || v.name.includes("Google"));
-      if (preferredVoice) {
-        welcome.voice = preferredVoice;
-      }
+  function speakWelcome() {
+    const message = new SpeechSynthesisUtterance("Welcome to Prasad S. Ghavghave’s profile website.");
+    message.lang = "en-IN";
+    message.pitch = 1;
+    message.rate = 1;
+    message.volume = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.lang === "en-IN" || v.name.includes("Google"));
+    if (preferred) message.voice = preferred;
+    speechSynthesis.speak(message);
+  }
 
-      speechSynthesis.speak(welcome);
-    }
+  // Load voice properly
+  if (speechSynthesis.getVoices().length === 0) {
+    speechSynthesis.onvoiceschanged = speakWelcome;
+  }
 
-    // If voices aren't loaded yet
-    if (speechSynthesis.getVoices().length === 0) {
-      speechSynthesis.onvoiceschanged = () => speakWelcome();
-    } else {
-      setTimeout(speakWelcome, 1000); // wait 1s after load
-    }
-  });
+  // Add flower emojis
+  function createFlower() {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.innerHTML = "🌸";
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 6000);
+  }
+  setInterval(createFlower, 300);
 </script>
-<script>
-  window.addEventListener("beforeunload", function (e) {
-    alert("Thanks for visiting! Come back soon 😊");
-  });
-</script>
+
 
 
 
