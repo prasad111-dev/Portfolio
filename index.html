@@ -185,55 +185,43 @@
     /* Photo centerpiece */
     .hero-visual { position: relative; margin: 0 auto; width: clamp(260px, 62vw, 380px); }
     .hero-photo { position: relative; }
-    .hero-beam {
-      position: absolute; inset: -90px; z-index: -2; border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0deg, rgba(34,211,238,0.35) 60deg, transparent 120deg, rgba(232,121,249,0.35) 220deg, transparent 300deg, rgba(139,92,246,0.35) 360deg);
-      filter: blur(26px); animation: beamSpin 2.2s linear infinite; opacity: 0.8; pointer-events: none;
-    }
-    @keyframes beamSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .photo-frame {
-      position: relative; border-radius: 50%; padding: 6px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent), var(--gold));
-      box-shadow: 0 30px 80px rgba(139,92,246,0.4);
+      position: relative; border-radius: 50%; padding: 5px;
+      background: linear-gradient(135deg, #e879f9, #22d3ee 46%, #8b5cf6);
+      box-shadow: 0 26px 60px rgba(0,0,0,0.5), 0 0 42px rgba(139,92,246,0.2), inset 0 0 0 1px rgba(255,255,255,0.08);
     }
     .photo-frame::before {
-      content: ''; position: absolute; inset: -40px; border-radius: 50%; z-index: -1;
-      background: radial-gradient(circle, rgba(232,121,249,0.35), rgba(34,211,238,0.2), transparent 70%);
-      filter: blur(50px); animation: glowPulse 1.6s ease-in-out infinite alternate;
+      content: ''; position: absolute; inset: -24px; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, rgba(139,92,246,0.26), rgba(34,211,238,0.1) 46%, transparent 72%);
+      filter: blur(30px);
     }
-    @keyframes glowPulse { from { opacity: 0.6; transform: scale(1); } to { opacity: 1; transform: scale(1.12); } }
     .photo-frame img { border-radius: 50%; display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
 
-    .photo-ring { position: absolute; inset: -30px; border-radius: 50%; border: 2px dashed rgba(232,121,249,0.35); animation: spin 3.5s linear infinite; pointer-events: none; }
-    .photo-ring.two { inset: -52px; border-color: rgba(34,211,238,0.25); border-style: dotted; animation-duration: 5.5s; animation-direction: reverse; }
-    .photo-ring .dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 18px var(--primary); top: -7px; left: 50%; }
+    .photo-ring {
+      position: absolute; inset: -26px; border-radius: 50%; pointer-events: none;
+      background: conic-gradient(from 0deg, transparent 0deg, rgba(232,121,249,0.95) 72deg, transparent 165deg, transparent 285deg, rgba(34,211,238,0.75) 352deg, transparent 360deg);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+      animation: spin 10s linear infinite;
+    }
 
-    .spin-badge { position: absolute; width: clamp(110px, 28vw, 150px); height: clamp(110px, 28vw, 150px); right: -42px; top: -42px; z-index: 8; animation: spin 6s linear infinite; }
-    .spin-badge-center { position: absolute; inset: 0; margin: auto; width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; box-shadow: 0 0 25px rgba(232,121,249,0.6); animation: spin 6s linear infinite reverse; }
+    .spin-badge { position: absolute; width: clamp(110px, 28vw, 150px); height: clamp(110px, 28vw, 150px); right: -42px; top: -42px; z-index: 8; animation: spin 16s linear infinite; }
+    .spin-badge-center { position: absolute; inset: 0; margin: auto; width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; box-shadow: 0 0 25px rgba(232,121,249,0.6); animation: spin 16s linear infinite reverse; }
     .spin-badge svg { width: 100%; height: 100%; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-    .float-chip { position: absolute; width: 54px; height: 54px; border-radius: 16px; background: rgba(255,255,255,0.09); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.55rem; box-shadow: 0 12px 34px rgba(0,0,0,0.5); animation: chipFloat 2s ease-in-out infinite; z-index: 10; cursor: grab; user-select: none; -webkit-user-select: none; }
+    .float-chip { position: absolute; width: 54px; height: 54px; border-radius: 16px; background: rgba(13,16,28,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1.55rem; box-shadow: 0 14px 34px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04); animation: chipFloat 3s ease-in-out infinite; z-index: 10; cursor: grab; user-select: none; -webkit-user-select: none; }
     .float-chip:active { cursor: grabbing; }
     .float-chip.grabbed { transform: scale(1.15); box-shadow: 0 18px 44px rgba(232,121,249,0.45); border-color: rgba(232,121,249,0.6); }
-    .float-chip:nth-child(2) { animation-delay: -1.4s; }
-    .float-chip:nth-child(3) { animation-delay: -2.6s; }
-    @keyframes chipFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-
-    .drag-overlay { position: absolute; inset: -70px; z-index: 9; cursor: grab; border-radius: 50%; }
-    .drag-overlay:active { cursor: grabbing; }
-    .drag-hint {
-      position: absolute; bottom: -44px; left: 0; right: 0; text-align: center;
-      font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #8b93a7; letter-spacing: 2px;
-    }
+    .float-chip:nth-child(2) { animation-delay: -2.2s; }
+    .float-chip:nth-child(3) { animation-delay: -4.4s; }
+    @keyframes chipFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 
     /* ============ MOBILE PHOTO FIX ============ */
     @media (max-width: 480px) {
       .hero-visual { width: clamp(210px, 58vw, 240px); }
-      .photo-frame::before { inset: -20px; }
+      .photo-frame::before { inset: -16px; }
       .photo-ring { inset: -18px; }
-      .photo-ring.two { inset: -28px; }
-      .photo-ring .dot { width: 11px; height: 11px; }
       .spin-badge { width: 92px; height: 92px; right: -14px; top: -14px; }
       .spin-badge-center { width: 34px; height: 34px; font-size: 0.9rem; }
       .spin-badge text { font-size: 11px; }
@@ -241,8 +229,6 @@
       .chip-redhat { left: -14px !important; top: -14px !important; }
       .chip-docker { left: -16px !important; bottom: 34px !important; }
       .chip-python { right: -14px !important; top: 44% !important; }
-      .drag-overlay { inset: -36px; }
-      .drag-hint { bottom: -36px; font-size: 0.62rem; }
       .hero-photo .available-badge { right: 6px !important; bottom: 6px !important; }
       .hero-section .grid { gap: 3rem; }
     }
@@ -428,11 +414,9 @@
         </div>
         <div class="hero-visual-wrap" data-aos="zoom-in" data-aos-delay="200">
         <div class="hero-visual" data-speed="0.16">
-          <div class="hero-beam"></div>
           <div class="hero-photo">
             <div class="photo-frame"><img src="abc/1725428819340%20(1).jpg" alt="Prasad S. Ghavghave" /></div>
-            <div class="photo-ring"><div class="dot"></div></div>
-            <div class="photo-ring two"><div class="dot" style="background: var(--secondary); box-shadow: 0 0 18px var(--secondary);"></div></div>
+            <div class="photo-ring"></div>
             <div class="spin-badge">
               <svg viewBox="0 0 200 200">
                 <defs><path id="circlePath" d="M 100,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none"/></defs>
@@ -446,8 +430,6 @@
             <div class="float-chip chip-python" style="top:44%; right:-48px;"><i class="fab fa-python" style="color:#FBBF24;"></i></div>
             <div class="absolute available-badge -bottom-4 -right-3 z-10 bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold py-2 px-5 rounded-full shadow-lg"><i class="fas fa-bolt mr-2"></i>Available</div>
           </div>
-          <div class="drag-overlay" id="dragOverlay" title="Drag to spin the 3D shape"></div>
-          <div class="drag-hint">&#9702; DRAG TO SPIN THE 3D OBJECT</div>
         </div>
         </div>
       </div>
