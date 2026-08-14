@@ -132,9 +132,9 @@
     @keyframes gradientFlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
     /* ============ CARDS ============ */
-    .glass-card { background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--card-border); box-shadow: 0 8px 32px rgba(0,0,0,0.4); transition: all 0.45s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 18px; position: relative; overflow: hidden; }
+    .glass-card { background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--card-border); box-shadow: 0 8px 32px rgba(0,0,0,0.4); transition: border-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.45s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 18px; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
     .glass-card::before { content: ''; position: absolute; top: -60%; left: -60%; width: 220%; height: 220%; background: radial-gradient(circle at 30% 30%, rgba(232,121,249,0.09), transparent 45%); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
-    .glass-card:hover { transform: translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 25px 55px rgba(139,92,246,0.25); }
+    .glass-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 25px 55px rgba(139,92,246,0.25); }
     .glass-card:hover::before { opacity: 1; }
 
     .border-anim { position: relative; }
@@ -264,9 +264,9 @@
     .timeline-dot i { font-size: 0.55rem; color: var(--primary); }
 
     /* ============ SKILLS ============ */
-    .skill-card { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px 10px; text-align: center; transition: all 0.4s; position: relative; overflow: hidden; }
+    .skill-card { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px 10px; text-align: center; transition: border-color 0.4s, box-shadow 0.4s; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
     .skill-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.4s; }
-    .skill-card:hover { transform: translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 18px 40px rgba(139,92,246,0.25); }
+    .skill-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 18px 40px rgba(139,92,246,0.25); }
     .skill-card:hover::after { width: 100%; }
     .skill-card i { transition: all 0.5s; filter: drop-shadow(0 0 8px rgba(232,121,249,0.4)); }
     .skill-card:hover i { transform: rotateY(360deg) scale(1.15); filter: drop-shadow(0 0 16px rgba(232,121,249,0.9)); }
@@ -476,7 +476,7 @@
         <span class="section-tag"><span class="prompt">$</span> ~ about</span>
         <h2 class="section-title">About Me</h2>
       </div>
-      <div class="glass-card border-anim p-6 sm:p-8 md:p-10" data-aos="fade-up" data-aos-delay="100">
+      <div class="glass-card border-anim p-6 sm:p-8 md:p-10">
         <div class="grid md:grid-cols-5 gap-10 items-center">
           <div class="md:col-span-3">
             <p class="text-gray-200 leading-relaxed text-base sm:text-lg mb-5">
@@ -607,7 +607,7 @@
         <p class="section-sub">Linux Administration • Automation • Cloud &amp; Containers • AI &amp; Research</p>
       </div>
       <div class="grid lg:grid-cols-2 gap-8">
-        <div class="glass-card border-anim p-6 sm:p-8" data-aos="fade-up">
+        <div class="glass-card border-anim p-6 sm:p-8">
           <h3 class="text-lg sm:text-xl font-bold text-white mb-7 flex items-center gap-3"><i class="fas fa-sliders-h text-fuchsia-400"></i>Proficiency</h3>
           <div class="space-y-6">
             <div><div class="progress-label"><span>RHEL 9 Administration</span><span class="text-fuchsia-400">90%</span></div><div class="progress-track"><div class="progress-fill" data-progress="90"></div></div></div>
@@ -655,7 +655,7 @@
         </a>
       </div>
       <div class="space-y-5">
-        <a href="https://ieeexplore.ieee.org/document/11609065" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-up">
+        <a href="https://ieeexplore.ieee.org/document/11609065" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">Early Detection and Multiclass Classification of Skin Diseases Using CNN-Based Deep Learning Model</h3>
@@ -663,7 +663,7 @@
           </div>
           <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
         </a>
-        <a href="https://ieeexplore.ieee.org/document/11608714" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-left">
+        <a href="https://ieeexplore.ieee.org/document/11608714" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">Comparative Evaluation of Supervised Machine-Learning Algorithms for Early Parkinson's Disease Prediction from Voice Data</h3>
@@ -671,7 +671,7 @@
           </div>
           <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
         </a>
-        <a href="https://ieeexplore.ieee.org/document/11608428" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-right">
+        <a href="https://ieeexplore.ieee.org/document/11608428" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">Artificial Intelligence and Blockchain Technology in Future Direction</h3>
@@ -679,7 +679,7 @@
           </div>
           <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
         </a>
-        <a href="https://ieeexplore.ieee.org/document/11378502" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-left">
+        <a href="https://ieeexplore.ieee.org/document/11378502" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">Real-Time Hospital Hygiene Surveillance Using Dual YOLOv8 Detection-Segmentation on Edge AI</h3>
@@ -687,7 +687,7 @@
           </div>
           <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
         </a>
-        <a href="https://ieeexplore.ieee.org/document/11379113" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-right">
+        <a href="https://ieeexplore.ieee.org/document/11379113" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">CCTV-Based Automated Attendance System with Employee Data Dashboard: A Case Study at SkyHighes Technology</h3>
@@ -695,7 +695,7 @@
           </div>
           <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
         </a>
-        <a href="https://ieeexplore.ieee.org/document/10969057" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block" data-aos="fade-up">
+        <a href="https://ieeexplore.ieee.org/document/10969057" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
           <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
           <div class="flex-1">
             <h3 class="font-bold text-white text-base sm:text-lg mb-1">IoT and the Future of Healthcare: Revolutionizing Remote Patient Monitoring</h3>
@@ -715,7 +715,7 @@
         <p class="section-sub">Open-source builds — Linux labs, automation &amp; AI tooling</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <a href="https://github.com/prasad111-dev/linuxlab-59" target="_blank" class="glass-card border-anim overflow-hidden group tilt" data-aos="flip-up">
+        <a href="https://github.com/prasad111-dev/linuxlab-59" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
           <div class="tilt-inner">
             <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-red-800 via-rose-700 to-purple-700">
               <i class="fab fa-linux text-5xl sm:text-6xl text-white"></i>
@@ -733,7 +733,7 @@
             </div>
           </div>
         </a>
-        <a href="https://github.com/prasad111-dev/Web_App_Attendance" target="_blank" class="glass-card border-anim overflow-hidden group tilt" data-aos="flip-up" data-aos-delay="100">
+        <a href="https://github.com/prasad111-dev/Web_App_Attendance" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
           <div class="tilt-inner">
             <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-blue-800 via-indigo-700 to-purple-700">
               <i class="fas fa-user-check text-5xl sm:text-6xl text-white"></i>
@@ -751,7 +751,7 @@
             </div>
           </div>
         </a>
-        <a href="https://github.com/prasad111-dev/efficiency_analyzer" target="_blank" class="glass-card border-anim overflow-hidden group tilt" data-aos="flip-up" data-aos-delay="200">
+        <a href="https://github.com/prasad111-dev/efficiency_analyzer" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
           <div class="tilt-inner">
             <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-green-800 via-teal-700 to-cyan-700">
               <i class="fas fa-tachometer-alt text-5xl sm:text-6xl text-white"></i>
@@ -781,7 +781,7 @@
         <p class="section-sub">Red Hat Academy verified credentials</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt" data-aos="zoom-in">
+        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
           <div class="tilt-inner">
             <div class="w-20 h-20 bg-fuchsia-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
               <i class="fas fa-certificate text-3xl text-fuchsia-400"></i>
@@ -790,7 +790,7 @@
             <a href="https://www.credly.com/earner/earned/badge/84e8a972-b2bd-49f4-a2d9-34cbd913f909" target="_blank" class="mt-4 inline-block py-2 px-5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold text-sm hover:opacity-90 transition">View Badge</a>
           </div>
         </div>
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt" data-aos="zoom-in" data-aos-delay="100">
+        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
           <div class="tilt-inner">
             <div class="w-20 h-20 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
               <i class="fas fa-robot text-3xl text-green-400"></i>
@@ -799,7 +799,7 @@
             <a href="https://www.credly.com/badges/9b071569-cfbb-42bf-a221-e6853a4abe83" target="_blank" class="mt-4 inline-block py-2 px-5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold text-sm hover:opacity-90 transition">View Badge</a>
           </div>
         </div>
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt" data-aos="zoom-in" data-aos-delay="200">
+        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
           <div class="tilt-inner">
             <div class="w-20 h-20 bg-purple-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
               <i class="fab fa-kubernetes text-3xl text-purple-400"></i>
@@ -821,7 +821,7 @@
       </div>
       <div class="grid md:grid-cols-2 gap-8 sm:gap-10">
         <div class="space-y-6">
-          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl" data-aos="fade-right">
+          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl">
             <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Contact Information</h3>
             <div class="contact-line"><i class="fas fa-envelope text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Email</strong><a href="mailto:prasadghavghave0@gmail.com" class="text-gray-200 hover:text-fuchsia-400">prasadghavghave0@gmail.com</a></span></div>
             <div class="contact-line"><i class="fas fa-phone text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Phone</strong><a href="tel:+919322860752" class="text-gray-200 hover:text-fuchsia-400">+91 9322860752</a></span></div>
@@ -831,7 +831,7 @@
             <div class="contact-line"><i class="fas fa-microchip text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">IEEE Xplore</strong><a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="text-gray-200 hover:text-fuchsia-400">ieeexplore.ieee.org/author/394379608471085</a></span></div>
             <div class="contact-line"><i class="fas fa-file-pdf text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Resume</strong><a href="Prasad_Ghavghave_Resume.pdf" download class="text-gray-200 hover:text-fuchsia-400">Download CV (.pdf)</a></span></div>
           </div>
-          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl" data-aos="fade-left" data-aos-delay="100">
+          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl">
             <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Research Profiles</h3>
             <div class="flex flex-wrap gap-3">
               <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" class="hero-chip text-sm"><i class="fas fa-graduation-cap text-blue-400 mr-2"></i>Google Scholar</a>
@@ -841,7 +841,7 @@
             </div>
           </div>
         </div>
-        <form action="https://formsubmit.co/prasadghavghave0@gmail.com" method="POST" class="glass-card border-anim p-6 sm:p-8 rounded-xl" data-aos="fade-up">
+        <form action="https://formsubmit.co/prasadghavghave0@gmail.com" method="POST" class="glass-card border-anim p-6 sm:p-8 rounded-xl">
           <div class="space-y-5">
             <div><label for="name" class="block text-gray-300 mb-2 font-medium">Your Name</label><input type="text" id="name" name="name" required placeholder="John Doe" class="form-input w-full p-4"></div>
             <div><label for="email" class="block text-gray-300 mb-2 font-medium">Email Address</label><input type="email" id="email" name="email" required placeholder="john@example.com" class="form-input w-full p-4"></div>
@@ -974,12 +974,18 @@
     document.querySelectorAll('.progress-fill').forEach((f) => progressObserver.observe(f));
 
     if (!isTouch && !reduceMotion) {
+      const tiltTransform = (card, rx, ry) => {
+        const cs = getComputedStyle(card);
+        const sy = cs.getPropertyValue('--scrubY').trim() || '0px';
+        const sc = cs.getPropertyValue('--scrubScale').trim() || '1';
+        return `translate3d(0, ${sy}, 0) scale(${sc}) perspective(900px) rotateY(${ry}deg) rotateX(${rx}deg)`;
+      };
       document.querySelectorAll('.tilt').forEach((card) => {
         card.addEventListener('mousemove', (e) => {
           const r = card.getBoundingClientRect();
-          card.style.transform = `perspective(900px) rotateY(${((e.clientX - r.left) / r.width - 0.5) * 14}deg) rotateX(${-( (e.clientY - r.top) / r.height - 0.5) * 14}deg)`;
+          card.style.transform = tiltTransform(card, -((e.clientY - r.top) / r.height - 0.5) * 14, ((e.clientX - r.left) / r.width - 0.5) * 14);
         });
-        card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)'; });
+        card.addEventListener('mouseleave', () => { card.style.transform = tiltTransform(card, 0, 0); });
       });
       document.querySelectorAll('.magnetic').forEach((btn) => {
         btn.addEventListener('mousemove', (e) => {
@@ -1073,6 +1079,33 @@
       window.addEventListener('scroll', () => { if (!pxQueued) { pxQueued = true; requestAnimationFrame(updatePx); } }, { passive: true });
       window.addEventListener('resize', updatePx);
       updatePx();
+    }
+
+    /* Scroll-scrubbed card fly-in — cards rise/scale continuously tied to scroll */
+    if (!reduceMotion) {
+      const scrubCards = [...document.querySelectorAll('.glass-card, .skill-card')].map((el) => {
+        const group = el.parentElement;
+        const idx = group ? [...group.querySelectorAll('.glass-card, .skill-card')].indexOf(el) : 0;
+        return { el, stagger: Math.min(idx * 0.04, 0.3) };
+      });
+      const smooth3 = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
+      let scrubQueued = false;
+      const updateScrub = () => {
+        const vh = window.innerHeight;
+        scrubCards.forEach(({ el, stagger }) => {
+          const top = el.getBoundingClientRect().top;
+          const pr = Math.min(1, Math.max(0, (vh * 0.94 - top) / (vh * 0.6)));
+          const e = stagger >= 1 ? 1 : Math.min(1, Math.max(0, (pr - stagger) / (1 - stagger)));
+          const s = smooth3(e);
+          el.style.setProperty('--scrubY', (70 * (1 - s)).toFixed(2) + 'px');
+          el.style.setProperty('--scrubScale', (0.9 + 0.1 * s).toFixed(3));
+          el.style.setProperty('--scrubOp', s.toFixed(3));
+        });
+        scrubQueued = false;
+      };
+      window.addEventListener('scroll', () => { if (!scrubQueued) { scrubQueued = true; requestAnimationFrame(updateScrub); } }, { passive: true });
+      window.addEventListener('resize', updateScrub);
+      updateScrub();
     }
 
     /* Watermark parallax */
