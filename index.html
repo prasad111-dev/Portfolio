@@ -29,7 +29,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet"/>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
   <style>
     :root {
@@ -41,12 +41,16 @@
       --dark-bg: #05060a;
       --card-bg: rgba(255, 255, 255, 0.07);
       --card-border: rgba(255, 255, 255, 0.14);
+      --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
+      --term-green: #22ff88;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     * { scrollbar-width: thin; scrollbar-color: var(--primary) var(--dark-bg); }
 
     html { scroll-behavior: smooth; overflow-x: hidden; overflow-y: auto; overscroll-behavior-x: none; }
+
+    ::selection { background: rgba(232,121,249,0.35); color: #fff; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -64,9 +68,19 @@
     ::-webkit-scrollbar-track { background: var(--dark-bg); }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 5px; }
 
-    .mono { font-family: 'Space Mono', monospace; }
+    .mono { font-family: var(--font-mono); }
     .tech { font-family: 'Orbitron', sans-serif; }
     img { max-width: 100%; }
+
+    /* ============ PREMIUM TEXTURE OVERLAY ============ */
+    #grain {
+      position: fixed; inset: 0; z-index: 92; pointer-events: none; opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #grain::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+    }
 
     /* ============ PRELOADER ============ */
     #preloader {
@@ -79,6 +93,7 @@
     .loader-name { font-size: 1.3rem; letter-spacing: 5px; }
     .loader-bar-wrap { width: 220px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
     .loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); transition: width 0.2s; }
+    .loader-boot { color: #8b93a7; font-size: 0.8rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ============ FIXED LAYERS ============ */
@@ -90,12 +105,23 @@
     .cursor-ring.grow { width: 60px; height: 60px; border-color: rgba(34,211,238,0.6); }
 
     /* ============ NAVBAR ============ */
-    .navbar { background: rgba(5,6,10,0.5); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid transparent; transition: all 0.4s; padding-top: 0.9rem; padding-bottom: 0.9rem; }
-    .navbar.scrolled { background: rgba(5,6,10,0.92); border-bottom-color: var(--card-border); box-shadow: 0 8px 30px rgba(0,0,0,0.5); padding-top: 0.6rem; padding-bottom: 0.6rem; }
-    .nav-link { position: relative; font-weight: 500; color: #cbd5e1; transition: color 0.3s; white-space: nowrap; }
-    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; box-shadow: 0 0 8px var(--primary); }
-    .nav-link:hover, .nav-link.active { color: var(--primary); }
-    .nav-link:hover::after, .nav-link.active::after { width: 80%; }
+    .navbar { background: transparent; transition: all 0.4s; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+    .navbar > div {
+      max-width: 980px; margin-left: auto; margin-right: auto;
+      background: rgba(8,10,18,0.72); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px;
+      padding: 0.55rem 1.1rem 0.55rem 1.5rem;
+      transition: all 0.4s; box-shadow: 0 10px 34px rgba(0,0,0,0.35);
+    }
+    .navbar.scrolled { padding-top: 0.7rem; padding-bottom: 0.7rem; }
+    .navbar.scrolled > div { border-color: rgba(232,121,249,0.3); box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 0 30px rgba(139,92,246,0.12); }
+    .nav-link { position: relative; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; color: #aab6c8; transition: color 0.3s; white-space: nowrap; padding: 8px 14px; border-radius: 999px; text-transform: none; letter-spacing: normal; }
+    .nav-link::before { content: './'; color: var(--term-green); opacity: 0.85; font-weight: 700; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 3px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; box-shadow: 0 0 8px var(--primary); }
+    .nav-link:hover, .nav-link.active { color: #fff; background: rgba(232,121,249,0.1); }
+    .nav-link:hover::after, .nav-link.active::after { width: 55%; }
+    .nav-status { align-items: center; gap: 7px; font-size: 0.72rem; color: #9fb0c0; letter-spacing: 0.06em; border: 1px solid rgba(34,255,136,0.3); background: rgba(34,255,136,0.07); padding: 6px 12px; border-radius: 999px; }
+    .nav-status { color: var(--term-green); }
 
     #mobileMenu { transition: opacity 0.35s ease; }
     #mobileMenu a { opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease, transform 0.4s ease; color: #e2e8f0; }
@@ -118,7 +144,7 @@
       max-width: 100%; overflow: hidden;
     }
 
-    .section-tag { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 4px; color: var(--secondary); text-transform: uppercase; }
+    .section-tag { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 2px; color: #aab6c8; text-transform: none; display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 8px 16px; }
     .section-tag .prompt { color: #22ff88; }
     .section-title {
       font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; margin-top: 10px; line-height: 1;
@@ -132,7 +158,7 @@
     @keyframes gradientFlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
     /* ============ CARDS ============ */
-    .glass-card { background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--card-border); box-shadow: 0 8px 32px rgba(0,0,0,0.4); transition: border-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.45s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 18px; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
+    .glass-card { background: rgba(255,255,255,0.045); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4); transition: border-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.45s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 14px; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
     .glass-card::before { content: ''; position: absolute; top: -60%; left: -60%; width: 220%; height: 220%; background: radial-gradient(circle at 30% 30%, rgba(232,121,249,0.09), transparent 45%); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
     .glass-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 25px 55px rgba(139,92,246,0.25); }
     .glass-card:hover::before { opacity: 1; }
@@ -146,32 +172,36 @@
     .tilt-inner { transform: translateZ(28px); }
 
     /* ============ BUTTONS ============ */
-    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; font-weight: 700; position: relative; overflow: hidden; transition: all 0.35s; box-shadow: 0 6px 22px rgba(232,121,249,0.4); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; font-weight: 700; position: relative; overflow: hidden; transition: all 0.35s; box-shadow: 0 6px 22px rgba(232,121,249,0.4); font-family: var(--font-mono); font-size: 0.92rem; letter-spacing: 0.01em; }
+    .btn-primary::before, .btn-outline::before { content: '[ ]'; position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; pointer-events: none; font-family: var(--font-mono); font-size: 0.95rem; color: rgba(255,255,255,0.6); }
     .btn-primary::after { content: ''; position: absolute; top: 0; left: -120%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent); transition: left 0.5s; }
     .btn-primary:hover::after { left: 120%; }
     .btn-primary:hover { box-shadow: 0 12px 40px rgba(232,121,249,0.6); transform: translateY(-3px) scale(1.03); }
-    .btn-outline { border: 2px solid var(--primary); color: var(--primary); font-weight: 600; background: rgba(232,121,249,0.06); transition: all 0.35s; }
+    .btn-outline { border: 2px solid var(--primary); color: var(--primary); font-weight: 600; background: rgba(232,121,249,0.06); transition: all 0.35s; font-family: var(--font-mono); font-size: 0.92rem; letter-spacing: 0.01em; }
+    .btn-outline::before { color: rgba(232,121,249,0.7); }
     .btn-outline:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 12px 40px rgba(232,121,249,0.5); transform: translateY(-3px); }
+    .btn-outline:hover::before { color: rgba(255,255,255,0.8); }
 
     /* ============ HERO ============ */
     .hero-section { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 130px 0 70px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(232,121,249,0.45); background: linear-gradient(90deg, rgba(232,121,249,0.12), rgba(34,211,238,0.1)); border-radius: 50px; padding: 8px 16px; font-size: 0.75rem; color: #F5D0FE; box-shadow: 0 0 24px rgba(232,121,249,0.15); }
+    .hero-section .grid > div { min-width: 0; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(34,255,136,0.35); background: rgba(34,255,136,0.08); border-radius: 999px; padding: 8px 16px; font-size: 0.72rem; color: var(--term-green); box-shadow: 0 0 24px rgba(34,255,136,0.12); font-family: var(--font-mono); }
     .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: #22ff88; animation: pulse 2s infinite; flex-shrink: 0; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,255,136,0.6); } 70% { box-shadow: 0 0 0 12px rgba(34,255,136,0); } 100% { box-shadow: 0 0 0 0 rgba(34,255,136,0); } }
 
+    .hero-eyebrow { font-size: clamp(0.85rem, 2vw, 1.02rem); color: #9fb0c0; letter-spacing: 0.02em; }
+    .t-green { color: var(--term-green); }
+
     .giant-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.6rem, 9vw, 6rem);
-      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
-      background: linear-gradient(90deg, #E879F9, #22D3EE, #8B5CF6, #FBBF24, #E879F9);
-      background-size: 300% 100%;
+      font-family: var(--font-mono);
+      font-size: clamp(2.4rem, 8.5vw, 5.4rem);
+      font-weight: 800; line-height: 1.06; letter-spacing: -0.015em;
+      background: linear-gradient(90deg, #E879F9, #22D3EE, #8B5CF6, #E879F9);
+      background-size: 260% 100%;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: gradientFlow 3s linear infinite;
-      filter: drop-shadow(0 0 40px rgba(232,121,249,0.3));
-      transform: perspective(700px);
-      transition: transform 0.4s ease;
+      animation: gradientFlow 7s linear infinite;
+      filter: drop-shadow(0 0 38px rgba(232,121,249,0.28));
     }
-    .giant-name:hover { transform: perspective(700px) rotateX(8deg) scale(1.02); }
 
     .hero-role { font-size: clamp(1.05rem, 3vw, 1.5rem); }
     .hero-desc { color: #b9c4d6; font-size: 1.02rem; max-width: 540px; line-height: 1.65; }
@@ -181,6 +211,30 @@
 
     .social-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); color: #fff; transition: all 0.35s; }
     .social-circle:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff !important; transform: translateY(-5px) rotate(8deg); box-shadow: 0 10px 28px rgba(232,121,249,0.5); }
+
+    /* Terminal window card */
+    .term-card {
+      max-width: 560px; border-radius: 14px; overflow: hidden;
+      background: rgba(6,8,14,0.85); border: 1px solid rgba(232,121,249,0.22);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 22px 60px rgba(0,0,0,0.55), 0 0 42px rgba(139,92,246,0.16);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .term-card:hover { border-color: rgba(34,211,238,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 24px 64px rgba(0,0,0,0.6), 0 0 54px rgba(34,211,238,0.18); }
+    .term-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: rgba(255,255,255,0.045); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .term-dot { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; box-shadow: 0 0 8px rgba(255,95,87,0.55); }
+    .term-dot:nth-child(2) { background: #febc2e; box-shadow: 0 0 8px rgba(254,188,46,0.5); }
+    .term-dot:nth-child(3) { background: #28c840; box-shadow: 0 0 8px rgba(40,200,64,0.5); }
+    .term-title { margin-left: 8px; font-size: 0.72rem; color: #8b93a7; letter-spacing: 0.03em; }
+    .term-body { padding: 16px 18px 14px; font-size: 0.82rem; line-height: 1.9; }
+    .term-line { overflow-wrap: break-word; }
+    .t-prompt { color: var(--term-green); font-weight: 700; }
+    .t-cmd { color: #e8edf5; }
+    .term-out { color: #8b93a7; }
+    .t-ok { color: var(--term-green); text-shadow: 0 0 12px rgba(34,255,136,0.4); }
+    .t-cursor { display: inline-block; width: 9px; height: 1.05em; margin-left: 3px; background: var(--term-green); vertical-align: text-bottom; box-shadow: 0 0 10px var(--term-green); animation: blink 1s step-end infinite; }
+    .footer-signoff { color: #8b93a7; letter-spacing: 0.03em; }
+    .footer-cursor { display: inline-block; width: 8px; height: 0.9em; margin-left: 4px; background: var(--term-green); vertical-align: text-bottom; box-shadow: 0 0 10px var(--term-green); animation: blink 1s step-end infinite; }
 
     /* Photo centerpiece */
     .hero-visual { position: relative; margin: 0 auto; width: clamp(260px, 62vw, 380px); }
@@ -237,10 +291,14 @@
     .hero-chip:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(232,121,249,0.25); color: #fff; }
 
     /* ============ MARQUEE ============ */
-    .marquee-wrap { position: relative; overflow: hidden; padding: 16px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); background: rgba(255,255,255,0.02); }
-    .marquee { display: flex; gap: 44px; white-space: nowrap; animation: marquee 30s linear infinite; width: max-content; }
-    .marquee span { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; color: #8b93a7; }
-    .marquee span i { margin-right: 10px; }
+   .marquee-wrap { position: relative; overflow: hidden; padding: 18px 0; border-top: 1px solid rgba(232,121,249,0.18); border-bottom: 1px solid rgba(34,211,238,0.18); background: rgba(255,255,255,0.02); }
+   .marquee-wrap::before, .marquee-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+   .marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--dark-bg), transparent); }
+   .marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--dark-bg), transparent); }
+   .marquee { display: flex; gap: 44px; white-space: nowrap; animation: marquee 42s linear infinite; width: max-content; }
+   .marquee span { font-family: var(--font-mono); font-size: 0.88rem; letter-spacing: 0.02em; color: #7e8aa0; }
+   .marquee span::after { content: ' / '; margin-left: 44px; color: rgba(232,121,249,0.45); }
+   .marquee span i { margin-right: 10px; }
     .marquee span:nth-child(6n+1) i { color: #E879F9; }
     .marquee span:nth-child(6n+2) i { color: #22D3EE; }
     .marquee span:nth-child(6n+3) i { color: #8B5CF6; }
@@ -264,7 +322,7 @@
     .timeline-dot i { font-size: 0.55rem; color: var(--primary); }
 
     /* ============ SKILLS ============ */
-    .skill-card { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px 10px; text-align: center; transition: border-color 0.4s, box-shadow 0.4s; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
+    .skill-card { background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 22px 10px; text-align: center; transition: border-color 0.4s, box-shadow 0.4s; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); }
     .skill-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.4s; }
     .skill-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 18px 40px rgba(139,92,246,0.25); }
     .skill-card:hover::after { width: 100%; }
@@ -333,18 +391,20 @@
     <div class="loader-ring"></div>
     <div class="loader-name mono text-fuchsia-400">PRASAD<span class="text-white">.DEV</span></div>
     <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+    <p class="loader-boot mono mt-3">prasad@portfolio:~$ <span class="t-green">booting portfolio</span><span class="footer-cursor"></span></p>
   </div>
 
   <!-- FIXED LAYERS -->
   <div id="progress"></div>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
+  <div id="grain"></div>
 
   <!-- NAVBAR -->
   <nav class="navbar fixed w-full z-50 px-4 sm:px-6" id="navbar">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <a href="#" class="text-2xl font-black text-white tracking-tight tech">Prasad<span class="text-fuchsia-400">.dev</span></a>
-      <div class="hidden lg:flex items-center space-x-7 xl:space-x-8">
+      <div class="hidden lg:flex items-center gap-1">
         <a href="#about" class="nav-link text-sm uppercase tracking-wider">About</a>
         <a href="#experience" class="nav-link text-sm uppercase tracking-wider">Experience</a>
         <a href="#skills" class="nav-link text-sm uppercase tracking-wider">Skills</a>
@@ -352,9 +412,12 @@
         <a href="#projects" class="nav-link text-sm uppercase tracking-wider">Projects</a>
         <a href="#contact" class="nav-link text-sm uppercase tracking-wider">Contact</a>
       </div>
-      <button class="lg:hidden text-white p-2" onclick="toggleMenu()" aria-label="Menu">
-        <i class="fas fa-bars text-2xl" id="menuIcon"></i>
-      </button>
+      <div class="flex items-center gap-3">
+        <span class="nav-status mono hidden sm:flex">&#9679; online</span>
+        <button class="lg:hidden text-white p-2" onclick="toggleMenu()" aria-label="Menu">
+          <i class="fas fa-bars text-2xl" id="menuIcon"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -364,13 +427,13 @@
       <i class="fas fa-times text-3xl"></i>
     </button>
     <div class="flex flex-col items-center gap-7">
-      <a href="#about" class="text-3xl font-bold" onclick="toggleMenu()">About</a>
-      <a href="#experience" class="text-3xl font-bold" onclick="toggleMenu()">Experience</a>
-      <a href="#skills" class="text-3xl font-bold" onclick="toggleMenu()">Skills</a>
-      <a href="#publications" class="text-3xl font-bold" onclick="toggleMenu()">Publications</a>
-      <a href="#projects" class="text-3xl font-bold" onclick="toggleMenu()">Projects</a>
-      <a href="#certifications" class="text-3xl font-bold" onclick="toggleMenu()">Certifications</a>
-      <a href="#contact" class="text-3xl font-bold" onclick="toggleMenu()">Contact</a>
+      <a href="#about" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>about</a>
+      <a href="#experience" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>experience</a>
+      <a href="#skills" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>skills</a>
+      <a href="#publications" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>publications</a>
+      <a href="#projects" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>projects</a>
+      <a href="#certifications" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>certifications</a>
+      <a href="#contact" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>contact</a>
     </div>
   </div>
 
@@ -380,10 +443,11 @@
       <div class="grid lg:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-up">
           <div data-speed="0.1">
-          <div class="hero-badge mb-6">
+          <div class="hero-badge mb-5">
             <span class="pulse-dot"></span>
-            <span class="mono uppercase tracking-widest text-xs">Open to Work</span>
+            <span class="mono uppercase tracking-widest text-xs">Online &bull; Open to Work</span>
           </div>
+          <p class="hero-eyebrow mono mb-3">prasad@portfolio:~$ <span class="t-green">whoami</span></p>
           <h1 class="giant-name mb-4">Prasad S.<br>Ghavghave</h1>
           <p class="hero-role text-cyan-300 mb-5 mono">
             <span class="text-white">I'm a</span>
@@ -409,6 +473,19 @@
             <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" class="social-circle"><i class="fas fa-graduation-cap"></i></a>
             <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" aria-label="IEEE" class="social-circle"><i class="fas fa-microchip"></i></a>
             <a href="https://wa.me/919322860752" target="_blank" aria-label="WhatsApp" class="social-circle"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+          </div>
+          <div class="term-card mt-9">
+            <div class="term-bar">
+              <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+              <span class="term-title mono">prasad@production: ~</span>
+            </div>
+            <div class="term-body mono">
+              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">whoami</span></p>
+              <p class="term-out">linux_sysadmin &middot; ieee_researcher</p>
+              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">./deploy --stack ansible --env production</span></p>
+              <p class="term-out t-ok">&#10003; 6 playbooks &middot; 42 tasks &middot; 0 errors</p>
+              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cursor"></span></p>
+            </div>
           </div>
           </div>
         </div>
@@ -473,7 +550,7 @@
     <section id="about">
       <div class="watermark" data-parallax>ABOUT ME</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ about</span>
+        <span class="section-tag"><span class="prompt">$</span> 01. ~/about</span>
         <h2 class="section-title">About Me</h2>
       </div>
       <div class="glass-card border-anim p-6 sm:p-8 md:p-10">
@@ -527,7 +604,7 @@
     <section id="experience">
       <div class="watermark" data-parallax>JOURNEY</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ journey</span>
+        <span class="section-tag"><span class="prompt">$</span> 02. ~/journey</span>
         <h2 class="section-title">Experience &amp; Education</h2>
       </div>
       <div class="grid lg:grid-cols-2 gap-10">
@@ -602,7 +679,7 @@
     <section id="skills">
       <div class="watermark" data-parallax>SKILLS</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ capabilities</span>
+        <span class="section-tag"><span class="prompt">$</span> 03. ~/capabilities</span>
         <h2 class="section-title">Technical Skills</h2>
         <p class="section-sub">Linux Administration • Automation • Cloud &amp; Containers • AI &amp; Research</p>
       </div>
@@ -636,7 +713,7 @@
     <section id="publications">
       <div class="watermark" data-parallax>RESEARCH</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ research</span>
+        <span class="section-tag"><span class="prompt">$</span> 04. ~/research</span>
         <h2 class="section-title">Research &amp; Publications</h2>
         <p class="section-sub">IEEE Xplore published research papers in AI, healthcare, and edge computing</p>
       </div>
@@ -710,7 +787,7 @@
     <section id="projects">
       <div class="watermark" data-parallax>BUILDS</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ builds</span>
+        <span class="section-tag"><span class="prompt">$</span> 05. ~/builds</span>
         <h2 class="section-title">Projects &amp; Builds</h2>
         <p class="section-sub">Open-source builds — Linux labs, automation &amp; AI tooling</p>
       </div>
@@ -776,7 +853,7 @@
     <section id="certifications">
       <div class="watermark" data-parallax>CREDENTIALS</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ credentials</span>
+        <span class="section-tag"><span class="prompt">$</span> 06. ~/credentials</span>
         <h2 class="section-title">Certifications</h2>
         <p class="section-sub">Red Hat Academy verified credentials</p>
       </div>
@@ -815,7 +892,7 @@
     <section id="contact">
       <div class="watermark" data-parallax>CONTACT</div>
       <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> ~ contact</span>
+        <span class="section-tag"><span class="prompt">$</span> 07. ~/contact</span>
         <h2 class="section-title">Get In Touch</h2>
         <p class="section-sub">Open to junior Linux administrator roles, DevOps opportunities &amp; research collaborations</p>
       </div>
@@ -869,6 +946,7 @@
         <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="social-circle text-gray-300"><i class="fas fa-microchip"></i></a>
         <a href="https://wa.me/919322860752" target="_blank" class="social-circle text-gray-300" aria-label="WhatsApp"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
       </div>
+      <p class="mt-8 mono text-xs">prasad@portfolio:~$ <span class="t-green">logout</span><span class="footer-cursor"></span></p>
     </div>
   </footer>
 
