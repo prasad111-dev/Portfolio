@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Portfolio of Prasad S. Ghavghave — Junior Linux System Administrator, RHEL specialist, Ansible automation and IEEE published AI researcher." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="description" content="Portfolio of Prasad S. Ghavghave — Junior Linux System Administrator, DevOps & AI Researcher. Red Hat certified (RH124, RH294, DO180), IEEE author of 6 publications, RHEL 9, Ansible, Docker, deep learning (CNN, YOLOv8)." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Prasad S. Ghavghave | Linux Admin & AI Researcher" />
   <meta property="og:description" content="Junior Linux System Administrator (RHEL 9, Ansible, Docker) and IEEE-published AI researcher with 6+ papers on deep learning and computer vision." />
-  <meta property="og:image" content="abc/1725428819340%20(1).jpg" />
+  <meta property="og:image" content="assets/stills/home.jpg" />
   <meta property="og:url" content="https://prasad111-dev.github.io/Portfolio/" />
-  <meta name="theme-color" content="#05060a" />
+  <meta name="theme-color" content="#0b0d12" />
   <link rel="icon" type="image/png" href="abc/favicon.png" />
   <link rel="apple-touch-icon" href="abc/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <title>Prasad S. Ghavghave | Linux Admin & AI Researcher</title>
+  <title>Prasad S. Ghavghave — the world of Linux & AI</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ5H5JW9MN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -26,1395 +23,298 @@
     gtag('js', new Date());
     gtag('config', 'G-RZ5H5JW9MN');
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet"/>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #E879F9;
-      --secondary: #22D3EE;
-      --accent: #8B5CF6;
-      --accent2: #F472B6;
-      --gold: #FBBF24;
-      --dark-bg: #05060a;
-      --card-bg: rgba(255, 255, 255, 0.07);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
-      --term-green: #22ff88;
+    :root, .sw-root {
+      --sw-bg: #0b0d12;
+      --sw-ink: #f4f1ea;
+      --sw-ink-soft: #aab2c1;
+      --sw-accent: #E879F9;
+      --sw-font-display: 'Outfit', ui-rounded, 'Segoe UI', system-ui, sans-serif;
+      --sw-font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --sw-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    * { scrollbar-width: thin; scrollbar-color: var(--primary) var(--dark-bg); }
-
-    html { scroll-behavior: smooth; overflow-x: hidden; overflow-y: auto; overscroll-behavior-x: none; }
-
+    html, body { margin: 0; background: #0b0d12; }
     ::selection { background: rgba(232,121,249,0.35); color: #fff; }
 
-    body {
-      font-family: 'Outfit', sans-serif;
+    /* ---- copy typography ---- */
+    .sw-copy__num { font-family: var(--sw-font-mono); font-size: .74rem; letter-spacing: .12em; color: var(--sw-ink-soft); }
+    .sw-copy__eyebrow { font-family: var(--sw-font-display); font-weight: 700; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; }
+    .sw-copy__title { text-shadow: 0 2px 26px rgba(0,0,0,0.55); }
+    .sw-copy__body { color: color-mix(in srgb, var(--sw-ink) 84%, var(--sw-ink-soft)); text-shadow: 0 1px 16px rgba(0,0,0,0.65); }
+    .sw-copylayer::before { width: min(56vw, 760px); background: linear-gradient(90deg, #0b0d12 0%, rgba(11,13,18,0.7) 38%, rgba(11,13,18,0.2) 64%, transparent 100%); }
+    .sw-route::before { opacity: .4; }
+    .sw-nav { background: rgba(11,13,18,0.4); backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.12); }
+    .sw-nav__item.is-active { color: #0b0d12; }
+    .sw-route__label { background: rgba(11,13,18,0.78); color: var(--sw-ink); border-color: rgba(255,255,255,0.12); }
+    .sw-brand__mark { border-radius: 999px; width: 26px; height: 26px; }
+    .sw-scene__still { transition: filter .6s linear; }
+
+    /* ---- per-scene accent tint overlay (colour grade feel) ---- */
+    .sw-scene::after {
+      content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
       background:
-        radial-gradient(1100px 700px at 85% -10%, rgba(139,92,246,0.16), transparent 60%),
-        radial-gradient(900px 650px at -5% 110%, rgba(34,211,238,0.12), transparent 60%),
-        radial-gradient(700px 500px at 60% 120%, rgba(232,121,249,0.1), transparent 60%),
-        var(--dark-bg);
-      color: #ffffff;
-      overflow-x: hidden;
-      overscroll-behavior-x: none;
+        linear-gradient(180deg, rgba(0,0,0,0.28) 0%, transparent 34%, rgba(0,0,0,0.18) 100%),
+        radial-gradient(120% 90% at 50% 50%, transparent 40%, rgba(0,0,0,0.42) 100%),
+        color-mix(in srgb, var(--sw-accent) 16%, transparent);
+      mix-blend-mode: normal;
+    }
+    .sw-scene.has-clip .sw-scene__still { opacity: 0; }
+
+    /* ---- cinematic matte bars ---- */
+    .cine-matte { position: fixed; left: 0; right: 0; z-index: 15; pointer-events: none;
+      height: 0; opacity: 0; background: #000; transition: opacity .5s ease; will-change: height, opacity; }
+    .cine-matte--top { top: 0; }
+    .cine-matte--bot { bottom: 0; }
+
+    /* ---- film grain ---- */
+    .cine-grain {
+      position: fixed; inset: -6%; z-index: 14; pointer-events: none; opacity: .07;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='0.9'/></svg>");
+      animation: sw-grain 0.55s steps(3) infinite; will-change: transform;
+    }
+    @keyframes sw-grain {
+      0% { transform: translate(0,0); } 25% { transform: translate(-1.4%,0.9%); }
+      50% { transform: translate(1.1%,-1.2%); } 75% { transform: translate(-0.8%,-0.6%); }
+      100% { transform: translate(0.9%,1.1%); }
     }
 
-    ::-webkit-scrollbar { width: 9px; }
-    ::-webkit-scrollbar-track { background: var(--dark-bg); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 5px; }
-
-    .mono { font-family: var(--font-mono); }
-    .tech { font-family: 'Orbitron', sans-serif; }
-    img { max-width: 100%; }
-
-    /* ============ PREMIUM TEXTURE OVERLAY ============ */
-    #grain {
-      position: fixed; inset: 0; z-index: 92; pointer-events: none; opacity: 0.05;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    /* ---- light leak sweep ---- */
+    .cine-leak {
+      position: fixed; inset: 0; z-index: 13; pointer-events: none; opacity: .5;
+      background: linear-gradient(115deg, transparent 42%,
+        color-mix(in srgb, var(--sw-accent) 10%, transparent) 50%,
+        transparent 58%);
+      background-size: 220% 220%; background-position: 130% 40%;
+      animation: sw-leak 9s ease-in-out infinite; mix-blend-mode: screen; will-change: background-position;
     }
-    #grain::after {
-      content: ''; position: fixed; inset: 0; pointer-events: none;
-      background: repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+    @keyframes sw-leak {
+      0%, 100% { background-position: 130% 40%; }
+      50% { background-position: -30% 60%; }
     }
 
-    /* ============ PRELOADER ============ */
-    #preloader {
-      position: fixed; inset: 0; z-index: 9999; background: var(--dark-bg);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-    #preloader.hide { opacity: 0; visibility: hidden; }
-    .loader-ring { width: 90px; height: 90px; border-radius: 50%; border: 3px solid rgba(232,121,249,0.15); border-top-color: var(--primary); border-right-color: var(--secondary); border-bottom-color: var(--accent); animation: spin 1s linear infinite; }
-    .loader-name { font-size: 1.3rem; letter-spacing: 5px; }
-    .loader-bar-wrap { width: 220px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
-    .loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); transition: width 0.2s; }
-    .loader-boot { color: #8b93a7; font-size: 0.8rem; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ============ FIXED LAYERS ============ */
-    #progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); z-index: 1001; box-shadow: 0 0 14px rgba(232,121,249,0.6); }
-
-    /* ============ CURSOR ============ */
-    .cursor-dot { position: fixed; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); z-index: 1002; pointer-events: none; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(232,121,249,0.5); z-index: 1001; pointer-events: none; transition: width .2s, height .2s; }
-    .cursor-ring.grow { width: 60px; height: 60px; border-color: rgba(34,211,238,0.6); }
-
-    /* ============ NAVBAR ============ */
-    .navbar { background: transparent; transition: all 0.4s; padding-top: 1.1rem; padding-bottom: 1.1rem; }
-    .navbar > div {
-      max-width: 980px; margin-left: auto; margin-right: auto;
-      background: rgba(8,10,18,0.72); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 999px;
-      padding: 0.55rem 1.1rem 0.55rem 1.5rem;
-      transition: all 0.4s; box-shadow: 0 10px 34px rgba(0,0,0,0.35);
-    }
-    .navbar.scrolled { padding-top: 0.7rem; padding-bottom: 0.7rem; }
-    .navbar.scrolled > div { border-color: rgba(232,121,249,0.3); box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 0 30px rgba(139,92,246,0.12); }
-    .nav-link { position: relative; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; color: #aab6c8; transition: color 0.3s; white-space: nowrap; padding: 8px 14px; border-radius: 999px; text-transform: none; letter-spacing: normal; }
-    .nav-link::before { content: './'; color: var(--term-green); opacity: 0.85; font-weight: 700; }
-    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 3px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; box-shadow: 0 0 8px var(--primary); }
-    .nav-link:hover, .nav-link.active { color: #fff; background: rgba(232,121,249,0.1); }
-    .nav-link:hover::after, .nav-link.active::after { width: 55%; }
-    .nav-status { align-items: center; gap: 7px; font-size: 0.72rem; color: #9fb0c0; letter-spacing: 0.06em; border: 1px solid rgba(34,255,136,0.3); background: rgba(34,255,136,0.07); padding: 6px 12px; border-radius: 999px; }
-    .nav-status { color: var(--term-green); }
-
-    #mobileMenu { transition: opacity 0.35s ease; }
-    #mobileMenu a { opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease, transform 0.4s ease; color: #e2e8f0; }
-    #mobileMenu.open a { opacity: 1; transform: translateY(0); }
-    #mobileMenu.open a:nth-child(1) { transition-delay: .05s; }
-    #mobileMenu.open a:nth-child(2) { transition-delay: .10s; }
-    #mobileMenu.open a:nth-child(3) { transition-delay: .15s; }
-    #mobileMenu.open a:nth-child(4) { transition-delay: .20s; }
-    #mobileMenu.open a:nth-child(5) { transition-delay: .25s; }
-    #mobileMenu.open a:nth-child(6) { transition-delay: .30s; }
-    #mobileMenu.open a:nth-child(7) { transition-delay: .35s; }
-
-    /* ============ SECTIONS ============ */
-    section { position: relative; }
-    .watermark {
-      position: absolute; top: -14px; right: 0; z-index: -1;
-      font-size: clamp(3.6rem, 16vw, 13rem); font-weight: 900; line-height: 1; letter-spacing: -0.02em;
-      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.07);
-      user-select: none; pointer-events: none; white-space: nowrap; opacity: 0.9;
-      max-width: 100%; overflow: hidden;
+    /* ---- vignette ---- */
+    .cine-vignette {
+      position: fixed; inset: 0; z-index: 12; pointer-events: none;
+      background: radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%);
     }
 
-    .section-tag { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 2px; color: #aab6c8; text-transform: none; display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 8px 16px; }
-    .section-tag .prompt { color: #22ff88; }
-    .section-title {
-      font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; margin-top: 10px; line-height: 1;
-      background: linear-gradient(135deg, #fff 0%, var(--primary) 45%, var(--secondary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      filter: drop-shadow(0 0 25px rgba(232,121,249,0.25));
+    /* ---- featured frames ---- */
+    .sw-feature { position: absolute; z-index: 3; opacity: 0; transition: opacity .5s ease;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.55)); will-change: opacity, transform; }
+    .sw-scene.is-home .sw-feature--portrait { opacity: 1; }
+    .sw-scene.is-projects .sw-feature--shot { opacity: 1; }
+
+    .sw-feature--portrait {
+      right: clamp(20px, 6vw, 90px); top: 50%; transform: translateY(-46%);
+      width: clamp(190px, 21vw, 300px); aspect-ratio: 1;
+      border-radius: 26px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--sw-accent) 45%, transparent),
+                  0 0 60px -12px color-mix(in srgb, var(--sw-accent) 55%, transparent);
     }
-    .section-sub { color: #a3b0c2; max-width: 620px; margin: 16px auto 0; font-size: 1.02rem; line-height: 1.65; }
-
-    .gradient-text { background: linear-gradient(135deg, var(--accent), var(--primary), var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; background-size: 300% 300%; animation: gradientFlow 7s ease infinite; }
-    @keyframes gradientFlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-
-    /* ============ CARDS ============ */
-    .glass-card { background: rgba(255,255,255,0.045); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4); transition: border-color 0.45s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.45s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 14px; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; }
-    .glass-card::before { content: ''; position: absolute; top: -60%; left: -60%; width: 220%; height: 220%; background: radial-gradient(circle at 30% 30%, rgba(232,121,249,0.09), transparent 45%); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
-    .glass-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 25px 55px rgba(139,92,246,0.25); }
-    .glass-card:hover::before { opacity: 1; }
-
-    .border-anim { position: relative; }
-    .border-anim::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent), var(--gold), var(--primary)); background-size: 300% 300%; animation: borderFlow 5s linear infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; opacity: 0; transition: opacity 0.4s; pointer-events: none; }
-    .border-anim:hover::after { opacity: 1; }
-    @keyframes borderFlow { to { background-position: 300% 0; } }
-
-    .tilt { transform-style: preserve-3d; will-change: transform; }
-    .tilt-inner { transform: translateZ(28px); }
-
-    /* ============ BUTTONS ============ */
-    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; font-weight: 700; position: relative; overflow: hidden; transition: all 0.35s; box-shadow: 0 6px 22px rgba(232,121,249,0.4); font-family: var(--font-mono); font-size: 0.92rem; letter-spacing: 0.01em; }
-    .btn-primary::before, .btn-outline::before { content: '[ ]'; position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; pointer-events: none; font-family: var(--font-mono); font-size: 0.95rem; color: rgba(255,255,255,0.6); }
-    .btn-primary::after { content: ''; position: absolute; top: 0; left: -120%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent); transition: left 0.5s; }
-    .btn-primary:hover::after { left: 120%; }
-    .btn-primary:hover { box-shadow: 0 12px 40px rgba(232,121,249,0.6); transform: translateY(-3px) scale(1.03); }
-    .btn-outline { border: 2px solid var(--primary); color: var(--primary); font-weight: 600; background: rgba(232,121,249,0.06); transition: all 0.35s; font-family: var(--font-mono); font-size: 0.92rem; letter-spacing: 0.01em; }
-    .btn-outline::before { color: rgba(232,121,249,0.7); }
-    .btn-outline:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; box-shadow: 0 12px 40px rgba(232,121,249,0.5); transform: translateY(-3px); }
-    .btn-outline:hover::before { color: rgba(255,255,255,0.8); }
-
-    /* ============ HERO ============ */
-    .hero-section { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 130px 0 70px; }
-    .hero-section .grid > div { min-width: 0; }
-
-    /* ============ SCROLL-SCRUBBED PARTICLE EXPLODE HERO ============ */
-    .explode-hero { position: relative; height: 300vh; }
-    .explode-pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .explode-pin canvas, .explode-pin .explode-glow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-    .explode-pin canvas { z-index: 1; }
-    .explode-pin::before {
-      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(5,6,10,0.42) 0%, rgba(5,6,10,0.16) 14%, transparent 30%),
-        radial-gradient(70% 62% at 50% 52%, transparent 52%, rgba(5,6,10,0.24) 100%);
+    .sw-feature--portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .sw-feature--portrait::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.78) 100%);
     }
-    .explode-glow {
-      z-index: 0;
-      background:
-        radial-gradient(60% 55% at 50% 46%, rgba(139,92,246,0.20), transparent 70%),
-        radial-gradient(45% 40% at 50% 46%, rgba(232,121,249,0.14), transparent 70%);
+    .sw-feature__caption {
+      position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
+      font-family: var(--sw-font-display); color: #fff;
     }
-    .explode-step {
-      position: absolute; left: 0; right: 0; top: 50%; z-index: 3;
-      transform: translateY(-50%); text-align: center; padding: 0 18px;
-      opacity: 0; visibility: hidden; will-change: opacity;
-      transition: opacity 0.35s ease;
+    .sw-feature__caption b { display: block; font-size: .95rem; letter-spacing: .01em; }
+    .sw-feature__caption span { font-size: .7rem; opacity: .82; letter-spacing: .08em; text-transform: uppercase; }
+
+    .sw-feature--shot {
+      right: clamp(18px, 5vw, 84px); top: 50%; transform: translateY(-50%);
+      width: min(clamp(230px, 26vw, 380px), 40vh);
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 30px 70px -18px rgba(0,0,0,0.7),
+                  0 0 0 1px color-mix(in srgb, var(--sw-accent) 40%, transparent);
+      background: #0e1017;
     }
-    .explode-step.on { visibility: visible; }
-    .step-identity { top: 9%; transform: none; text-shadow: 0 2px 24px rgba(5,6,10,0.85); }
-    .step-role .hero-desc { margin: 16px auto 0; }
-    .step-term .term-card { margin: 0 auto; }
-    .explode-hint {
-      position: absolute; bottom: 28px; left: 0; right: 0; z-index: 2;
-      text-align: center; font-size: 0.8rem; letter-spacing: 0.12em; color: #7e8aa0;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      pointer-events: none; opacity: 1; transition: opacity 0.35s ease;
+    .sw-feature--shot .sw-feature__bar {
+      display: flex; gap: 6px; align-items: center; padding: 10px 12px;
+      background: rgba(255,255,255,0.06);
     }
-    .explode-hint i { color: var(--secondary); animation: hintBounce 1.6s ease-in-out infinite; }
-    @keyframes hintBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-    .explode-hero.explode-static { height: auto; min-height: 92vh; display: flex; align-items: center; }
-    .explode-hero.explode-static .explode-pin { position: static; height: auto; overflow: visible; padding: 130px 0 50px; flex-direction: column; }
-    .explode-hero.explode-static .explode-pin canvas { opacity: 0.14; }
-    .explode-hero.explode-static .explode-step { position: static; visibility: visible; opacity: 1 !important; transform: none; margin: 20px auto; }
-    .explode-hero.explode-static .explode-hint { display: none; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(34,255,136,0.35); background: rgba(34,255,136,0.08); border-radius: 999px; padding: 8px 16px; font-size: 0.72rem; color: var(--term-green); box-shadow: 0 0 24px rgba(34,255,136,0.12); font-family: var(--font-mono); }
-    .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: #22ff88; animation: pulse 2s infinite; flex-shrink: 0; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,255,136,0.6); } 70% { box-shadow: 0 0 0 12px rgba(34,255,136,0); } 100% { box-shadow: 0 0 0 0 rgba(34,255,136,0); } }
+    .sw-feature--shot .sw-feature__bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+    .sw-feature--shot .sw-feature__bar i:first-child { background: #ff5f57; }
+    .sw-feature--shot .sw-feature__bar i:nth-child(2) { background: #febc2e; }
+    .sw-feature--shot .sw-feature__bar i:nth-child(3) { background: #28c840; }
+    .sw-feature--shot img { display: block; width: 100%; height: auto; }
 
-    .hero-eyebrow { font-size: clamp(0.85rem, 2vw, 1.02rem); color: #9fb0c0; letter-spacing: 0.02em; }
-    .t-green { color: var(--term-green); }
-
-    .giant-name {
-      font-family: var(--font-mono);
-      font-size: clamp(2.4rem, 8.5vw, 5.4rem);
-      font-weight: 800; line-height: 1.06; letter-spacing: -0.015em;
-      background: linear-gradient(90deg, #E879F9, #22D3EE, #8B5CF6, #E879F9);
-      background-size: 260% 100%;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: gradientFlow 7s linear infinite;
-      filter: drop-shadow(0 0 38px rgba(232,121,249,0.28));
-    }
-
-    .hero-role { font-size: clamp(1.05rem, 3vw, 1.5rem); }
-    .hero-desc { color: #b9c4d6; font-size: 1.02rem; max-width: 540px; line-height: 1.65; }
-
-    .blinking-cursor { display: inline-block; width: 3px; height: 1.1em; margin-left: 4px; background: var(--primary); vertical-align: text-bottom; box-shadow: 0 0 10px var(--primary); animation: blink 1s step-end infinite; }
-    @keyframes blink { from,to { opacity: 0; } 50% { opacity: 1; } }
-
-    .social-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); color: #fff; transition: all 0.35s; }
-    .social-circle:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff !important; transform: translateY(-5px) rotate(8deg); box-shadow: 0 10px 28px rgba(232,121,249,0.5); }
-
-    /* Terminal window card */
-    .term-card {
-      max-width: 560px; border-radius: 14px; overflow: hidden;
-      background: rgba(6,8,14,0.85); border: 1px solid rgba(232,121,249,0.22);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 22px 60px rgba(0,0,0,0.55), 0 0 42px rgba(139,92,246,0.16);
-      backdrop-filter: blur(12px);
-      transition: border-color 0.4s, box-shadow 0.4s;
-    }
-    .term-card:hover { border-color: rgba(34,211,238,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 24px 64px rgba(0,0,0,0.6), 0 0 54px rgba(34,211,238,0.18); }
-    .term-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: rgba(255,255,255,0.045); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .term-dot { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; box-shadow: 0 0 8px rgba(255,95,87,0.55); }
-    .term-dot:nth-child(2) { background: #febc2e; box-shadow: 0 0 8px rgba(254,188,46,0.5); }
-    .term-dot:nth-child(3) { background: #28c840; box-shadow: 0 0 8px rgba(40,200,64,0.5); }
-    .term-title { margin-left: 8px; font-size: 0.72rem; color: #8b93a7; letter-spacing: 0.03em; }
-    .term-body { padding: 16px 18px 14px; font-size: 0.82rem; line-height: 1.9; }
-    .term-line { overflow-wrap: break-word; }
-    .t-prompt { color: var(--term-green); font-weight: 700; }
-    .t-cmd { color: #e8edf5; }
-    .term-out { color: #8b93a7; }
-    .t-ok { color: var(--term-green); text-shadow: 0 0 12px rgba(34,255,136,0.4); }
-    .t-cursor { display: inline-block; width: 9px; height: 1.05em; margin-left: 3px; background: var(--term-green); vertical-align: text-bottom; box-shadow: 0 0 10px var(--term-green); animation: blink 1s step-end infinite; }
-    .footer-signoff { color: #8b93a7; letter-spacing: 0.03em; }
-    .footer-cursor { display: inline-block; width: 8px; height: 0.9em; margin-left: 4px; background: var(--term-green); vertical-align: text-bottom; box-shadow: 0 0 10px var(--term-green); animation: blink 1s step-end infinite; }
-
-    /* Photo centerpiece */
-    .hero-visual { position: relative; margin: 0 auto; width: clamp(260px, 62vw, 380px); }
-    .hero-photo { position: relative; }
-    .photo-frame {
-      position: relative; border-radius: 50%; padding: 5px;
-      background: linear-gradient(135deg, #e879f9, #22d3ee 46%, #8b5cf6);
-      box-shadow: 0 26px 60px rgba(0,0,0,0.5), 0 0 42px rgba(139,92,246,0.2), inset 0 0 0 1px rgba(255,255,255,0.08);
-    }
-    .photo-frame::before {
-      content: ''; position: absolute; inset: -24px; border-radius: 50%; z-index: -1;
-      background: radial-gradient(circle, rgba(139,92,246,0.26), rgba(34,211,238,0.1) 46%, transparent 72%);
-      filter: blur(30px);
-    }
-    .photo-frame img { border-radius: 50%; display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
-
-    .photo-ring {
-      position: absolute; inset: -26px; border-radius: 50%; pointer-events: none;
-      background: conic-gradient(from 0deg, transparent 0deg, rgba(232,121,249,0.95) 72deg, transparent 165deg, transparent 285deg, rgba(34,211,238,0.75) 352deg, transparent 360deg);
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
-      animation: spin 10s linear infinite;
-    }
-
-    .spin-badge { position: absolute; width: clamp(110px, 28vw, 150px); height: clamp(110px, 28vw, 150px); right: -42px; top: -42px; z-index: 8; animation: spin 16s linear infinite; }
-    .spin-badge-center { position: absolute; inset: 0; margin: auto; width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; box-shadow: 0 0 25px rgba(232,121,249,0.6); animation: spin 16s linear infinite reverse; }
-    .spin-badge svg { width: 100%; height: 100%; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    .float-chip { position: absolute; width: 54px; height: 54px; border-radius: 16px; background: rgba(13,16,28,0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1.55rem; box-shadow: 0 14px 34px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04); animation: chipFloat 3s ease-in-out infinite; z-index: 10; cursor: grab; user-select: none; -webkit-user-select: none; }
-    .float-chip:active { cursor: grabbing; }
-    .float-chip.grabbed { transform: scale(1.15); box-shadow: 0 18px 44px rgba(232,121,249,0.45); border-color: rgba(232,121,249,0.6); }
-    .float-chip:nth-child(2) { animation-delay: -2.2s; }
-    .float-chip:nth-child(3) { animation-delay: -4.4s; }
-    @keyframes chipFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-
-    /* ============ MOBILE PHOTO FIX ============ */
-    @media (max-width: 480px) {
-      .hero-visual { width: clamp(210px, 58vw, 240px); }
-      .photo-frame::before { inset: -16px; }
-      .photo-ring { inset: -18px; }
-      .spin-badge { width: 92px; height: 92px; right: -14px; top: -14px; }
-      .spin-badge-center { width: 34px; height: 34px; font-size: 0.9rem; }
-      .spin-badge text { font-size: 11px; }
-      .float-chip { width: 46px; height: 46px; border-radius: 13px; font-size: 1.3rem; }
-      .chip-redhat { left: -14px !important; top: -14px !important; }
-      .chip-docker { left: -16px !important; bottom: 34px !important; }
-      .chip-python { right: -14px !important; top: 44% !important; }
-      .hero-photo .available-badge { right: 6px !important; bottom: 6px !important; }
-      .hero-section .grid { gap: 3rem; }
-    }
-
-    .hero-chip { backdrop-filter: blur(10px); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px 16px; transition: all 0.3s; color: #e2e8f0; font-weight: 500; }
-    .hero-chip:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(232,121,249,0.25); color: #fff; }
-
-    /* ============ MARQUEE ============ */
-   .marquee-wrap { position: relative; overflow: hidden; padding: 18px 0; border-top: 1px solid rgba(232,121,249,0.18); border-bottom: 1px solid rgba(34,211,238,0.18); background: rgba(255,255,255,0.02); }
-   .marquee-wrap::before, .marquee-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
-   .marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--dark-bg), transparent); }
-   .marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--dark-bg), transparent); }
-   .marquee { display: flex; gap: 44px; white-space: nowrap; animation: marquee 42s linear infinite; width: max-content; }
-   .marquee span { font-family: var(--font-mono); font-size: 0.88rem; letter-spacing: 0.02em; color: #7e8aa0; }
-   .marquee span::after { content: ' / '; margin-left: 44px; color: rgba(232,121,249,0.45); }
-   .marquee span i { margin-right: 10px; }
-    .marquee span:nth-child(6n+1) i { color: #E879F9; }
-    .marquee span:nth-child(6n+2) i { color: #22D3EE; }
-    .marquee span:nth-child(6n+3) i { color: #8B5CF6; }
-    .marquee span:nth-child(6n+4) i { color: #F472B6; }
-    .marquee span:nth-child(6n+5) i { color: #FBBF24; }
-    .marquee span:nth-child(6n+6) i { color: #60A5FA; }
-    .marquee-wrap:hover .marquee { animation-play-state: paused; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ============ STATS ============ */
-    .stat-card { text-align: center; padding: 26px 14px; }
-    .stat-number { font-family: 'Orbitron', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1; }
-    .stat-label { color: #94a3b8; font-size: 0.78rem; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* ============ TIMELINE ============ */
-    .timeline { position: relative; }
-    .timeline::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--primary), var(--secondary), transparent); }
-    .timeline-item { position: relative; padding-left: 64px; padding-bottom: 36px; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-dot { position: absolute; left: 8px; top: 6px; width: 24px; height: 24px; border-radius: 50%; background: var(--dark-bg); border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 18px rgba(232,121,249,0.5); }
-    .timeline-dot i { font-size: 0.55rem; color: var(--primary); }
-
-    /* ============ SKILLS ============ */
-    .skill-card { background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 22px 10px; text-align: center; transition: border-color 0.4s, box-shadow 0.4s; position: relative; overflow: hidden; opacity: var(--scrubOp, 1); transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)); will-change: transform, opacity; box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); }
-    .skill-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.4s; }
-    .skill-card:hover { transform: translate3d(0, var(--scrubY, 0px), 0) scale(var(--scrubScale, 1)) translateY(-6px); border-color: rgba(232,121,249,0.45); box-shadow: 0 18px 40px rgba(139,92,246,0.25); }
-    .skill-card:hover::after { width: 100%; }
-    .skill-card i { transition: all 0.5s; filter: drop-shadow(0 0 8px rgba(232,121,249,0.4)); }
-    .skill-card:hover i { transform: rotateY(360deg) scale(1.15); filter: drop-shadow(0 0 16px rgba(232,121,249,0.9)); }
-
-    .progress-label { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 8px; color: #e2e8f0; }
-    .progress-track { height: 8px; border-radius: 6px; background: rgba(255,255,255,0.08); overflow: hidden; }
-    .progress-fill { height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); box-shadow: 0 0 12px rgba(232,121,249,0.5); transition: width 1.5s cubic-bezier(0.25,0.46,0.45,0.94); }
-
-    /* ============ PUBLICATIONS ============ */
-    .pub-card { border-left: 3px solid var(--primary); border-radius: 14px; }
-    .pub-card:hover { border-left-color: var(--secondary); }
-    .pub-year { font-family: 'Orbitron', sans-serif; background: rgba(232,121,249,0.14); color: var(--primary); border: 1px solid rgba(232,121,249,0.4); }
-    .domain-tag { background: rgba(34,211,238,0.1); color: var(--secondary); border: 1px solid rgba(34,211,238,0.3); }
-
-    .profile-platform { border-radius: 16px; padding: 20px; transition: all 0.4s; backdrop-filter: blur(14px); display: flex; align-items: center; gap: 16px; color: #fff; }
-    .profile-platform:hover { transform: translateY(-6px) scale(1.02); }
-    .platform-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
-    .ieee-link { background: linear-gradient(135deg, rgba(0,110,179,0.2), rgba(0,110,179,0.05)); border: 1px solid rgba(0,110,179,0.5); }
-    .ieee-link:hover { border-color: #006EB3; box-shadow: 0 0 34px rgba(0,110,179,0.4); }
-    .scholar-link { background: linear-gradient(135deg, rgba(66,133,244,0.2), rgba(66,133,244,0.05)); border: 1px solid rgba(66,133,244,0.5); }
-    .scholar-link:hover { border-color: #4285F4; box-shadow: 0 0 34px rgba(66,133,244,0.4); }
-    .researchgate-link { background: linear-gradient(135deg, rgba(0,204,153,0.2), rgba(0,204,153,0.05)); border: 1px solid rgba(0,204,153,0.5); }
-    .researchgate-link:hover { border-color: #00CC99; box-shadow: 0 0 34px rgba(0,204,153,0.4); }
-
-    /* ============ PROJECTS ============ */
-    .project-img { display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .project-img i { transition: transform 0.5s; }
-    .project-img::after { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); transform: skewX(-20deg); transition: left 0.7s; }
-    .project-card:hover .project-img i { transform: scale(1.2) rotate(6deg); }
-    .project-card:hover .project-img::after { left: 130%; }
-
-    /* ============ FORM ============ */
-    .form-input { background: rgba(255,255,255,0.07); border: 1px solid var(--card-border); color: white; transition: all 0.3s; border-radius: 12px; }
-    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(232,121,249,0.2); background: rgba(255,255,255,0.1); outline: none; }
-    .form-input::placeholder { color: rgba(255,255,255,0.35); }
-    .contact-line { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .contact-line i { color: var(--primary); margin-top: 4px; width: 20px; text-align: center; flex-shrink: 0; }
-    .contact-line a { word-break: break-all; }
-
-    /* ============ FLOATING ============ */
-    #backToTop { position: fixed; bottom: 96px; right: 22px; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: var(--primary); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.4s; backdrop-filter: blur(10px); }
-    #backToTop.show { opacity: 1; visibility: visible; }
-    #backToTop:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; transform: translateY(-4px); box-shadow: 0 10px 28px rgba(232,121,249,0.5); }
-
-    #chatbotBtn { position: fixed; bottom: 22px; right: 22px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: #fff; border: none; font-weight: 700; border-radius: 50%; box-shadow: 0 8px 25px rgba(232,121,249,0.45); cursor: pointer; z-index: 1000; transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); align-items: center; justify-content: center; gap: 10px; width: 56px; height: 56px; }
-    @media (min-width: 768px) { #chatbotBtn { width: auto; height: auto; padding: 14px 26px; border-radius: 50px; } }
-    #chatbotBtn:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 12px 38px rgba(232,121,249,0.65); }
-
-    .glow-line { height: 1px; background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent); }
-
-    @media (hover: none), (pointer: coarse) {
-      .cursor-dot, .cursor-ring { display: none; }
+    @media (max-width: 860px) {
+      .sw-copylayer::before { width: 100%; height: 64%; top: auto; bottom: 0; background: linear-gradient(0deg, #0b0d12 8%, rgba(11,13,18,0.62) 50%, transparent 100%); }
+      .sw-feature--portrait {
+        right: auto; left: 50%; top: clamp(70px, 12vh, 110px); transform: translateX(-50%);
+        width: clamp(120px, 30vw, 160px); border-radius: 20px;
+      }
+      .sw-feature--shot { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-      html { scroll-behavior: auto; }
+      .cine-grain, .cine-leak { animation: none; }
+      .sw-scene__still { transition: none; }
     }
   </style>
 </head>
-<body class="relative">
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
 
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <div class="loader-ring"></div>
-    <div class="loader-name mono text-fuchsia-400">PRASAD<span class="text-white">.DEV</span></div>
-    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
-    <p class="loader-boot mono mt-3">prasad@portfolio:~$ <span class="t-green">booting portfolio</span><span class="footer-cursor"></span></p>
-  </div>
+  <div class="cine-vignette" aria-hidden="true"></div>
+  <div class="cine-leak" aria-hidden="true"></div>
+  <div class="cine-grain" aria-hidden="true"></div>
+  <div class="cine-matte cine-matte--top" id="matteTop" aria-hidden="true"></div>
+  <div class="cine-matte cine-matte--bot" id="matteBot" aria-hidden="true"></div>
 
-  <!-- FIXED LAYERS -->
-  <div id="progress"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div id="grain"></div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar fixed w-full z-50 px-4 sm:px-6" id="navbar">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="#" class="text-2xl font-black text-white tracking-tight tech">Prasad<span class="text-fuchsia-400">.dev</span></a>
-      <div class="hidden lg:flex items-center gap-1">
-        <a href="#about" class="nav-link text-sm uppercase tracking-wider">About</a>
-        <a href="#experience" class="nav-link text-sm uppercase tracking-wider">Experience</a>
-        <a href="#skills" class="nav-link text-sm uppercase tracking-wider">Skills</a>
-        <a href="#publications" class="nav-link text-sm uppercase tracking-wider">Publications</a>
-        <a href="#projects" class="nav-link text-sm uppercase tracking-wider">Projects</a>
-        <a href="#contact" class="nav-link text-sm uppercase tracking-wider">Contact</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="nav-status mono hidden sm:flex">&#9679; online</span>
-        <button class="lg:hidden text-white p-2" onclick="toggleMenu()" aria-label="Menu">
-          <i class="fas fa-bars text-2xl" id="menuIcon"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="hidden fixed inset-0 z-40 bg-[#05060a]/97 backdrop-blur-xl lg:hidden flex-col items-center justify-center">
-    <button class="absolute top-6 right-6 text-white p-2" onclick="toggleMenu()" aria-label="Close">
-      <i class="fas fa-times text-3xl"></i>
-    </button>
-    <div class="flex flex-col items-center gap-7">
-      <a href="#about" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>about</a>
-      <a href="#experience" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>experience</a>
-      <a href="#skills" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>skills</a>
-      <a href="#publications" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>publications</a>
-      <a href="#projects" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>projects</a>
-      <a href="#certifications" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>certifications</a>
-      <a href="#contact" class="text-3xl font-bold mono" onclick="toggleMenu()"><span class="t-green">./</span>contact</a>
-    </div>
-  </div>
-
-  <!-- HERO: scroll-scrubbed particle explode -->
-  <header class="explode-hero text-white" id="home" aria-label="Prasad S. Ghavghave — Linux System Administrator and IEEE AI Researcher">
-    <div class="explode-pin">
-      <div class="explode-glow" aria-hidden="true"></div>
-      <canvas id="heroParticleCanvas" aria-hidden="true"></canvas>
-
-      <div class="explode-step step-identity" data-step="0">
-        <div class="hero-badge">
-          <span class="pulse-dot"></span>
-          <span class="mono uppercase tracking-widest text-xs">Online &bull; Open to Work</span>
-        </div>
-        <p class="hero-eyebrow mono">prasad@portfolio:~$ <span class="t-green">whoami</span></p>
-        <h1 class="giant-name">Prasad S.<br>Ghavghave</h1>
-      </div>
-
-      <div class="explode-step step-role" data-step="1">
-        <p class="hero-role mono text-cyan-300">Linux System Administrator &amp; IEEE AI Researcher</p>
-        <p class="hero-desc">I keep production systems running, automate everything with Ansible, and push computer-vision research with deep learning.</p>
-      </div>
-
-      <div class="explode-step step-chips" data-step="2">
-        <div class="flex flex-wrap gap-3 justify-center">
-          <span class="hero-chip mono text-xs"><i class="fab fa-redhat mr-2" style="color:#E879F9;"></i>RHEL 9</span>
-          <span class="hero-chip mono text-xs"><i class="fas fa-terminal mr-2" style="color:#22D3EE;"></i>Ansible</span>
-          <span class="hero-chip mono text-xs"><i class="fab fa-docker mr-2" style="color:#22D3EE;"></i>Docker</span>
-          <span class="hero-chip mono text-xs"><i class="fab fa-python mr-2" style="color:#FBBF24;"></i>Python</span>
-          <span class="hero-chip mono text-xs"><i class="fas fa-microchip mr-2" style="color:#F472B6;"></i>Deep Learning</span>
-        </div>
-      </div>
-
-      <div class="explode-step step-cta" data-step="3">
-        <div class="flex flex-wrap gap-4 justify-center">
-          <a href="#projects" class="btn-primary px-7 py-3.5 rounded-full">View My Work <i class="fas fa-arrow-right ml-2"></i></a>
-          <a href="resume.pdf" class="btn-outline px-7 py-3.5 rounded-full" download>Download Resume <i class="fas fa-download ml-2"></i></a>
-        </div>
-        <div class="flex items-center justify-center gap-3 mt-7">
-          <a href="https://github.com/prasad111-dev" target="_blank" aria-label="GitHub" class="social-circle"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" aria-label="LinkedIn" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" class="social-circle"><i class="fas fa-graduation-cap"></i></a>
-          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" aria-label="IEEE" class="social-circle"><i class="fas fa-microchip"></i></a>
-          <a href="https://wa.me/919322860752" target="_blank" aria-label="WhatsApp" class="social-circle"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
-        </div>
-      </div>
-
-      <div class="explode-step step-term" data-step="4">
-        <div class="term-card">
-          <div class="term-bar">
-            <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-            <span class="term-title mono">prasad@production: ~</span>
-          </div>
-          <div class="term-body mono">
-            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">whoami</span></p>
-            <p class="term-out">linux_sysadmin &middot; ieee_researcher</p>
-            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">./deploy --stack ansible --env production</span></p>
-            <p class="term-out t-ok">&#10003; 6 playbooks &middot; 42 tasks &middot; 0 errors</p>
-            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cursor"></span></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="explode-hint mono"><span>scroll to defragment</span><i class="fas fa-chevron-down"></i></div>
-    </div>
-  </header>
-
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap relative z-10">
-    <div class="marquee">
-      <span><i class="fab fa-redhat"></i>RHEL 9</span>
-      <span><i class="fas fa-terminal"></i>SHELL SCRIPTING</span>
-      <span><i class="fas fa-network-wired"></i>ANSIBLE</span>
-      <span><i class="fab fa-docker"></i>DOCKER</span>
-      <span><i class="fas fa-database"></i>LVM / RAID</span>
-      <span><i class="fas fa-firewall"></i>FIREWALLD</span>
-      <span><i class="fas fa-brain"></i>DEEP LEARNING</span>
-      <span><i class="fas fa-image"></i>CNN / YOLOv8</span>
-      <span><i class="fab fa-python"></i>PYTHON</span>
-      <span><i class="fas fa-microchip"></i>EDGE AI / IOT</span>
-      <span><i class="fas fa-lock"></i>SELINUX</span>
-      <span><i class="fas fa-cloud"></i>OPENSHIFT</span>
-      <span><i class="fab fa-redhat"></i>RHEL 9</span>
-      <span><i class="fas fa-terminal"></i>SHELL SCRIPTING</span>
-      <span><i class="fas fa-network-wired"></i>ANSIBLE</span>
-      <span><i class="fab fa-docker"></i>DOCKER</span>
-      <span><i class="fas fa-database"></i>LVM / RAID</span>
-      <span><i class="fas fa-firewall"></i>FIREWALLD</span>
-      <span><i class="fas fa-brain"></i>DEEP LEARNING</span>
-      <span><i class="fas fa-image"></i>CNN / YOLOv8</span>
-      <span><i class="fab fa-python"></i>PYTHON</span>
-      <span><i class="fas fa-microchip"></i>EDGE AI / IOT</span>
-      <span><i class="fas fa-lock"></i>SELINUX</span>
-      <span><i class="fas fa-cloud"></i>OPENSHIFT</span>
-    </div>
-  </div>
-
-  <main class="max-w-6xl mx-auto px-5 sm:px-6 mt-24 space-y-24 md:space-y-32 pb-24 relative z-10">
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="watermark" data-parallax>ABOUT ME</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 01. ~/about</span>
-        <h2 class="section-title">About Me</h2>
-      </div>
-      <div class="glass-card border-anim p-6 sm:p-8 md:p-10">
-        <div class="grid md:grid-cols-5 gap-10 items-center">
-          <div class="md:col-span-3">
-            <p class="text-gray-200 leading-relaxed text-base sm:text-lg mb-5">
-              Motivated and detail-oriented <strong class="text-fuchsia-400 font-semibold">Junior Linux System Administrator</strong> with hands-on experience in <strong class="text-white">Red Hat Enterprise Linux (RHEL 9)</strong>, Ansible automation, and containerization basics using Docker.
-            </p>
-            <p class="text-gray-200 leading-relaxed text-base sm:text-lg mb-5">
-              Skilled in configuring, managing, and troubleshooting Linux systems with practical experience gained through academic projects. Passionate about building reliable and automated infrastructure, eager to contribute to DevOps and system administration roles.
-            </p>
-            <p class="text-gray-200 leading-relaxed text-base sm:text-lg">
-              B.Tech graduate in Artificial Intelligence &amp; Machine Learning from DMIHER University, <strong class="text-fuchsia-400">IEEE author of 6 research publications</strong> in AI, healthcare and edge computing, and certified by Red Hat Academy.
-            </p>
-            <div class="flex flex-wrap gap-3 mt-7">
-              <span class="hero-chip text-sm"><i class="fas fa-server text-fuchsia-400 mr-2"></i>RHEL 9</span>
-              <span class="hero-chip text-sm"><i class="fas fa-code-branch text-fuchsia-400 mr-2"></i>Ansible</span>
-              <span class="hero-chip text-sm"><i class="fab fa-docker text-fuchsia-400 mr-2"></i>Docker</span>
-              <span class="hero-chip text-sm"><i class="fas fa-microchip text-fuchsia-400 mr-2"></i>Deep Learning</span>
-            </div>
-          </div>
-          <div class="md:col-span-2 grid grid-cols-2 gap-4">
-            <div class="glass-card stat-card tilt"><div class="tilt-inner"><div class="text-4xl mb-3 text-fuchsia-400"><i class="fas fa-server"></i></div><h3 class="font-bold text-white">RHEL 9</h3><p class="text-gray-400 text-sm">Expertise</p></div></div>
-            <div class="glass-card stat-card tilt"><div class="tilt-inner"><div class="text-4xl mb-3 text-fuchsia-400"><i class="fas fa-microchip"></i></div><h3 class="font-bold text-white">6 IEEE Papers</h3><p class="text-gray-400 text-sm">Publications</p></div></div>
-            <div class="glass-card stat-card tilt"><div class="tilt-inner"><div class="text-4xl mb-3 text-fuchsia-400"><i class="fab fa-docker"></i></div><h3 class="font-bold text-white">Docker</h3><p class="text-gray-400 text-sm">Containers</p></div></div>
-            <div class="glass-card stat-card tilt"><div class="tilt-inner"><div class="text-4xl mb-3 text-fuchsia-400"><i class="fas fa-shield-alt"></i></div><h3 class="font-bold text-white">SELinux</h3><p class="text-gray-400 text-sm">Security</p></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 mt-8" data-aos="fade-up" data-aos-delay="150">
-        <div class="glass-card stat-card border-anim">
-          <div class="stat-number gradient-text"><span class="counter" data-target="6">0</span>+</div>
-          <div class="stat-label">IEEE Publications</div>
-        </div>
-        <div class="glass-card stat-card border-anim">
-          <div class="stat-number gradient-text"><span class="counter" data-target="3">0</span></div>
-          <div class="stat-label">Red Hat Certifications</div>
-        </div>
-        <div class="glass-card stat-card border-anim">
-          <div class="stat-number gradient-text"><span class="counter" data-target="10">0</span>+</div>
-          <div class="stat-label">Tech Domains</div>
-        </div>
-        <div class="glass-card stat-card border-anim">
-          <div class="stat-number gradient-text"><span class="counter" data-target="3">0</span>+</div>
-          <div class="stat-label">Linux Projects</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE & EDUCATION -->
-    <section id="experience">
-      <div class="watermark" data-parallax>JOURNEY</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 02. ~/journey</span>
-        <h2 class="section-title">Experience &amp; Education</h2>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div>
-          <h3 class="text-xl sm:text-2xl font-bold text-white mb-7 flex items-center gap-3"><i class="fas fa-briefcase text-fuchsia-400"></i>Experience</h3>
-          <div class="timeline">
-            <div class="timeline-item" data-aos="fade-up">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">Academic &amp; Hands-on</span>
-                <h4 class="text-lg font-bold text-white mt-3">Linux System Administration Projects</h4>
-                <p class="text-sm text-gray-400 mt-1">DMIHER University</p>
-                <p class="text-gray-300 text-sm mt-3">RHEL 9 server management, storage (LVM/RAID), security (SELinux, firewalld), Ansible automation and containerization with Docker.</p>
-              </div>
-            </div>
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">Research</span>
-                <h4 class="text-lg font-bold text-white mt-3">IEEE Research &amp; Publications</h4>
-                <p class="text-sm text-gray-400 mt-1">IEEE Xplore</p>
-                <p class="text-gray-300 text-sm mt-3">6 peer-reviewed IEEE papers spanning deep learning (CNN, YOLOv8), machine learning for healthcare, IoT and blockchain.</p>
-              </div>
-            </div>
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">Red Hat Academy</span>
-                <h4 class="text-lg font-bold text-white mt-3">Certified System &amp; Automation Skills</h4>
-                <p class="text-sm text-gray-400 mt-1">Credly Badges</p>
-                <p class="text-gray-300 text-sm mt-3">RH124, RH294 and DO180 professional certifications verified by Red Hat Academy.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-xl sm:text-2xl font-bold text-white mb-7 flex items-center gap-3"><i class="fas fa-graduation-cap text-fuchsia-400"></i>Education</h3>
-          <div class="timeline">
-            <div class="timeline-item" data-aos="fade-up">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">B.Tech</span>
-                <h4 class="text-lg font-bold text-white mt-3">Artificial Intelligence &amp; Machine Learning</h4>
-                <p class="text-sm text-gray-400 mt-1">DMIHER University</p>
-                <p class="text-gray-300 text-sm mt-3">Specialised in AI/ML with a strong research focus, publishing multiple IEEE papers during the program.</p>
-              </div>
-            </div>
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">Training</span>
-                <h4 class="text-lg font-bold text-white mt-3">Red Hat System &amp; OpenShift Administration</h4>
-                <p class="text-sm text-gray-400 mt-1">Red Hat Academy</p>
-                <p class="text-gray-300 text-sm mt-3">Formal training in Linux administration, Ansible automation and container orchestration with OpenShift.</p>
-              </div>
-            </div>
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-              <div class="timeline-dot"><i class="fas fa-circle"></i></div>
-              <div class="glass-card border-anim p-5 sm:p-6">
-                <span class="pub-year px-3 py-1 rounded-full text-xs font-bold">Internship Project</span>
-                <h4 class="text-lg font-bold text-white mt-3">CCTV Attendance System — SkyHighes Technology</h4>
-                <p class="text-sm text-gray-400 mt-1">Industry Case Study</p>
-                <p class="text-gray-300 text-sm mt-3">Automated employee attendance using computer vision, published as an IEEE paper.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="watermark" data-parallax>SKILLS</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 03. ~/capabilities</span>
-        <h2 class="section-title">Technical Skills</h2>
-        <p class="section-sub">Linux Administration • Automation • Cloud &amp; Containers • AI &amp; Research</p>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-8">
-        <div class="glass-card border-anim p-6 sm:p-8">
-          <h3 class="text-lg sm:text-xl font-bold text-white mb-7 flex items-center gap-3"><i class="fas fa-sliders-h text-fuchsia-400"></i>Proficiency</h3>
-          <div class="space-y-6">
-            <div><div class="progress-label"><span>RHEL 9 Administration</span><span class="text-fuchsia-400">90%</span></div><div class="progress-track"><div class="progress-fill" data-progress="90"></div></div></div>
-            <div><div class="progress-label"><span>Shell Scripting</span><span class="text-fuchsia-400">85%</span></div><div class="progress-track"><div class="progress-fill" data-progress="85"></div></div></div>
-            <div><div class="progress-label"><span>Ansible Automation</span><span class="text-fuchsia-400">80%</span></div><div class="progress-track"><div class="progress-fill" data-progress="80"></div></div></div>
-            <div><div class="progress-label"><span>Docker &amp; Containers</span><span class="text-fuchsia-400">75%</span></div><div class="progress-track"><div class="progress-fill" data-progress="75"></div></div></div>
-            <div><div class="progress-label"><span>Python &amp; Deep Learning</span><span class="text-fuchsia-400">88%</span></div><div class="progress-track"><div class="progress-fill" data-progress="88"></div></div></div>
-            <div><div class="progress-label"><span>Storage &amp; Security (LVM, RAID, SELinux)</span><span class="text-fuchsia-400">82%</span></div><div class="progress-track"><div class="progress-fill" data-progress="82"></div></div></div>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" data-aos="fade-up">
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fab fa-redhat text-5xl mb-3" style="color:#E879F9;"></i><h3 class="font-semibold text-white">RHEL 9</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-terminal text-5xl mb-3" style="color:#22D3EE;"></i><h3 class="font-semibold text-white">Shell Scripting</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-network-wired text-5xl mb-3" style="color:#8B5CF6;"></i><h3 class="font-semibold text-white">Ansible</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fab fa-docker text-5xl mb-3" style="color:#2496ED;"></i><h3 class="font-semibold text-white">Docker</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-database text-5xl mb-3" style="color:#F472B6;"></i><h3 class="font-semibold text-white">LVM/RAID</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-firewall text-5xl mb-3" style="color:#E879F9;"></i><h3 class="font-semibold text-white">firewalld</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-brain text-5xl mb-3" style="color:#22D3EE;"></i><h3 class="font-semibold text-white">Deep Learning</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fas fa-image text-5xl mb-3" style="color:#8B5CF6;"></i><h3 class="font-semibold text-white">CNN / YOLOv8</h3></div></div>
-          <div class="skill-card tilt"><div class="tilt-inner"><i class="fab fa-python text-5xl mb-3" style="color:#FBBF24;"></i><h3 class="font-semibold text-white">Python</h3></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PUBLICATIONS -->
-    <section id="publications">
-      <div class="watermark" data-parallax>RESEARCH</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 04. ~/research</span>
-        <h2 class="section-title">Research &amp; Publications</h2>
-        <p class="section-sub">IEEE Xplore published research papers in AI, healthcare, and edge computing</p>
-      </div>
-      <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10" data-aos="fade-up">
-        <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="profile-platform ieee-link">
-          <div class="platform-icon bg-[#006EB3]/20 text-[#4DA3D1]"><i class="fas fa-microchip"></i></div>
-          <div><h3 class="font-bold text-white text-sm sm:text-base">IEEE Xplore Profile</h3><p class="text-xs sm:text-sm text-gray-400">Browse my author page →</p></div>
-        </a>
-        <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" class="profile-platform scholar-link">
-          <div class="platform-icon bg-[#4285F4]/20 text-[#4285F4]"><i class="fas fa-graduation-cap"></i></div>
-          <div><h3 class="font-bold text-white text-sm sm:text-base">Google Scholar</h3><p class="text-xs sm:text-sm text-gray-400">Citations &amp; metrics →</p></div>
-        </a>
-        <a href="https://www.researchgate.net/scientific-contributions/Prasad-S-Ghavghave-2311471774" target="_blank" class="profile-platform researchgate-link">
-          <div class="platform-icon bg-[#00CC99]/20 text-[#00CC99]"><i class="fab fa-researchgate"></i></div>
-          <div><h3 class="font-bold text-white text-sm sm:text-base">ResearchGate</h3><p class="text-xs sm:text-sm text-gray-400">Scientific contributions →</p></div>
-        </a>
-      </div>
-      <div class="space-y-5">
-        <a href="https://ieeexplore.ieee.org/document/11609065" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">Early Detection and Multiclass Classification of Skin Diseases Using CNN-Based Deep Learning Model</h3>
-            <p class="text-sm text-gray-400">Deep Learning • CNN • Medical Imaging</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-        <a href="https://ieeexplore.ieee.org/document/11608714" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">Comparative Evaluation of Supervised Machine-Learning Algorithms for Early Parkinson's Disease Prediction from Voice Data</h3>
-            <p class="text-sm text-gray-400">Machine Learning • Healthcare • Voice Analysis</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-        <a href="https://ieeexplore.ieee.org/document/11608428" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">Artificial Intelligence and Blockchain Technology in Future Direction</h3>
-            <p class="text-sm text-gray-400">AI • Blockchain • Future Technologies</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-        <a href="https://ieeexplore.ieee.org/document/11378502" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">Real-Time Hospital Hygiene Surveillance Using Dual YOLOv8 Detection-Segmentation on Edge AI</h3>
-            <p class="text-sm text-gray-400">Edge AI • YOLOv8 • Computer Vision</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-        <a href="https://ieeexplore.ieee.org/document/11379113" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">CCTV-Based Automated Attendance System with Employee Data Dashboard: A Case Study at SkyHighes Technology</h3>
-            <p class="text-sm text-gray-400">Computer Vision • Face Recognition • Dashboards</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-        <a href="https://ieeexplore.ieee.org/document/10969057" target="_blank" class="pub-card glass-card border-anim p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 block">
-          <span class="pub-year px-3 py-1 rounded-full text-xs font-bold shrink-0 w-fit">2025</span>
-          <div class="flex-1">
-            <h3 class="font-bold text-white text-base sm:text-lg mb-1">IoT and the Future of Healthcare: Revolutionizing Remote Patient Monitoring</h3>
-            <p class="text-sm text-gray-400">IoT • Healthcare • Remote Monitoring</p>
-          </div>
-          <span class="domain-tag px-3 py-1 rounded-full text-xs shrink-0 w-fit"><i class="fas fa-external-link-alt mr-1"></i>IEEE Paper</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="watermark" data-parallax>BUILDS</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 05. ~/builds</span>
-        <h2 class="section-title">Projects &amp; Builds</h2>
-        <p class="section-sub">Open-source builds — Linux labs, automation &amp; AI tooling</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <a href="https://github.com/prasad111-dev/linuxlab-59" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
-          <div class="tilt-inner">
-            <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-red-800 via-rose-700 to-purple-700">
-              <i class="fab fa-linux text-5xl sm:text-6xl text-white"></i>
-            </div>
-            <div class="p-6 sm:p-7">
-              <h3 class="text-lg sm:text-xl font-bold text-white mb-2">LinuxLab — Cloud Linux Lab</h3>
-              <p class="text-gray-400 text-sm mb-4">Production-ready Linux administration &amp; DevOps lab. Students practice on real isolated Linux containers in the browser with AI hints, auto-evaluation and permanent learning history.</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">React</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">Docker</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">MongoDB</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">Gemini AI</span>
-              </div>
-              <span class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400 group-hover:text-fuchsia-300 transition"><i class="fab fa-github"></i>View on GitHub</span>
-            </div>
-          </div>
-        </a>
-        <a href="https://github.com/prasad111-dev/Web_App_Attendance" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
-          <div class="tilt-inner">
-            <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-blue-800 via-indigo-700 to-purple-700">
-              <i class="fas fa-user-check text-5xl sm:text-6xl text-white"></i>
-            </div>
-            <div class="p-6 sm:p-7">
-              <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Face-Recognition Attendance App</h3>
-              <p class="text-gray-400 text-sm mb-4">Flask web app with FaceNet embeddings + SVM classifier and OpenCV face detection that marks attendance automatically from CCTV/webcam frames and logs it to a dashboard.</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">Flask</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">FaceNet</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">OpenCV</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">SQLite</span>
-              </div>
-              <span class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400 group-hover:text-fuchsia-300 transition"><i class="fab fa-github"></i>View on GitHub</span>
-            </div>
-          </div>
-        </a>
-        <a href="https://github.com/prasad111-dev/efficiency_analyzer" target="_blank" class="glass-card border-anim overflow-hidden group tilt">
-          <div class="tilt-inner">
-            <div class="project-img h-48 sm:h-52 bg-gradient-to-br from-green-800 via-teal-700 to-cyan-700">
-              <i class="fas fa-tachometer-alt text-5xl sm:text-6xl text-white"></i>
-            </div>
-            <div class="p-6 sm:p-7">
-              <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Python Efficiency Analyzer</h3>
-              <p class="text-gray-400 text-sm mb-4">Streamlit profiler that runs your Python script under cProfile, parses the AST, and reports the slowest functions, execution time and optimization hints in a clean dashboard.</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">Python</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">Streamlit</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">cProfile</span>
-                <span class="bg-fuchsia-400/15 text-fuchsia-300 text-xs px-3 py-1 rounded-full">AST</span>
-              </div>
-              <span class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400 group-hover:text-fuchsia-300 transition"><i class="fab fa-github"></i>View on GitHub</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certifications">
-      <div class="watermark" data-parallax>CREDENTIALS</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 06. ~/credentials</span>
-        <h2 class="section-title">Certifications</h2>
-        <p class="section-sub">Red Hat Academy verified credentials</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
-          <div class="tilt-inner">
-            <div class="w-20 h-20 bg-fuchsia-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
-              <i class="fas fa-certificate text-3xl text-fuchsia-400"></i>
-            </div>
-            <h3 class="text-white font-bold text-lg mb-2">Red Hat System Administration I (RH124)</h3>
-            <a href="https://www.credly.com/earner/earned/badge/84e8a972-b2bd-49f4-a2d9-34cbd913f909" target="_blank" class="mt-4 inline-block py-2 px-5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold text-sm hover:opacity-90 transition">View Badge</a>
-          </div>
-        </div>
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
-          <div class="tilt-inner">
-            <div class="w-20 h-20 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
-              <i class="fas fa-robot text-3xl text-green-400"></i>
-            </div>
-            <h3 class="text-white font-bold text-lg mb-2">Red Hat Ansible Automation (RH294)</h3>
-            <a href="https://www.credly.com/badges/9b071569-cfbb-42bf-a221-e6853a4abe83" target="_blank" class="mt-4 inline-block py-2 px-5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold text-sm hover:opacity-90 transition">View Badge</a>
-          </div>
-        </div>
-        <div class="glass-card border-anim p-6 rounded-2xl text-center tilt">
-          <div class="tilt-inner">
-            <div class="w-20 h-20 bg-purple-400/20 rounded-full flex items-center justify-center mx-auto mb-5">
-              <i class="fab fa-kubernetes text-3xl text-purple-400"></i>
-            </div>
-            <h3 class="text-white font-bold text-lg mb-2">Red Hat OpenShift Admin (DO180)</h3>
-            <a href="https://www.credly.com/badges/c749807c-dd90-4428-ad15-5ed97f5a0dd3" target="_blank" class="mt-4 inline-block py-2 px-5 rounded-lg bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold text-sm hover:opacity-90 transition">View Badge</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="watermark" data-parallax>CONTACT</div>
-      <div class="section-head text-center mb-12" data-aos="fade-up">
-        <span class="section-tag"><span class="prompt">$</span> 07. ~/contact</span>
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-sub">Open to junior Linux administrator roles, DevOps opportunities &amp; research collaborations</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8 sm:gap-10">
-        <div class="space-y-6">
-          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl">
-            <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Contact Information</h3>
-            <div class="contact-line"><i class="fas fa-envelope text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Email</strong><a href="mailto:prasadghavghave0@gmail.com" class="text-gray-200 hover:text-fuchsia-400">prasadghavghave0@gmail.com</a></span></div>
-            <div class="contact-line"><i class="fas fa-phone text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Phone</strong><a href="tel:+919322860752" class="text-gray-200 hover:text-fuchsia-400">+91 9322860752</a></span></div>
-            <div class="contact-line"><i class="fab fa-whatsapp text-lg" style="color:#25D366;"></i><span><strong class="block text-gray-300 mb-1 text-sm">WhatsApp</strong><a href="https://wa.me/919322860752" target="_blank" class="text-gray-200 hover:text-fuchsia-400">+91 9322860752</a></span></div>
-            <div class="contact-line"><i class="fab fa-linkedin text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">LinkedIn</strong><a href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" class="text-gray-200 hover:text-fuchsia-400">linkedin.com/in/prasad-ghavghave</a></span></div>
-            <div class="contact-line"><i class="fab fa-github text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">GitHub</strong><a href="https://github.com/prasad111-dev" target="_blank" class="text-gray-200 hover:text-fuchsia-400">github.com/prasad111-dev</a></span></div>
-            <div class="contact-line"><i class="fas fa-microchip text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">IEEE Xplore</strong><a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="text-gray-200 hover:text-fuchsia-400">ieeexplore.ieee.org/author/394379608471085</a></span></div>
-            <div class="contact-line"><i class="fas fa-file-pdf text-lg"></i><span><strong class="block text-gray-300 mb-1 text-sm">Resume</strong><a href="Prasad_Ghavghave_Resume.pdf" download class="text-gray-200 hover:text-fuchsia-400">Download CV (.pdf)</a></span></div>
-          </div>
-          <div class="glass-card border-anim p-6 sm:p-8 rounded-xl">
-            <h3 class="text-lg sm:text-xl font-bold text-white mb-5">Research Profiles</h3>
-            <div class="flex flex-wrap gap-3">
-              <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" class="hero-chip text-sm"><i class="fas fa-graduation-cap text-blue-400 mr-2"></i>Google Scholar</a>
-              <a href="https://www.researchgate.net/scientific-contributions/Prasad-S-Ghavghave-2311471774" target="_blank" class="hero-chip text-sm"><i class="fab fa-researchgate text-emerald-400 mr-2"></i>ResearchGate</a>
-              <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="hero-chip text-sm"><i class="fas fa-microchip text-sky-400 mr-2"></i>IEEE Xplore</a>
-              <a href="https://github.com/prasad111-dev" target="_blank" class="hero-chip text-sm"><i class="fab fa-github text-gray-400 mr-2"></i>GitHub</a>
-            </div>
-          </div>
-        </div>
-        <form action="https://formsubmit.co/prasadghavghave0@gmail.com" method="POST" class="glass-card border-anim p-6 sm:p-8 rounded-xl">
-          <div class="space-y-5">
-            <div><label for="name" class="block text-gray-300 mb-2 font-medium">Your Name</label><input type="text" id="name" name="name" required placeholder="John Doe" class="form-input w-full p-4"></div>
-            <div><label for="email" class="block text-gray-300 mb-2 font-medium">Email Address</label><input type="email" id="email" name="email" required placeholder="john@example.com" class="form-input w-full p-4"></div>
-            <div><label for="message" class="block text-gray-300 mb-2 font-medium">Your Message</label><textarea id="message" name="message" rows="5" required placeholder="Hello Prasad, ..." class="form-input w-full p-4"></textarea></div>
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <button type="submit" class="btn-primary magnetic w-full py-4 px-6 rounded-lg text-lg font-semibold">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <div class="glow-line max-w-6xl mx-auto relative z-10"></div>
-
-  <footer class="text-gray-400 py-12 mt-20 relative z-10">
-    <div class="max-w-6xl mx-auto px-5 sm:px-6 text-center">
-      <a href="#" class="text-2xl font-black text-white tech">Prasad<span class="text-fuchsia-400">.dev</span></a>
-      <p class="mt-3 text-gray-300">© 2026 <strong class="text-white">Prasad S. Ghavghave</strong> — Junior Linux System Administrator &amp; IEEE Researcher</p>
-      <p class="mt-2 text-gray-500">Made with <i class="fas fa-heart text-red-400"></i> for automation, infrastructure &amp; AI</p>
-      <div class="flex justify-center gap-3 sm:gap-4 mt-6">
-        <a href="https://github.com/prasad111-dev" target="_blank" class="social-circle text-gray-300"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" class="social-circle text-gray-300"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" class="social-circle text-gray-300"><i class="fas fa-graduation-cap"></i></a>
-        <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" class="social-circle text-gray-300"><i class="fas fa-microchip"></i></a>
-        <a href="https://wa.me/919322860752" target="_blank" class="social-circle text-gray-300" aria-label="WhatsApp"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
-      </div>
-      <p class="mt-8 mono text-xs">prasad@portfolio:~$ <span class="t-green">logout</span><span class="footer-cursor"></span></p>
-    </div>
-  </footer>
-
-  <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- INTERACTIVE JS -->
+  <script src="scrub-engine.js"></script>
   <script>
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-
-    AOS.init({ once: true, mirror: false, duration: 450, offset: 60, disable: reduceMotion });
-
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.querySelectorAll('.hero-section [data-aos]').forEach(function(el) {
-          el.classList.add('aos-animate');
-          el.style.opacity = '1';
-        });
-      }, 650);
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'prasad.dev', href: '#top' },
+      cta: { label: 'Download CV', href: 'Prasad_Ghavghave_Resume.pdf' },
+      hint: 'scroll to read',
+      diveScroll: 3.2,
+      connScroll: 1.6,
+      crossfade: 0.2,
+      nav: true,
+      atmosphere: true,
+      sections: [
+        {
+          id: 'home', label: 'Home',
+          still: 'assets/stills/home.jpg',
+          accent: '#E879F9',
+          scroll: 3.8,
+          linger: 0.35,
+          eyebrow: 'Prasad S. Ghavghave',
+          title: 'Junior Linux System Administrator | DevOps | AI Researcher',
+          body: 'B.Tech graduate in AI & Machine Learning (DMIHER University), IEEE author of 6 publications, and Red Hat Academy certified (RH124, RH294, DO180). Hands-on with RHEL 9 server management, Ansible automation, Docker, SELinux and shell scripting.',
+          tags: ['Wardha, India', 'IEEE Author', 'Red Hat Certified', 'RHEL 9'],
+          cta: { primary: { label: 'Download CV', href: 'Prasad_Ghavghave_Resume.pdf' },
+                 secondary: { label: "Let's talk", href: 'mailto:prasadghavghave0@gmail.com' } },
+        },
+        {
+          id: 'about', label: 'About',
+          still: 'assets/stills/about.jpg',
+          accent: '#22D3EE',
+          eyebrow: 'About me',
+          title: 'Sysadmin by day, researcher by practice.',
+          body: 'Red Hat Academy certified (RH124, RH294, DO180) with a strong deep-learning research background. I keep production Linux servers secure and automated, and publish applied AI at IEEE Xplore.',
+          tags: ['B.Tech AI & ML', '6 IEEE Publications', 'Ansible', 'Docker'],
+        },
+        {
+          id: 'journey', label: 'Journey',
+          still: 'assets/stills/journey.jpg',
+          accent: '#8B5CF6',
+          scroll: 3.4,
+          linger: 0.35,
+          eyebrow: 'Experience & education',
+          title: 'From server room to research lab.',
+          body: 'Linux System Administration Projects at DMIHER University — RHEL 9 server management, storage (LVM/RAID), security (SELinux, firewalld), Ansible automation and Docker. B.Tech in Artificial Intelligence & ML, plus an internship at SkyHighes Technology (published as an IEEE case study).',
+          tags: ['DMIHER University', 'RH124', 'RH294', 'DO180', 'SkyHighes'],
+        },
+        {
+          id: 'skills', label: 'Skills',
+          still: 'assets/stills/skills.jpg',
+          accent: '#F472B6',
+          eyebrow: 'Capabilities',
+          title: 'The tools I operate every day.',
+          body: 'RHEL 9, systemctl, user/permission management. LVM, RAID, EXT4/XFS file systems. SELinux, firewalld, SSH hardening. Ansible playbooks & automation, Docker, Kubernetes & OpenShift. Bash / shell scripting, Python, Flask, Streamlit, Deep Learning (CNN, YOLOv8, FaceNet).',
+          tags: ['RHEL 9', 'LVM / RAID', 'SELinux', 'Ansible', 'Docker & K8s', 'Python'],
+        },
+        {
+          id: 'research', label: 'Research',
+          still: 'assets/stills/research.jpg',
+          accent: '#FBBF24',
+          scroll: 3.4,
+          linger: 0.35,
+          eyebrow: 'Research & publications',
+          title: 'Six peer-reviewed papers, published at IEEE Xplore.',
+          body: 'Deep learning and computer vision for healthcare: CNN-based skin disease classification, dual YOLOv8 hospital hygiene surveillance on edge AI, and a CCTV-based automated attendance case study at SkyHighes Technology — plus blockchain + AI and IoT in healthcare.',
+          tags: ['IEEE Xplore', 'CNN', 'YOLOv8', 'Edge AI', 'IoT'],
+          cta: { primary: { label: 'IEEE Profile', href: 'https://ieeexplore.ieee.org/author/394379608471085' },
+                 secondary: { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=5gWoDTUAAAAJ' } },
+        },
+        {
+          id: 'projects', label: 'Projects',
+          still: 'assets/stills/projects.jpg',
+          accent: '#34D399',
+          eyebrow: 'Projects & builds',
+          title: 'Things I\u2019ve actually built.',
+          body: 'LinuxLab — a cloud Linux administration & DevOps lab where students practice on real isolated browser containers with AI hints and auto-evaluation (React, Docker, MongoDB, Fastify). A Flask face-recognition attendance web app using FaceNet + SVM + OpenCV. And a Python efficiency analyzer (Streamlit, cProfile + AST).',
+          tags: ['LinuxLab', 'Face Recognition', 'Python Analyzer'],
+          cta: { primary: { label: 'View GitHub', href: 'https://github.com/prasad111-dev' },
+                 secondary: { label: 'LinuxLab Repo', href: 'https://github.com/prasad111-dev/linuxlab-59' } },
+        },
+        {
+          id: 'contact', label: 'Contact',
+          still: 'assets/stills/contact.jpg',
+          accent: '#E879F9',
+          scroll: 4.2,
+          linger: 0.4,
+          eyebrow: "Let's connect",
+          title: 'Open to Linux admin, DevOps & AI research roles.',
+          body: 'Wardha, Maharashtra, India. prasadghavghave0@gmail.com \u00b7 +91 93228 60752 \u2014 I usually reply fast.',
+          tags: ['Email', 'WhatsApp', 'LinkedIn', 'GitHub'],
+          cta: { primary: { label: 'Email me', href: 'mailto:prasadghavghave0@gmail.com' },
+                 secondary: { label: 'LinkedIn', href: 'https://www.linkedin.com/in/prasad-ghavghave-b521a4357' } },
+        },
+      ],
+      connectors: [],
     });
 
-    let progress = 0;
-    const loaderBar = document.getElementById('loaderBar');
-    const interval = setInterval(() => {
-      progress += Math.random() * 18 + 6;
-      if (progress >= 100) { progress = 100; clearInterval(interval); setTimeout(() => document.getElementById('preloader').classList.add('hide'), 250); }
-      loaderBar.style.width = progress + '%';
-    }, 140);
+    /* ================= cinematic post-mount ================= */
+    (function () {
+      var root = document.getElementById('world');
+      var stages = root.querySelectorAll('.sw-stage > .sw-scene');
 
-    const roles = ["Junior Linux System Administrator", "RHEL 9 Specialist", "Ansible Automation Engineer", "IEEE Published AI Researcher"];
-    let part = 0, partIndex = 0, isDeleting = false;
-    const el = document.getElementById("typed-text"), speed = 45;
-    function type() {
-      if (!el) return;
-      const cur = roles[part];
-      el.textContent = cur.substring(0, partIndex);
-      if (!isDeleting) partIndex++;
-      else partIndex--;
-      if (!isDeleting && partIndex === cur.length + 1) { isDeleting = true; setTimeout(type, 1800); }
-      else if (isDeleting && partIndex === 0) { isDeleting = false; part = (part + 1) % roles.length; setTimeout(type, 400); }
-      else setTimeout(type, speed);
-    }
-    document.addEventListener("DOMContentLoaded", type);
+      /* per-scene colour grade */
+      var grades = [
+        'saturate(1.18) contrast(1.14) hue-rotate(-8deg)',
+        'saturate(1.12) contrast(1.18) brightness(1.06) hue-rotate(-16deg)',
+        'saturate(1.2) contrast(1.2) hue-rotate(-12deg)',
+        'saturate(1.26) contrast(1.22) hue-rotate(-4deg)',
+        'saturate(1.16) contrast(1.22) hue-rotate(-14deg)',
+        'saturate(1.2) contrast(1.16) brightness(1.05)',
+        'saturate(1.14) contrast(1.14) hue-rotate(-6deg)',
+      ];
+      grades.forEach(function (g, i) { if (stages[i]) stages[i].querySelector('.sw-scene__still').style.filter = g; });
 
-    function toggleMenu() {
-      const m = document.getElementById('mobileMenu');
-      const icon = document.getElementById('menuIcon');
-      if (m.classList.contains('hidden')) {
-        m.classList.remove('hidden'); m.classList.add('flex');
-        requestAnimationFrame(() => requestAnimationFrame(() => m.classList.add('open')));
-        document.body.style.overflow = 'hidden';
-        icon.classList.replace('fa-bars', 'fa-times');
-      } else {
-        m.classList.remove('open');
-        setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
-        document.body.style.overflow = '';
-        icon.classList.replace('fa-times', 'fa-bars');
+      /* featured frames: profile photo on Home, project screenshot on Projects */
+      if (stages[0]) {
+        stages[0].classList.add('is-home');
+        var p = document.createElement('div');
+        p.className = 'sw-feature sw-feature--portrait';
+        p.innerHTML =
+          '<img src="abc/1725428819340%20(1).jpg" alt="Prasad S. Ghavghave" decoding="async">' +
+          '<div class="sw-feature__caption"><b>Prasad S. Ghavghave</b><span>Linux Admin \u00b7 AI Researcher</span></div>';
+        stages[0].appendChild(p);
       }
-    }
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 1024) {
-        const m = document.getElementById('mobileMenu');
-        m.classList.add('hidden'); m.classList.remove('open', 'flex');
-        document.body.style.overflow = '';
+      if (stages[5]) {
+        stages[5].classList.add('is-projects');
+        var s = document.createElement('div');
+        s.className = 'sw-feature sw-feature--shot';
+        s.innerHTML =
+          '<div class="sw-feature__bar"><i></i><i></i><i></i></div>' +
+          '<img src="abc/Capture.PNG" alt="Project screenshot" decoding="async">';
+        stages[5].appendChild(s);
       }
-    });
 
-    const bar = document.getElementById('progress');
-    const navbar = document.getElementById('navbar');
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      const h = document.documentElement;
-      bar.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
-      navbar.classList.toggle('scrolled', h.scrollTop > 40);
-      backToTop.classList.toggle('show', h.scrollTop > 600);
-    }, { passive: true });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    function animateCounter(counter) {
-      const target = +counter.dataset.target;
-      let current = 0;
-      const step = Math.max(1, Math.ceil(target / 60));
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) { current = target; clearInterval(timer); }
-        counter.textContent = current;
-      }, 25);
-    }
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.querySelectorAll('.counter').forEach(animateCounter); counterObserver.unobserve(entry.target); }
-      });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('.stat-card').forEach((c) => counterObserver.observe(c));
-
-    const progressObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.style.width = entry.target.dataset.progress + '%'; progressObserver.unobserve(entry.target); }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.progress-fill').forEach((f) => progressObserver.observe(f));
-
-    if (!isTouch && !reduceMotion) {
-      const tiltTransform = (card, rx, ry) => {
-        const cs = getComputedStyle(card);
-        const sy = cs.getPropertyValue('--scrubY').trim() || '0px';
-        const sc = cs.getPropertyValue('--scrubScale').trim() || '1';
-        return `translate3d(0, ${sy}, 0) scale(${sc}) perspective(900px) rotateY(${ry}deg) rotateX(${rx}deg)`;
-      };
-      document.querySelectorAll('.tilt').forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-          const r = card.getBoundingClientRect();
-          card.style.transform = tiltTransform(card, -((e.clientY - r.top) / r.height - 0.5) * 14, ((e.clientX - r.left) / r.width - 0.5) * 14);
-        });
-        card.addEventListener('mouseleave', () => { card.style.transform = tiltTransform(card, 0, 0); });
-      });
-      document.querySelectorAll('.magnetic').forEach((btn) => {
-        btn.addEventListener('mousemove', (e) => {
-          const r = btn.getBoundingClientRect();
-          btn.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.22}px, ${(e.clientY - r.top - r.height / 2) * 0.22}px)`;
-        });
-        btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
-      });
-      const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-      let mx = 0, my = 0, rx = 0, ry = 0;
-      window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }, { passive: true });
-      (function loopRing() {
-        rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
-        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-        requestAnimationFrame(loopRing);
-      })();
-      document.querySelectorAll('a, button').forEach((x) => {
-        x.addEventListener('mouseenter', () => ring.classList.add('grow'));
-        x.addEventListener('mouseleave', () => ring.classList.remove('grow'));
-      });
-    }
-
-    /* Draggable tech chips — grab and move them anywhere in the hero frame */
-    function bindChipDrag() {
-      document.querySelectorAll('.float-chip').forEach((chip) => {
-      chip.style.touchAction = 'none';
-      const frame = chip.closest('.hero-visual') || document.getElementById('heroVisual');
-      let dragging = false, offX = 0, offY = 0;
-      chip.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dragging = true;
-        chip.setPointerCapture(e.pointerId);
-        const opRect = chip.offsetParent.getBoundingClientRect();
-        const cRect = chip.getBoundingClientRect();
-        offX = e.clientX - cRect.left;
-        offY = e.clientY - cRect.top;
-        chip.style.left = (cRect.left - opRect.left) + 'px';
-        chip.style.top = (cRect.top - opRect.top) + 'px';
-        chip.style.bottom = 'auto';
-        chip.style.right = 'auto';
-        chip.style.animation = 'none';
-        chip.style.zIndex = '12';
-        chip.classList.add('grabbed');
-        const photo = chip.closest('.hero-photo');
-        if (photo) photo.style.animation = 'none';
-      });
-      chip.addEventListener('pointermove', (e) => {
-        if (!dragging) return;
-        const frameRect = frame.getBoundingClientRect();
-        const opRect = chip.offsetParent.getBoundingClientRect();
-        const cRect = chip.getBoundingClientRect();
-        let nx = e.clientX - offX - opRect.left;
-        let ny = e.clientY - offY - opRect.top;
-        nx = Math.max(0, Math.min(nx, frameRect.width - cRect.width));
-        ny = Math.max(0, Math.min(ny, frameRect.height - cRect.height));
-        chip.style.left = nx + 'px';
-        chip.style.top = ny + 'px';
-      });
-      const end = () => {
-        if (!dragging) return;
-        dragging = false;
-        chip.style.zIndex = '10';
-        chip.classList.remove('grabbed');
-        const photo = chip.closest('.hero-photo');
-        if (photo) photo.style.animation = '';
-      };
-      chip.addEventListener('pointerup', end);
-      chip.addEventListener('pointercancel', end);
-      });
-    }
-    bindChipDrag();
-
-    /* Scroll parallax — layers drift at different speeds as you scroll */
-    if (!reduceMotion) {
-      const pxEls = [];
-      document.querySelectorAll('[data-speed]').forEach((el) => {
-        const sp = parseFloat(el.getAttribute('data-speed'));
-        if (!isNaN(sp)) pxEls.push({ el, sp });
-      });
-      let pxQueued = false;
-      const updatePx = () => {
-        const mid = window.innerHeight / 2;
-        pxEls.forEach((o) => {
-          const r = o.el.getBoundingClientRect();
-          const off = ((r.top + r.height / 2) - mid) * o.sp * 0.12;
-          o.el.style.transform = 'translate3d(0,' + off.toFixed(2) + 'px,0)';
-        });
-        pxQueued = false;
-      };
-      window.addEventListener('scroll', () => { if (!pxQueued) { pxQueued = true; requestAnimationFrame(updatePx); } }, { passive: true });
-      window.addEventListener('resize', updatePx);
-      updatePx();
-    }
-
-    /* Scroll-scrubbed card fly-in — cards rise/scale continuously tied to scroll */
-    if (!reduceMotion) {
-      const scrubCards = [...document.querySelectorAll('.glass-card, .skill-card')].map((el) => {
-        const group = el.parentElement;
-        const idx = group ? [...group.querySelectorAll('.glass-card, .skill-card')].indexOf(el) : 0;
-        return { el, stagger: Math.min(idx * 0.04, 0.3) };
-      });
-      const smooth3 = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
-      let scrubQueued = false;
-      const updateScrub = () => {
-        const vh = window.innerHeight;
-        scrubCards.forEach(({ el, stagger }) => {
-          const top = el.getBoundingClientRect().top;
-          const pr = Math.min(1, Math.max(0, (vh * 0.94 - top) / (vh * 0.6)));
-          const e = stagger >= 1 ? 1 : Math.min(1, Math.max(0, (pr - stagger) / (1 - stagger)));
-          const s = smooth3(e);
-          el.style.setProperty('--scrubY', (70 * (1 - s)).toFixed(2) + 'px');
-          el.style.setProperty('--scrubScale', (0.9 + 0.1 * s).toFixed(3));
-          el.style.setProperty('--scrubOp', s.toFixed(3));
-        });
-        scrubQueued = false;
-      };
-      window.addEventListener('scroll', () => { if (!scrubQueued) { scrubQueued = true; requestAnimationFrame(updateScrub); } }, { passive: true });
-      window.addEventListener('resize', updateScrub);
-      updateScrub();
-    }
-
-    /* Watermark parallax */
-    const watermarks = document.querySelectorAll('.watermark');
-    window.addEventListener('scroll', () => {
-      watermarks.forEach((w) => {
-        const sec = w.closest('section');
-        const r = sec.getBoundingClientRect();
-        if (r.bottom > 0 && r.top < window.innerHeight) {
-          const shift = Math.max(-60, Math.min(60, r.top * 0.04));
-          w.style.transform = 'translateX(' + shift + 'px)';
-        }
-      });
-    }, { passive: true });
-
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach((sec) => { if (window.scrollY >= sec.offsetTop - 180) current = sec.id; });
-      navLinks.forEach((link) => { link.classList.toggle('active', link.getAttribute('href') === '#' + current); });
-    }, { passive: true });
-  </script>
-
-  <script>
-  /* ============ HERO PARTICLE EXPLODE ENGINE ============ */
-  (function () {
-    var canvas = document.getElementById('heroParticleCanvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var hero = canvas.closest('.explode-hero');
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var IMG_SRC = 'abc/1725428819340%20(1).jpg';
-    var IMG = 702;
-    var DPR = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, CX = 0, CY = 0, SCALE = 1;
-    var particles = [], loaded = false;
-    var steps = Array.prototype.slice.call(document.querySelectorAll('.explode-step'));
-    var hint = document.querySelector('.explode-hint');
-    var prog = { p: 0, target: 0 };
-
-    var RANGES = [
-      [0.02, 0.18], [0.30, 0.48], [0.50, 0.64], [0.66, 0.82], [0.84, 1.02]
-    ];
-
-    function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function smooth3(x) { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); }
-
-    function explodeAmt(p) {
-      if (p < 0.10) return 0;
-      if (p < 0.30) return smooth3((p - 0.10) / 0.20);
-      if (p < 0.78) return 1;
-      return 1 - smooth3((p - 0.78) / 0.16);
-    }
-
-    function init() {
-      var w = window.innerWidth, h = window.innerHeight;
-      W = w; H = h;
-      canvas.width = Math.round(w * DPR);
-      canvas.height = Math.round(h * DPR);
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      var target = w < 768 ? 2200 : 5200;
-      var area = Math.PI * (IMG / 2) * (IMG / 2);
-      var g = Math.max(3, Math.floor(Math.sqrt(area / target)));
-      SCALE = Math.min(w * 0.86, h * 0.52, 440) / IMG;
-      CX = w / 2;
-      CY = h * 0.47;
-      var off = document.createElement('canvas');
-      off.width = IMG; off.height = IMG;
-      var octx = off.getContext('2d');
-      octx.drawImage(imgEl, 0, 0, IMG, IMG);
-      var data = octx.getImageData(0, 0, IMG, IMG).data;
-      var R = IMG / 2 - 6, parts = [];
-      for (var y = 0; y < IMG; y += g) {
-        for (var x = 0; x < IMG; x += g) {
-          var dx = x - R, dy = y - R;
-          if (dx * dx + dy * dy > R * R) continue;
-          var i = (y * IMG + x) * 4;
-          if (data[i + 3] < 24) continue;
-          var r = data[i], gg = data[i + 1], b = data[i + 2];
-          if ((r * 0.2126 + gg * 0.7152 + b * 0.0722) / 255 > 0.985) continue;
-          var ang = Math.atan2(dy, dx);
-          var dist = R * SCALE * (1.3 + Math.random() * 1.4);
-          parts.push({
-            bx: CX + dx * SCALE, by: CY + dy * SCALE,
-            ex: CX + Math.cos(ang) * dist, ey: CY + Math.sin(ang) * dist,
-            x: CX + dx * SCALE, y: CY + dy * SCALE,
-            r: Math.max(1.4, SCALE * g * 0.75),
-            col: 'rgb(' + r + ',' + gg + ',' + b + ')',
-            tw: Math.random() * Math.PI * 2
-          });
-        }
-      }
-      particles = parts;
-      if (reduceMotion) draw();
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      if (!loaded || particles.length === 0) {
-        drawFallback();
-        return;
-      }
-      var now = performance.now() / 1000;
-      var amt = reduceMotion ? 0 : explodeAmt(prog.p);
-      ctx.globalCompositeOperation = 'lighter';
-      for (var i = 0; i < particles.length; i++) {
-        var pt = particles[i];
-        var tx = lerp(pt.bx, pt.ex, amt);
-        var ty = lerp(pt.by, pt.ey, amt);
-        pt.x += (tx - pt.x) * 0.09;
-        pt.y += (ty - pt.y) * 0.09;
-        ctx.globalAlpha = 0.62 + 0.38 * Math.abs(Math.sin(now * 2 + pt.tw));
-        ctx.fillStyle = pt.col;
-        ctx.fillRect(pt.x - pt.r / 2, pt.y - pt.r / 2, pt.r, pt.r);
-      }
-      ctx.globalAlpha = 1;
-      ctx.globalCompositeOperation = 'source-over';
-    }
-
-    function drawFallback() {
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      var grd = ctx.createRadialGradient(CX, CY, 10, CX, CY, SCALE * IMG / 2);
-      grd.addColorStop(0, 'rgba(232,121,249,0.35)');
-      grd.addColorStop(1, 'rgba(139,92,246,0.05)');
-      ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, W, H);
-      ctx.restore();
-    }
-
-    function updateSteps(p) {
-      for (var i = 0; i < steps.length; i++) {
-        var rg = RANGES[i];
-        var fade = 0.07;
-        var in_ = (p - rg[0]) / fade;
-        var out_ = (rg[1] - p) / fade;
-        var o = clamp(Math.min(in_, out_), 0, 1);
-        steps[i].style.opacity = o.toFixed(3);
-        steps[i].classList.toggle('on', o > 0.05);
-      }
-      if (hint) hint.style.opacity = (p < 0.22 ? 1 - p / 0.22 : 0).toFixed(3);
-    }
-
-    function frame(now) {
-      var dt = now - lastT;
-      lastT = now;
-      if (dt < 0 || dt > 100) dt = 16;
-      var rect = hero.getBoundingClientRect();
-      var total = hero.offsetHeight - window.innerHeight;
-      prog.target = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
-      prog.p += (prog.target - prog.p) * (1 - Math.exp(-dt * 0.009));
-      updateSteps(prog.p);
-      draw();
-      window.__pexplode = {
-        p: prog.p, amt: explodeAmt(prog.p),
-        count: particles.length,
-        sample: particles.length ? [particles[0].x, particles[0].y] : null
-      };
-      requestAnimationFrame(frame);
-    }
-    var lastT = performance.now();
-
-    var imgEl = new Image();
-    imgEl.onload = function () { loaded = true; init(); if (reduceMotion) return; requestAnimationFrame(frame); };
-    imgEl.onerror = function () { loaded = false; init(); if (reduceMotion) return; requestAnimationFrame(frame); };
-    imgEl.src = IMG_SRC;
-    setTimeout(function () {
-      if (!loaded && !reduceMotion) { init(); requestAnimationFrame(frame); }
-    }, 8000);
-
-    var rsT = null;
-    window.addEventListener('resize', function () {
-      clearTimeout(rsT);
-      rsT = setTimeout(function () { if (loaded) init(); }, 200);
-    });
-    if (reduceMotion) {
-      hero.classList.add('explode-static');
-      updateSteps(1);
-      document.querySelector('.explode-hint').style.opacity = '0';
-    }
-  })();
-  </script>
-
-  <button id="chatbotBtn" class="hidden" aria-label="Chat with AI">
-    <i class="fas fa-robot"></i><span class="hidden md:inline ml-2">Chat with AI</span>
-  </button>
-  <div id="chatbotModal" class="fixed inset-0 hidden bg-black/85 backdrop-blur-sm z-50 items-center justify-center p-4">
-    <div class="relative w-full max-w-4xl h-[80vh] bg-white rounded-2xl overflow-hidden shadow-2xl">
-      <button id="closeChatbot" class="absolute top-4 right-4 text-2xl font-bold text-gray-700 hover:text-gray-900 z-50">✖</button>
-      <iframe src="https://www.chatbase.co/chatbot-iframe/6g4XQ1XY2ajdt0UTcNv7q" width="100%" height="100%" style="border: none"></iframe>
-    </div>
-  </div>
-  <script>
-    const chatbotBtn = document.getElementById("chatbotBtn"), chatbotModal = document.getElementById("chatbotModal"), closeChatbot = document.getElementById("closeChatbot");
-    window.addEventListener('load', () => {
-      setTimeout(() => { chatbotBtn.classList.remove('hidden'); chatbotBtn.classList.add('flex'); }, 2500);
-    });
-    chatbotBtn.addEventListener("click", () => chatbotModal.classList.remove("hidden"));
-    closeChatbot.addEventListener("click", () => chatbotModal.classList.add("hidden"));
-    window.addEventListener("click", (e) => { if (e.target === chatbotModal) chatbotModal.classList.add("hidden"); });
+      /* cinematic matte bars fade in as you fly (full-screen by the finale) */
+      var matteTop = document.getElementById('matteTop');
+      var matteBot = document.getElementById('matteBot');
+      var trackH = 0;
+      function measure() { trackH = (root.querySelector('.sw-track') || document.body).getBoundingClientRect().height; }
+      measure();
+      window.addEventListener('resize', measure);
+      window.addEventListener('scroll', function () {
+        var p = Math.min(1, window.scrollY / (trackH * 0.55));
+        var h = Math.round(5.5 * p) + 'vh';
+        matteTop.style.height = h; matteBot.style.height = h;
+        matteTop.style.opacity = (0.9 * p).toFixed(3);
+        matteBot.style.opacity = (0.9 * p).toFixed(3);
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
