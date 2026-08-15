@@ -236,8 +236,11 @@ function mountScrollWorld(container, config) {
       s.el.style.opacity = op; s.visible = op > 0.001;
       s.el.style.zIndex = (i === ci) ? '120' : String(100 + Math.round(op * 10));
       if (!s.hasClip || !s.ready) {
-        const sc = reduce ? 1 : 1.03 + local * 0.14;
-        s.img.style.transform = `translateX(${stageX - 2}vw) scale(${sc.toFixed(3)})`;
+        const sc = reduce ? 1 : 1.1 + local * 0.14;
+        const dir = (s.si % 2) ? -1 : 1;
+        const dy = reduce ? 0 : dir * (0.5 - local) * 2.4;
+        const rot = reduce ? 0 : dir * (0.5 - local) * 1.1;
+        s.img.style.transform = `translateX(${stageX - 2}vw) translateY(${dy.toFixed(2)}vh) rotate(${rot.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
       }
     }
 
