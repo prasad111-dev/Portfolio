@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="description" content="Portfolio of Prasad S. Ghavghave — Junior Linux System Administrator, DevOps & AI Researcher. Red Hat certified (RH124, RH294, DO180), IEEE author of 6 publications, RHEL 9, Ansible, Docker, deep learning (CNN, YOLOv8)." />
+  <meta name="description" content="Portfolio of Prasad S. Ghavghave — Junior Linux System Administrator, DevOps & AI Researcher. Red Hat certified (RH124, RH294, DO180), IEEE author of 6 publications, RHEL 9, Ansible, Docker, deep learning." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Prasad S. Ghavghave | Linux Admin & AI Researcher" />
   <meta property="og:description" content="Junior Linux System Administrator (RHEL 9, Ansible, Docker) and IEEE-published AI researcher with 6+ papers on deep learning and computer vision." />
-  <meta property="og:image" content="assets/stills/home.jpg" />
+  <meta property="og:image" content="abc/1725428819340%20(1).jpg" />
   <meta property="og:url" content="https://prasad111-dev.github.io/Portfolio/" />
-  <meta name="theme-color" content="#0b0d12" />
+  <meta name="theme-color" content="#0a0c11" />
   <link rel="icon" type="image/png" href="abc/favicon.png" />
   <link rel="apple-touch-icon" href="abc/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <title>Prasad S. Ghavghave — the world of Linux & AI</title>
+  <title>Prasad S. Ghavghave — Linux Admin & AI Researcher</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ5H5JW9MN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -25,295 +24,666 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    :root, .sw-root {
-      --sw-bg: #0b0d12;
-      --sw-ink: #f4f1ea;
-      --sw-ink-soft: #aab2c1;
-      --sw-accent: #E879F9;
-      --sw-font-display: 'Outfit', ui-rounded, 'Segoe UI', system-ui, sans-serif;
-      --sw-font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      --sw-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    :root {
+      --bg: #0a0c11;
+      --card: #12151f;
+      --ink: #f2efe8;
+      --soft: #a7aebf;
+      --line: rgba(255,255,255,0.09);
+      --fuchsia: #E879F9;
+      --cyan: #22D3EE;
+      --violet: #8B5CF6;
+      --pink: #F472B6;
+      --amber: #FBBF24;
+      --green: #34D399;
+      --font-display: 'Outfit', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     }
-    html, body { margin: 0; background: #0b0d12; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: var(--font-display); overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
     ::selection { background: rgba(232,121,249,0.35); color: #fff; }
+    a { color: inherit; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-    /* ---- copy typography ---- */
-    .sw-copy__num { font-family: var(--sw-font-mono); font-size: .74rem; letter-spacing: .12em; color: var(--sw-ink-soft); }
-    .sw-copy__eyebrow { font-family: var(--sw-font-display); font-weight: 700; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; }
-    .sw-copy__title { text-shadow: 0 2px 26px rgba(0,0,0,0.55); }
-    .sw-copy__body { color: color-mix(in srgb, var(--sw-ink) 84%, var(--sw-ink-soft)); text-shadow: 0 1px 16px rgba(0,0,0,0.65); }
-    .sw-copylayer::before { width: min(56vw, 760px); background: linear-gradient(90deg, #0b0d12 0%, rgba(11,13,18,0.7) 38%, rgba(11,13,18,0.2) 64%, transparent 100%); }
-    .sw-route::before { opacity: .4; }
-    .sw-nav { background: rgba(11,13,18,0.4); backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.12); }
-    .sw-nav__item.is-active { color: #0b0d12; }
-    .sw-route__label { background: rgba(11,13,18,0.78); color: var(--sw-ink); border-color: rgba(255,255,255,0.12); }
-    .sw-brand__mark { border-radius: 999px; width: 26px; height: 26px; }
-    .sw-scene__still { transition: filter .6s linear; }
-
-    /* ---- per-scene accent tint overlay (colour grade feel) ---- */
-    .sw-scene::after {
-      content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.28) 0%, transparent 34%, rgba(0,0,0,0.18) 100%),
-        radial-gradient(120% 90% at 50% 50%, transparent 40%, rgba(0,0,0,0.42) 100%),
-        color-mix(in srgb, var(--sw-accent) 16%, transparent);
-      mix-blend-mode: normal;
+    /* animated mesh background */
+    .mesh { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg); }
+    .mesh::before, .mesh::after {
+      content: ""; position: absolute; width: 60vw; height: 60vw; border-radius: 50%;
+      filter: blur(90px); opacity: 0.16; animation: drift 18s ease-in-out infinite alternate;
     }
-    .sw-scene.has-clip .sw-scene__still { opacity: 0; }
-
-    /* ---- cinematic matte bars ---- */
-    .cine-matte { position: fixed; left: 0; right: 0; z-index: 15; pointer-events: none;
-      height: 0; opacity: 0; background: #000; transition: opacity .5s ease; will-change: height, opacity; }
-    .cine-matte--top { top: 0; }
-    .cine-matte--bot { bottom: 0; }
-
-    /* ---- film grain ---- */
-    .cine-grain {
-      position: fixed; inset: -6%; z-index: 14; pointer-events: none; opacity: .07;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='0.9'/></svg>");
-      animation: sw-grain 0.55s steps(3) infinite; will-change: transform;
-    }
-    @keyframes sw-grain {
-      0% { transform: translate(0,0); } 25% { transform: translate(-1.4%,0.9%); }
-      50% { transform: translate(1.1%,-1.2%); } 75% { transform: translate(-0.8%,-0.6%); }
-      100% { transform: translate(0.9%,1.1%); }
+    .mesh::before { background: var(--violet); top: -20%; left: -10%; }
+    .mesh::after { background: var(--cyan); bottom: -25%; right: -12%; animation-delay: -9s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(6vw,4vh) scale(1.15); } }
+    .gridlines {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(80% 70% at 50% 30%, #000 0%, transparent 100%);
     }
 
-    /* ---- light leak sweep ---- */
-    .cine-leak {
-      position: fixed; inset: 0; z-index: 13; pointer-events: none; opacity: .5;
-      background: linear-gradient(115deg, transparent 42%,
-        color-mix(in srgb, var(--sw-accent) 10%, transparent) 50%,
-        transparent 58%);
-      background-size: 220% 220%; background-position: 130% 40%;
-      animation: sw-leak 9s ease-in-out infinite; mix-blend-mode: screen; will-change: background-position;
+    /* nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 26px; transition: background .3s, backdrop-filter .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
     }
-    @keyframes sw-leak {
-      0%, 100% { background-position: 130% 40%; }
-      50% { background-position: -30% 60%; }
-    }
+    nav.scrolled { background: rgba(10,12,17,0.7); backdrop-filter: blur(14px); border-color: var(--line); }
+    .logo { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; text-decoration: none; display:flex; align-items:center; gap:10px; }
+    .logo .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--fuchsia); box-shadow: 0 0 14px var(--fuchsia); }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: .9rem; color: var(--soft); padding: 8px 13px; border-radius: 999px; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
+    .nav-cv { background: var(--ink); color: var(--bg) !important; font-weight: 700; }
+    .nav-cv:hover { background: var(--fuchsia); color: #0a0c11 !important; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
+    .nav-burger i { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+    .nav-mobile { display:none; flex-direction:column; position:fixed; top:62px; left:0; right:0; background:rgba(10,12,17,0.96); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); padding:10px 20px 18px; z-index:49; gap:4px; }
+    .nav-mobile.open { display:flex; }
+    .nav-mobile a { text-decoration:none; color:var(--soft); padding:12px 8px; font-size:.95rem; border-radius:10px; }
+    .nav-mobile a:hover { color:var(--ink); background:rgba(255,255,255,0.05); }
 
-    /* ---- vignette ---- */
-    .cine-vignette {
-      position: fixed; inset: 0; z-index: 12; pointer-events: none;
-      background: radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%);
+    /* hero */
+    header.hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 120px 0 60px; overflow: clip; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; width: 100%; }
+    .kicker {
+      font-family: var(--font-mono); font-size: .8rem; letter-spacing: .14em; color: var(--fuchsia);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
     }
+    .kicker::before { content: ""; width: 34px; height: 1px; background: var(--fuchsia); opacity: .6; }
+    .kicker span { color: var(--green); }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4.4rem); line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; }
+    .hero h1 .grad {
+      background: linear-gradient(92deg, var(--fuchsia), var(--violet) 55%, var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .type-line { margin-top: 16px; font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--soft); min-height: 1.6em; }
+    .type-line b { color: var(--cyan); font-weight: 600; }
+    .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--cyan); margin-left: 4px; vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero p.lead { margin-top: 22px; max-width: 52ch; color: var(--soft); font-size: 1.02rem; line-height: 1.7; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .btn {
+      text-decoration: none; font-weight: 700; font-size: .95rem; padding: 14px 26px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 9px; transition: transform .18s, box-shadow .18s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-primary:hover { background: var(--fuchsia); box-shadow: 0 10px 30px -8px rgba(232,121,249,0.6); }
+    .btn-ghost { border: 1.5px solid rgba(255,255,255,0.22); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--fuchsia); color: var(--fuchsia); }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+    .stat-chip {
+      border: 1px solid var(--line); background: rgba(255,255,255,0.03); border-radius: 14px;
+      padding: 12px 18px; min-width: 128px;
+    }
+    .stat-chip b { display: block; font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); }
+    .stat-chip span { font-size: .78rem; color: var(--soft); letter-spacing: .04em; }
+    .stat-chip b.c1 { color: var(--fuchsia); } .stat-chip b.c2 { color: var(--cyan); }
+    .stat-chip b.c3 { color: var(--green); } .stat-chip b.c4 { color: var(--amber); }
 
-    /* ---- featured frames ---- */
-    .sw-feature { position: absolute; z-index: 3; opacity: 0; transition: opacity .5s ease;
-      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.55)); will-change: opacity, transform; }
-    .sw-scene.is-home .sw-feature--portrait { opacity: 1; }
-    .sw-scene.is-projects .sw-feature--shot { opacity: 1; }
+    .portrait-wrap { position: relative; width: min(340px, 80vw); margin: 0 auto; }
+    .portrait {
+      width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.16); display: block;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8),
+                  0 0 0 1px color-mix(in srgb, var(--fuchsia) 45%, transparent),
+                  0 0 70px -14px color-mix(in srgb, var(--fuchsia) 50%, transparent);
+    }
+    .portrait-ring { position: absolute; inset: -14px; border-radius: 38px; border: 1px dashed rgba(255,255,255,0.14); animation: spin 40s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .badge-float {
+      position: absolute; background: rgba(18,21,31,0.85); backdrop-filter: blur(10px);
+      border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; font-family: var(--font-mono);
+      font-size: .72rem; color: var(--soft); display: flex; gap: 8px; align-items: center;
+      box-shadow: 0 14px 34px -10px rgba(0,0,0,0.7);
+    }
+    .badge-float i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+    .badge-float.t1 { top: 6%; left: -12%; }
+    .badge-float.t2 { bottom: 12%; right: -8%; }
+    .badge-float.t2 i { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+    .scroll-cue { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); color: var(--soft); font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .scroll-cue i { width: 22px; height: 34px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.25); position: relative; }
+    .scroll-cue i::after { content: ""; position: absolute; left: 50%; top: 7px; width: 4px; height: 7px; border-radius: 2px; background: var(--fuchsia); transform: translateX(-50%); animation: wheel 1.6s ease-in-out infinite; }
+    @keyframes wheel { 0%{opacity:0;top:6px} 40%{opacity:1} 100%{opacity:0;top:16px} }
 
-    .sw-feature--portrait {
-      right: clamp(20px, 6vw, 90px); top: 50%; transform: translateY(-46%);
-      width: clamp(190px, 21vw, 300px); aspect-ratio: 1;
-      border-radius: 26px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.22);
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--sw-accent) 45%, transparent),
-                  0 0 60px -12px color-mix(in srgb, var(--sw-accent) 55%, transparent);
-    }
-    .sw-feature--portrait img { width: 100%; height: 100%; object-fit: cover; }
-    .sw-feature--portrait::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.78) 100%);
-    }
-    .sw-feature__caption {
-      position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
-      font-family: var(--sw-font-display); color: #fff;
-    }
-    .sw-feature__caption b { display: block; font-size: .95rem; letter-spacing: .01em; }
-    .sw-feature__caption span { font-size: .7rem; opacity: .82; letter-spacing: .08em; text-transform: uppercase; }
+    /* sections */
+    section { padding: 96px 0; position: relative; }
+    .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; }
+    .sec-num { font-family: var(--font-mono); color: var(--fuchsia); font-size: .9rem; }
+    .sec-title { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; }
+    .sec-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    .sw-feature--shot {
-      right: clamp(18px, 5vw, 84px); top: 50%; transform: translateY(-50%);
-      width: min(clamp(230px, 26vw, 380px), 40vh);
-      border-radius: 14px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 30px 70px -18px rgba(0,0,0,0.7),
-                  0 0 0 1px color-mix(in srgb, var(--sw-accent) 40%, transparent);
-      background: #0e1017;
+    /* about */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
+    .about-grid p { color: var(--soft); line-height: 1.8; font-size: 1rem; }
+    .about-grid p + p { margin-top: 16px; }
+    .about-grid p b { color: var(--ink); }
+    .facts { display: flex; flex-direction: column; gap: 12px; }
+    .fact { display: flex; gap: 14px; align-items: flex-start; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; background: rgba(255,255,255,0.02); }
+    .fact .ic { width: 36px; height: 36px; flex: none; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; background: rgba(232,121,249,0.12); color: var(--fuchsia); }
+    .fact .ic.cy { background: rgba(34,211,238,0.12); color: var(--cyan); }
+    .fact .ic.vi { background: rgba(139,92,246,0.14); color: var(--violet); }
+    .fact .ic.gr { background: rgba(52,211,153,0.12); color: var(--green); }
+    .fact .ic.am { background: rgba(251,191,36,0.12); color: var(--amber); }
+    .fact b { display: block; font-size: .95rem; }
+    .fact span { font-size: .85rem; color: var(--soft); line-height: 1.5; }
+
+    /* skills */
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .skill-card { border: 1px solid var(--line); border-radius: 18px; padding: 24px; background: var(--card); transition: transform .25s, border-color .25s; }
+    .skill-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--ac) 50%, transparent); }
+    .skill-card .sk-ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 1.25rem; margin-bottom: 16px; background: color-mix(in srgb, var(--ac) 14%, transparent); color: var(--ac); }
+    .skill-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .skill-card p { font-size: .85rem; color: var(--soft); margin-bottom: 16px; line-height: 1.55; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tags span { font-family: var(--font-mono); font-size: .72rem; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--soft); background: rgba(255,255,255,0.02); }
+
+    /* projects */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .proj-card {
+      border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--card);
+      display: flex; flex-direction: column; transition: transform .25s, border-color .25s, box-shadow .25s;
     }
-    .sw-feature--shot .sw-feature__bar {
-      display: flex; gap: 6px; align-items: center; padding: 10px 12px;
-      background: rgba(255,255,255,0.06);
+    .proj-card:hover { transform: translateY(-5px); border-color: rgba(52,211,153,0.45); box-shadow: 0 24px 50px -22px rgba(0,0,0,0.8); }
+    .proj-thumb { height: 168px; display: grid; place-items: center; position: relative; overflow: hidden; }
+    .proj-thumb::before { content: ""; position: absolute; inset: 0; background: linear-gradient(140deg, color-mix(in srgb, var(--ac) 26%, transparent), rgba(10,12,17,0.7)); }
+    .proj-thumb .term {
+      position: relative; width: 78%; border-radius: 10px; overflow: hidden; background: #0b0e15;
+      border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 16px 36px -12px rgba(0,0,0,0.7);
+      font-family: var(--font-mono); font-size: .7rem; color: var(--green); padding: 12px 14px;
     }
-    .sw-feature--shot .sw-feature__bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.22); }
-    .sw-feature--shot .sw-feature__bar i:first-child { background: #ff5f57; }
-    .sw-feature--shot .sw-feature__bar i:nth-child(2) { background: #febc2e; }
-    .sw-feature--shot .sw-feature__bar i:nth-child(3) { background: #28c840; }
-    .sw-feature--shot img { display: block; width: 100%; height: auto; }
+    .proj-thumb .term i { display: block; height: 8px; background: linear-gradient(90deg, #ff5f57 0 8px, #febc2e 0 18px, #28c840 0 28px, transparent 0); border-radius: 3px; margin-bottom: 10px; }
+    .proj-thumb .term b { color: var(--ink); font-weight: 500; }
+    .proj-thumb .term .dim { color: var(--soft); }
+    .proj-card .proj-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .proj-card h3 { font-size: 1.15rem; font-weight: 700; }
+    .proj-card .proj-desc { font-size: .9rem; color: var(--soft); line-height: 1.6; margin: 10px 0 16px; flex: 1; }
+    .proj-foot { display: flex; justify-content: space-between; align-items: center; }
+    .proj-link { text-decoration: none; font-weight: 700; font-size: .88rem; color: var(--ac); display: inline-flex; gap: 7px; align-items: center; }
+    .proj-link:hover { text-decoration: underline; }
+
+    /* research */
+    .paper { display: flex; gap: 16px; align-items: flex-start; border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; margin-bottom: 14px; background: rgba(255,255,255,0.02); transition: border-color .2s; }
+    .paper:hover { border-color: rgba(251,191,36,0.4); }
+    .paper .yr { font-family: var(--font-mono); font-size: .78rem; color: var(--amber); border: 1px solid rgba(251,191,36,0.3); border-radius: 8px; padding: 6px 10px; flex: none; }
+    .paper h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.4; }
+    .paper p { font-size: .84rem; color: var(--soft); margin-top: 6px; }
+    .paper a { text-decoration: none; color: inherit; }
+    .paper a:hover h3 { color: var(--amber); }
+    .res-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+    /* certifications */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+    .cert {
+      text-decoration: none; border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+      background: var(--card); transition: transform .2s, border-color .2s; display: block;
+    }
+    .cert:hover { transform: translateY(-3px); border-color: rgba(139,92,246,0.5); }
+    .cert .cert-org { font-family: var(--font-mono); font-size: .7rem; color: var(--violet); letter-spacing: .1em; text-transform: uppercase; }
+    .cert b { display: block; margin-top: 8px; font-size: .92rem; line-height: 1.4; }
+    .cert .cert-code { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: .72rem; color: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+    /* experience */
+    .tl { position: relative; padding-left: 26px; }
+    .tl::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--fuchsia), var(--cyan), transparent); opacity: .5; }
+    .tl-item { position: relative; padding-bottom: 34px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before { content: ""; position: absolute; left: -26px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--fuchsia); }
+    .tl-item.cy::before { border-color: var(--cyan); }
+    .tl-item.gr::before { border-color: var(--green); }
+    .tl-item.am::before { border-color: var(--amber); }
+    .tl-item .tl-when { font-family: var(--font-mono); font-size: .75rem; color: var(--soft); letter-spacing: .06em; }
+    .tl-item h3 { font-size: 1.12rem; font-weight: 700; margin-top: 4px; }
+    .tl-item .tl-where { font-size: .88rem; color: var(--cyan); margin-top: 2px; }
+    .tl-item p { font-size: .9rem; color: var(--soft); line-height: 1.65; margin-top: 8px; }
+
+    /* contact */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .contact-card {
+      display: flex; gap: 14px; align-items: center; text-decoration: none;
+      border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;
+      background: var(--card); transition: transform .2s, border-color .2s;
+    }
+    .contact-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--ac) 45%, transparent); }
+    .contact-card .cc-ic { width: 44px; height: 44px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; background: color-mix(in srgb, var(--ac) 14%, transparent); color: var(--ac); }
+    .contact-card b { display: block; font-size: .95rem; }
+    .contact-card span { font-size: .83rem; color: var(--soft); word-break: break-word; }
+
+    footer { border-top: 1px solid var(--line); padding: 34px 0; text-align: center; color: var(--soft); font-size: .85rem; }
+    footer a { color: var(--fuchsia); text-decoration: none; }
 
     @media (max-width: 860px) {
-      .sw-copylayer::before { width: 100%; height: 64%; top: auto; bottom: 0; background: linear-gradient(0deg, #0b0d12 8%, rgba(11,13,18,0.62) 50%, transparent 100%); }
-      .sw-feature--portrait {
-        right: auto; left: 50%; top: clamp(70px, 12vh, 110px); transform: translateX(-50%);
-        width: clamp(120px, 30vw, 160px); border-radius: 20px;
-      }
-      .sw-feature--shot { display: none; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .portrait-wrap { order: -1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .scroll-cue { display: none; }
+      section { padding: 70px 0; }
+      .badge-float.t1 { left: -4%; }
+      .badge-float.t2 { right: -4%; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .cine-grain, .cine-leak { animation: none; }
-      .sw-scene__still { transition: none; }
+      html { scroll-behavior: auto; }
+      .mesh::before, .mesh::after, .portrait-ring, .cursor, .scroll-cue i::after { animation: none; }
+      .reveal { transition: none; opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="gridlines" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <a class="logo" href="#top"><span class="dot"></span><b>prasad.dev</b></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cv" href="Prasad_Ghavghave_Resume.pdf">Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+    <a href="Prasad_Ghavghave_Resume.pdf" style="color:var(--fuchsia);font-weight:700;">Download CV</a>
+  </div>
+
   <div id="top"></div>
-  <div id="world"></div>
 
-  <div class="cine-vignette" aria-hidden="true"></div>
-  <div class="cine-leak" aria-hidden="true"></div>
-  <div class="cine-grain" aria-hidden="true"></div>
-  <div class="cine-matte cine-matte--top" id="matteTop" aria-hidden="true"></div>
-  <div class="cine-matte cine-matte--bot" id="matteBot" aria-hidden="true"></div>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker"><span>#</span> /about/prasad</div>
+        <h1>Prasad S.<br/><span class="grad">Ghavghave</span></h1>
+        <div class="type-line"><span id="typed"></span><span class="cursor"></span></div>
+        <p class="lead">
+          Junior Linux System Administrator, DevOps engineer and AI researcher from Wardha, India.
+          I keep production <b>RHEL 9</b> servers secure and automated with Ansible, and publish
+          applied deep-learning research at <b>IEEE Xplore</b>.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="Prasad_Ghavghave_Resume.pdf">Download CV</a>
+          <a class="btn btn-ghost" href="#contact">Contact me</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-chip"><b class="c1">6</b><span>IEEE Publications</span></div>
+          <div class="stat-chip"><b class="c2">3</b><span>Red Hat Certs</span></div>
+          <div class="stat-chip"><b class="c3">3+</b><span>Projects Built</span></div>
+          <div class="stat-chip"><b class="c4">RHEL 9</b><span>Production Linux</span></div>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <div class="portrait-ring" aria-hidden="true"></div>
+        <img class="portrait" src="abc/1725428819340%20(1).jpg" alt="Prasad S. Ghavghave" />
+        <div class="badge-float t1"><i></i> RH124 · RH294 · DO180</div>
+        <div class="badge-float t2"><i></i> IEEE Xplore Author</div>
+      </div>
+    </div>
+    <div class="scroll-cue">scroll<i></i></div>
+  </header>
 
-  <script src="scrub-engine.js"></script>
+  <main>
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span><h2 class="sec-title">About me</h2><span class="sec-line"></span>
+        </div>
+        <div class="about-grid">
+          <div class="reveal">
+            <p>
+              I'm a <b>B.Tech graduate in Artificial Intelligence &amp; Machine Learning</b> (DMIHER University)
+              who grew up on Linux. I bridge two worlds: deep, hands-on <b>Red Hat system administration</b>
+              and <b>IEEE-published deep-learning research</b>.
+            </p>
+            <p>
+              On the ops side I manage RHEL 9 servers — storage, SELinux, firewalld, SSH hardening —
+              automate everything with Ansible, and containerize with Docker. On the research side I've
+              published <b>6 peer-reviewed papers</b> on CNN-based medical imaging, YOLOv8 edge-AI
+              surveillance, blockchain and IoT in healthcare.
+            </p>
+            <p>
+              I'm <b>Red Hat Academy certified</b> (RH124, RH294, DO180) and currently open to Linux
+              administration, DevOps and AI research roles.
+            </p>
+          </div>
+          <div class="facts">
+            <div class="fact reveal"><div class="ic">&#9993;</div><div><b>Email</b><span>prasadghavghave0@gmail.com</span></div></div>
+            <div class="fact reveal"><div class="ic cy">&#9742;</div><div><b>Phone</b><span>+91 93228 60752</span></div></div>
+            <div class="fact reveal"><div class="ic vi">&#8962;</div><div><b>Location</b><span>Wardha, Maharashtra, India</span></div></div>
+            <div class="fact reveal"><div class="ic gr">&#9881;</div><div><b>Education</b><span>B.Tech AI &amp; ML — DMIHER University</span></div></div>
+            <div class="fact reveal"><div class="ic am">&#11088;</div><div><b>Focus</b><span>Linux Admin · DevOps · AI Research</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">02</span><h2 class="sec-title">Skills</h2><span class="sec-line"></span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card reveal" style="--ac:#E879F9;">
+            <div class="sk-ic">&#8981;</div>
+            <h3>Linux &amp; Systems</h3>
+            <p>RHEL 9 server management, user/permissions, boot &amp; services.</p>
+            <div class="tags"><span>RHEL 9</span><span>systemctl</span><span>LVM</span><span>RAID</span><span>EXT4/XFS</span><span>Bash</span></div>
+          </div>
+          <div class="skill-card reveal" style="--ac:#22D3EE;">
+            <div class="sk-ic">&#128274;</div>
+            <h3>Security</h3>
+            <p>Hardening production systems and automating compliance.</p>
+            <div class="tags"><span>SELinux</span><span>firewalld</span><span>SSH hardening</span></div>
+          </div>
+          <div class="skill-card reveal" style="--ac:#8B5CF6;">
+            <div class="sk-ic">&#9881;</div>
+            <h3>DevOps &amp; Automation</h3>
+            <p>Infrastructure-as-code and container orchestration.</p>
+            <div class="tags"><span>Ansible</span><span>Docker</span><span>Kubernetes</span><span>OpenShift</span></div>
+          </div>
+          <div class="skill-card reveal" style="--ac:#F472B6;">
+            <div class="sk-ic">&#128293;</div>
+            <h3>Programming &amp; AI</h3>
+            <p>Python-first development with deep-learning models.</p>
+            <div class="tags"><span>Python</span><span>Flask</span><span>Streamlit</span><span>CNN</span><span>YOLOv8</span><span>FaceNet</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">03</span><h2 class="sec-title">Projects</h2><span class="sec-line"></span>
+        </div>
+        <div class="proj-grid">
+          <div class="proj-card reveal" style="--ac:#34D399;">
+            <div class="proj-thumb">
+              <div class="term"><i></i><b>$</b> <span class="dim">docker run --rm -it linuxlab</span><br/>starting isolated container&hellip;<br/>lab ready <span class="dim">- 12 students online</span></div>
+            </div>
+            <div class="proj-body">
+              <h3>LinuxLab — Cloud Linux Admin Lab</h3>
+              <p class="proj-desc">A cloud Linux administration &amp; DevOps lab where students practice on real isolated browser containers with AI hints, auto-evaluation and learning history.</p>
+              <div class="tags"><span>React</span><span>Docker</span><span>MongoDB</span><span>Fastify</span></div>
+              <div class="proj-foot" style="margin-top:16px;">
+                <a class="proj-link" href="https://github.com/prasad111-dev/linuxlab-59" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card reveal" style="--ac:#22D3EE;">
+            <div class="proj-thumb">
+              <div class="term"><i></i><b>$</b> <span class="dim">python run_attendance.py</span><br/>[FaceNet] embedding matched <span class="dim">- user_0042</span><br/>attendance marked at 09:12:03</div>
+            </div>
+            <div class="proj-body">
+              <h3>Face-Recognition Attendance App</h3>
+              <p class="proj-desc">Flask web app using FaceNet + SVM + OpenCV to auto-mark attendance from CCTV/webcam frames with an employee dashboard.</p>
+              <div class="tags"><span>Flask</span><span>FaceNet</span><span>OpenCV</span><span>SVM</span></div>
+              <div class="proj-foot" style="margin-top:16px;">
+                <a class="proj-link" href="https://github.com/prasad111-dev/Web_App_Attendance" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card reveal" style="--ac:#FBBF24;">
+            <div class="proj-thumb">
+              <div class="term"><i></i><b>$</b> <span class="dim">python analyzer.py main.py</span><br/>profiling <span class="dim">- cProfile + AST</span><br/>slowest fn: parse_csv &mdash; 2.14s</div>
+            </div>
+            <div class="proj-body">
+              <h3>Python Efficiency Analyzer</h3>
+              <p class="proj-desc">Streamlit profiler (cProfile + AST) that reports the slowest functions and runtime hotspots in a Python project.</p>
+              <div class="tags"><span>Python</span><span>Streamlit</span><span>cProfile</span><span>AST</span></div>
+              <div class="proj-foot" style="margin-top:16px;">
+                <a class="proj-link" href="https://github.com/prasad111-dev/efficiency_analyzer" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">04</span><h2 class="sec-title">Research &amp; Publications</h2><span class="sec-line"></span>
+        </div>
+        <div class="paper reveal">
+          <span class="yr">2025</span>
+          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">
+            <h3>Early Detection and Multiclass Classification of Skin Diseases Using CNN-Based Deep Learning Model</h3>
+            <p>IEEE Xplore &middot; Deep learning (CNN) for medical imaging diagnosis.</p>
+          </a>
+        </div>
+        <div class="paper reveal">
+          <span class="yr">2025</span>
+          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">
+            <h3>Real-Time Hospital Hygiene Surveillance Using Dual YOLOv8 Detection-Segmentation on Edge AI</h3>
+            <p>IEEE Xplore &middot; Edge AI computer vision with YOLOv8.</p>
+          </a>
+        </div>
+        <div class="paper reveal">
+          <span class="yr">2025</span>
+          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">
+            <h3>CCTV-Based Automated Attendance System with Employee Data Dashboard: A Case Study at SkyHighes Technology</h3>
+            <p>IEEE Xplore &middot; FaceNet + OpenCV case study, published from my internship.</p>
+          </a>
+        </div>
+        <div class="paper reveal">
+          <span class="yr">2025</span>
+          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">
+            <h3>+ 3 more peer-reviewed papers on blockchain + AI and IoT in healthcare</h3>
+            <p>IEEE Xplore &middot; Full author profile on IEEE.</p>
+          </a>
+        </div>
+        <div class="res-actions reveal">
+          <a class="btn btn-primary" href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">IEEE Profile</a>
+          <a class="btn btn-ghost" href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">05</span><h2 class="sec-title">Certifications</h2><span class="sec-line"></span>
+        </div>
+        <div class="cert-grid">
+          <div class="cert reveal">
+            <span class="cert-org">Red Hat Academy</span>
+            <b>Red Hat System Administration I</b>
+            <span class="cert-code">RH124</span>
+          </div>
+          <div class="cert reveal">
+            <span class="cert-org">Red Hat Academy</span>
+            <b>Red Hat Ansible Automation</b>
+            <span class="cert-code">RH294</span>
+          </div>
+          <div class="cert reveal">
+            <span class="cert-org">Red Hat Academy</span>
+            <b>OpenShift Developer Essentials</b>
+            <span class="cert-code">DO180</span>
+          </div>
+          <a class="cert reveal" href="Certification/Developing%20Front-End%20Apps%20with%20React.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Developing Front-End Apps with React</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Developing%20Back-End%20Apps%20with%20Node.js.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Developing Back-End Apps with Node.js</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Developing%20AI%20Applications%20with%20Python%20and%20Flask.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Developing AI Apps with Python &amp; Flask</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Django%20Application%20Development%20with%20SQL%20and.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Django Application Development with SQL</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Introduction%20to%20Containers%20w%20Docker%20Kubernetes.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Introduction to Containers with Docker &amp; Kubernetes</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Application%20Development%20using%20Microservices%20and.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Application Development using Microservices</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Full%20Stack%20Application%20Development%20Capstone.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Full Stack Application Development Capstone</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Getting%20Started%20with%20Git%20and%20GitHub.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Getting Started with Git &amp; GitHub</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Introduction%20to%20Cloud%20Computing.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Introduction to Cloud Computing</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+          <a class="cert reveal" href="Certification/Generative%20AI%20Elevate%20your%20Software%20Development.pdf">
+            <span class="cert-org">IBM / edX</span>
+            <b>Generative AI for Software Development</b>
+            <span class="cert-code">View PDF</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">06</span><h2 class="sec-title">Experience &amp; Education</h2><span class="sec-line"></span>
+        </div>
+        <div class="tl">
+          <div class="tl-item reveal">
+            <span class="tl-when">ACADEMIC · HANDS-ON</span>
+            <h3>Linux System Administration Projects</h3>
+            <div class="tl-where">DMIHER University</div>
+            <p>RHEL 9 server management, storage with LVM/RAID, security with SELinux &amp; firewalld, Ansible automation and Docker.</p>
+          </div>
+          <div class="tl-item cy reveal">
+            <span class="tl-when">INTERNSHIP · PUBLISHED</span>
+            <h3>Internship — CCTV Attendance System</h3>
+            <div class="tl-where">SkyHighes Technology</div>
+            <p>Built an automated attendance system with an employee dashboard; published as an IEEE case study.</p>
+          </div>
+          <div class="tl-item gr reveal">
+            <span class="tl-when">RESEARCH</span>
+            <h3>IEEE Research &amp; Publications</h3>
+            <div class="tl-where">IEEE Xplore</div>
+            <p>6 peer-reviewed papers on deep learning (CNN, YOLOv8), ML for healthcare, IoT and blockchain.</p>
+          </div>
+          <div class="tl-item am reveal">
+            <span class="tl-when">EDUCATION</span>
+            <h3>B.Tech — Artificial Intelligence &amp; Machine Learning</h3>
+            <div class="tl-where">DMIHER University</div>
+            <p>Graduate with a strong deep-learning research background and hands-on systems experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">07</span><h2 class="sec-title">Let's connect</h2><span class="sec-line"></span>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card reveal" style="--ac:#E879F9;" href="mailto:prasadghavghave0@gmail.com">
+            <div class="cc-ic">&#9993;</div>
+            <div><b>Email</b><span>prasadghavghave0@gmail.com</span></div>
+          </a>
+          <a class="contact-card reveal" style="--ac:#22D3EE;" href="tel:+919322860752">
+            <div class="cc-ic">&#9742;</div>
+            <div><b>Phone</b><span>+91 93228 60752</span></div>
+          </a>
+          <a class="contact-card reveal" style="--ac:#34D399;" href="https://wa.me/919322860752" target="_blank" rel="noopener">
+            <div class="cc-ic">&#128172;</div>
+            <div><b>WhatsApp</b><span>Chat with me</span></div>
+          </a>
+          <a class="contact-card reveal" style="--ac:#8B5CF6;" href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" rel="noopener">
+            <div class="cc-ic">&#128100;</div>
+            <div><b>LinkedIn</b><span>prasad-ghavghave</span></div>
+          </a>
+          <a class="contact-card reveal" style="--ac:#FBBF24;" href="https://github.com/prasad111-dev" target="_blank" rel="noopener">
+            <div class="cc-ic">&#128187;</div>
+            <div><b>GitHub</b><span>prasad111-dev</span></div>
+          </a>
+          <a class="contact-card reveal" style="--ac:#F472B6;" href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" rel="noopener">
+            <div class="cc-ic">&#128269;</div>
+            <div><b>IEEE</b><span>Author profile</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; 2026 Prasad S. Ghavghave &middot; Built with Linux, Ansible &amp; a lot of coffee.
+      <br/><a href="mailto:prasadghavghave0@gmail.com">prasadghavghave0@gmail.com</a> &middot; <a href="Prasad_Ghavghave_Resume.pdf">Download CV</a>
+    </div>
+  </footer>
+
   <script>
-    mountScrollWorld(document.getElementById('world'), {
-      brand: { name: 'prasad.dev', href: '#top' },
-      cta: { label: 'Download CV', href: 'Prasad_Ghavghave_Resume.pdf' },
-      hint: 'scroll to read',
-      diveScroll: 3.2,
-      connScroll: 1.6,
-      crossfade: 0.2,
-      nav: true,
-      atmosphere: true,
-      sections: [
-        {
-          id: 'home', label: 'Home',
-          still: 'assets/stills/home.jpg',
-          accent: '#E879F9',
-          scroll: 3.8,
-          linger: 0.35,
-          eyebrow: 'Prasad S. Ghavghave',
-          title: 'Junior Linux System Administrator | DevOps | AI Researcher',
-          body: 'B.Tech graduate in AI & Machine Learning (DMIHER University), IEEE author of 6 publications, and Red Hat Academy certified (RH124, RH294, DO180). Hands-on with RHEL 9 server management, Ansible automation, Docker, SELinux and shell scripting.',
-          tags: ['Wardha, India', 'IEEE Author', 'Red Hat Certified', 'RHEL 9'],
-          cta: { primary: { label: 'Download CV', href: 'Prasad_Ghavghave_Resume.pdf' },
-                 secondary: { label: "Let's talk", href: 'mailto:prasadghavghave0@gmail.com' } },
-        },
-        {
-          id: 'about', label: 'About',
-          still: 'assets/stills/about.jpg',
-          accent: '#22D3EE',
-          eyebrow: 'About me',
-          title: 'Sysadmin by day, researcher by practice.',
-          body: 'Red Hat Academy certified (RH124, RH294, DO180) with a strong deep-learning research background. I keep production Linux servers secure and automated, and publish applied AI at IEEE Xplore.',
-          tags: ['B.Tech AI & ML', '6 IEEE Publications', 'Ansible', 'Docker'],
-        },
-        {
-          id: 'journey', label: 'Journey',
-          still: 'assets/stills/journey.jpg',
-          accent: '#8B5CF6',
-          scroll: 3.4,
-          linger: 0.35,
-          eyebrow: 'Experience & education',
-          title: 'From server room to research lab.',
-          body: 'Linux System Administration Projects at DMIHER University — RHEL 9 server management, storage (LVM/RAID), security (SELinux, firewalld), Ansible automation and Docker. B.Tech in Artificial Intelligence & ML, plus an internship at SkyHighes Technology (published as an IEEE case study).',
-          tags: ['DMIHER University', 'RH124', 'RH294', 'DO180', 'SkyHighes'],
-        },
-        {
-          id: 'skills', label: 'Skills',
-          still: 'assets/stills/skills.jpg',
-          accent: '#F472B6',
-          eyebrow: 'Capabilities',
-          title: 'The tools I operate every day.',
-          body: 'RHEL 9, systemctl, user/permission management. LVM, RAID, EXT4/XFS file systems. SELinux, firewalld, SSH hardening. Ansible playbooks & automation, Docker, Kubernetes & OpenShift. Bash / shell scripting, Python, Flask, Streamlit, Deep Learning (CNN, YOLOv8, FaceNet).',
-          tags: ['RHEL 9', 'LVM / RAID', 'SELinux', 'Ansible', 'Docker & K8s', 'Python'],
-        },
-        {
-          id: 'research', label: 'Research',
-          still: 'assets/stills/research.jpg',
-          accent: '#FBBF24',
-          scroll: 3.4,
-          linger: 0.35,
-          eyebrow: 'Research & publications',
-          title: 'Six peer-reviewed papers, published at IEEE Xplore.',
-          body: 'Deep learning and computer vision for healthcare: CNN-based skin disease classification, dual YOLOv8 hospital hygiene surveillance on edge AI, and a CCTV-based automated attendance case study at SkyHighes Technology — plus blockchain + AI and IoT in healthcare.',
-          tags: ['IEEE Xplore', 'CNN', 'YOLOv8', 'Edge AI', 'IoT'],
-          cta: { primary: { label: 'IEEE Profile', href: 'https://ieeexplore.ieee.org/author/394379608471085' },
-                 secondary: { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=5gWoDTUAAAAJ' } },
-        },
-        {
-          id: 'projects', label: 'Projects',
-          still: 'assets/stills/projects.jpg',
-          accent: '#34D399',
-          eyebrow: 'Projects & builds',
-          title: 'Things I\u2019ve actually built.',
-          body: 'LinuxLab — a cloud Linux administration & DevOps lab where students practice on real isolated browser containers with AI hints and auto-evaluation (React, Docker, MongoDB, Fastify). A Flask face-recognition attendance web app using FaceNet + SVM + OpenCV. And a Python efficiency analyzer (Streamlit, cProfile + AST).',
-          tags: ['LinuxLab', 'Face Recognition', 'Python Analyzer'],
-          cta: { primary: { label: 'View GitHub', href: 'https://github.com/prasad111-dev' },
-                 secondary: { label: 'LinuxLab Repo', href: 'https://github.com/prasad111-dev/linuxlab-59' } },
-        },
-        {
-          id: 'contact', label: 'Contact',
-          still: 'assets/stills/contact.jpg',
-          accent: '#E879F9',
-          scroll: 4.2,
-          linger: 0.4,
-          eyebrow: "Let's connect",
-          title: 'Open to Linux admin, DevOps & AI research roles.',
-          body: 'Wardha, Maharashtra, India. prasadghavghave0@gmail.com \u00b7 +91 93228 60752 \u2014 I usually reply fast.',
-          tags: ['Email', 'WhatsApp', 'LinkedIn', 'GitHub'],
-          cta: { primary: { label: 'Email me', href: 'mailto:prasadghavghave0@gmail.com' },
-                 secondary: { label: 'LinkedIn', href: 'https://www.linkedin.com/in/prasad-ghavghave-b521a4357' } },
-        },
-      ],
-      connectors: [],
-    });
-
-    /* ================= cinematic post-mount ================= */
     (function () {
-      var root = document.getElementById('world');
-      var stages = root.querySelectorAll('.sw-stage > .sw-scene');
-
-      /* per-scene colour grade */
-      var grades = [
-        'saturate(1.18) contrast(1.14) hue-rotate(-8deg)',
-        'saturate(1.12) contrast(1.18) brightness(1.06) hue-rotate(-16deg)',
-        'saturate(1.2) contrast(1.2) hue-rotate(-12deg)',
-        'saturate(1.26) contrast(1.22) hue-rotate(-4deg)',
-        'saturate(1.16) contrast(1.22) hue-rotate(-14deg)',
-        'saturate(1.2) contrast(1.16) brightness(1.05)',
-        'saturate(1.14) contrast(1.14) hue-rotate(-6deg)',
-      ];
-      grades.forEach(function (g, i) { if (stages[i]) stages[i].querySelector('.sw-scene__still').style.filter = g; });
-
-      /* featured frames: profile photo on Home, project screenshot on Projects */
-      if (stages[0]) {
-        stages[0].classList.add('is-home');
-        var p = document.createElement('div');
-        p.className = 'sw-feature sw-feature--portrait';
-        p.innerHTML =
-          '<img src="abc/1725428819340%20(1).jpg" alt="Prasad S. Ghavghave" decoding="async">' +
-          '<div class="sw-feature__caption"><b>Prasad S. Ghavghave</b><span>Linux Admin \u00b7 AI Researcher</span></div>';
-        stages[0].appendChild(p);
+      var roles = ['Junior Linux System Administrator', 'DevOps Engineer', 'AI Researcher', 'RHEL 9 Admin', 'IEEE Author'];
+      var typed = document.getElementById('typed');
+      var r = 0, c = 0, deleting = false;
+      function tick() {
+        var word = roles[r];
+        typed.textContent = word.slice(0, c);
+        if (!deleting && c < word.length) { c++; setTimeout(tick, 70); }
+        else if (!deleting) { deleting = true; setTimeout(tick, 1600); }
+        else if (c > 0) { c--; setTimeout(tick, 34); }
+        else { deleting = false; r = (r + 1) % roles.length; setTimeout(tick, 350); }
       }
-      if (stages[5]) {
-        stages[5].classList.add('is-projects');
-        var s = document.createElement('div');
-        s.className = 'sw-feature sw-feature--shot';
-        s.innerHTML =
-          '<div class="sw-feature__bar"><i></i><i></i><i></i></div>' +
-          '<img src="abc/Capture.PNG" alt="Project screenshot" decoding="async">';
-        stages[5].appendChild(s);
-      }
+      tick();
 
-      /* cinematic matte bars fade in as you fly (full-screen by the finale) */
-      var matteTop = document.getElementById('matteTop');
-      var matteBot = document.getElementById('matteBot');
-      var trackH = 0;
-      function measure() { trackH = (root.querySelector('.sw-track') || document.body).getBoundingClientRect().height; }
-      measure();
-      window.addEventListener('resize', measure);
+      var nav = document.getElementById('nav');
       window.addEventListener('scroll', function () {
-        var p = Math.min(1, window.scrollY / (trackH * 0.55));
-        var h = Math.round(5.5 * p) + 'vh';
-        matteTop.style.height = h; matteBot.style.height = h;
-        matteTop.style.opacity = (0.9 * p).toFixed(3);
-        matteBot.style.opacity = (0.9 * p).toFixed(3);
+        nav.classList.toggle('scrolled', window.scrollY > 30);
       }, { passive: true });
+
+      var burger = document.getElementById('burger');
+      var navMobile = document.getElementById('navMobile');
+      burger.addEventListener('click', function () { navMobile.classList.toggle('open'); });
+      navMobile.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') navMobile.classList.remove('open');
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
     })();
   </script>
 </body>
