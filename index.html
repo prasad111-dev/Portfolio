@@ -185,6 +185,47 @@
     /* ============ HERO ============ */
     .hero-section { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 130px 0 70px; }
     .hero-section .grid > div { min-width: 0; }
+
+    /* ============ SCROLL-SCRUBBED PARTICLE EXPLODE HERO ============ */
+    .explode-hero { position: relative; height: 300vh; }
+    .explode-pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .explode-pin canvas, .explode-pin .explode-glow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .explode-pin canvas { z-index: 1; }
+    .explode-pin::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(5,6,10,0.42) 0%, rgba(5,6,10,0.16) 14%, transparent 30%),
+        radial-gradient(70% 62% at 50% 52%, transparent 52%, rgba(5,6,10,0.24) 100%);
+    }
+    .explode-glow {
+      z-index: 0;
+      background:
+        radial-gradient(60% 55% at 50% 46%, rgba(139,92,246,0.20), transparent 70%),
+        radial-gradient(45% 40% at 50% 46%, rgba(232,121,249,0.14), transparent 70%);
+    }
+    .explode-step {
+      position: absolute; left: 0; right: 0; top: 50%; z-index: 3;
+      transform: translateY(-50%); text-align: center; padding: 0 18px;
+      opacity: 0; visibility: hidden; will-change: opacity;
+      transition: opacity 0.35s ease;
+    }
+    .explode-step.on { visibility: visible; }
+    .step-identity { top: 9%; transform: none; text-shadow: 0 2px 24px rgba(5,6,10,0.85); }
+    .step-role .hero-desc { margin: 16px auto 0; }
+    .step-term .term-card { margin: 0 auto; }
+    .explode-hint {
+      position: absolute; bottom: 28px; left: 0; right: 0; z-index: 2;
+      text-align: center; font-size: 0.8rem; letter-spacing: 0.12em; color: #7e8aa0;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      pointer-events: none; opacity: 1; transition: opacity 0.35s ease;
+    }
+    .explode-hint i { color: var(--secondary); animation: hintBounce 1.6s ease-in-out infinite; }
+    @keyframes hintBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .explode-hero.explode-static { height: auto; min-height: 92vh; display: flex; align-items: center; }
+    .explode-hero.explode-static .explode-pin { position: static; height: auto; overflow: visible; padding: 130px 0 50px; flex-direction: column; }
+    .explode-hero.explode-static .explode-pin canvas { opacity: 0.14; }
+    .explode-hero.explode-static .explode-step { position: static; visibility: visible; opacity: 1 !important; transform: none; margin: 20px auto; }
+    .explode-hero.explode-static .explode-hint { display: none; }
     .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(34,255,136,0.35); background: rgba(34,255,136,0.08); border-radius: 999px; padding: 8px 16px; font-size: 0.72rem; color: var(--term-green); box-shadow: 0 0 24px rgba(34,255,136,0.12); font-family: var(--font-mono); }
     .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: #22ff88; animation: pulse 2s infinite; flex-shrink: 0; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,255,136,0.6); } 70% { box-shadow: 0 0 0 12px rgba(34,255,136,0); } 100% { box-shadow: 0 0 0 0 rgba(34,255,136,0); } }
@@ -437,79 +478,67 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <header class="hero-section text-white" id="home">
-    <div class="container mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-        <div data-aos="fade-up">
-          <div data-speed="0.1">
-          <div class="hero-badge mb-5">
-            <span class="pulse-dot"></span>
-            <span class="mono uppercase tracking-widest text-xs">Online &bull; Open to Work</span>
-          </div>
-          <p class="hero-eyebrow mono mb-3">prasad@portfolio:~$ <span class="t-green">whoami</span></p>
-          <h1 class="giant-name mb-4">Prasad S.<br>Ghavghave</h1>
-          <p class="hero-role text-cyan-300 mb-5 mono">
-            <span class="text-white">I'm a</span>
-            <span id="typed-text"></span><span class="blinking-cursor"></span>
-          </p>
-          <p class="hero-desc mb-7">
-            Junior Linux System Administrator &amp; IEEE-published AI Researcher. I keep production systems running, automate everything with Ansible, and push computer-vision research with deep learning.
-          </p>
-          <div class="flex flex-wrap gap-4 mb-8">
-            <a href="#work" class="btn-primary px-7 py-3.5 rounded-full">View My Work <i class="fas fa-arrow-right ml-2"></i></a>
-            <a href="resume.pdf" class="btn-outline px-7 py-3.5 rounded-full" download>Download Resume <i class="fas fa-download ml-2"></i></a>
-          </div>
-          <div class="flex flex-wrap gap-3 mb-8">
-            <span class="hero-chip mono text-xs"><i class="fab fa-redhat mr-2" style="color:#E879F9;"></i>RHEL 9</span>
-            <span class="hero-chip mono text-xs"><i class="fas fa-terminal mr-2" style="color:#22D3EE;"></i>Ansible</span>
-            <span class="hero-chip mono text-xs"><i class="fab fa-docker mr-2" style="color:#22D3EE;"></i>Docker</span>
-            <span class="hero-chip mono text-xs"><i class="fab fa-python mr-2" style="color:#FBBF24;"></i>Python</span>
-            <span class="hero-chip mono text-xs"><i class="fas fa-microchip mr-2" style="color:#F472B6;"></i>Deep Learning</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="https://github.com/prasad111-dev" target="_blank" aria-label="GitHub" class="social-circle"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" aria-label="LinkedIn" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" class="social-circle"><i class="fas fa-graduation-cap"></i></a>
-            <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" aria-label="IEEE" class="social-circle"><i class="fas fa-microchip"></i></a>
-            <a href="https://wa.me/919322860752" target="_blank" aria-label="WhatsApp" class="social-circle"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
-          </div>
-          <div class="term-card mt-9">
-            <div class="term-bar">
-              <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-              <span class="term-title mono">prasad@production: ~</span>
-            </div>
-            <div class="term-body mono">
-              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">whoami</span></p>
-              <p class="term-out">linux_sysadmin &middot; ieee_researcher</p>
-              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">./deploy --stack ansible --env production</span></p>
-              <p class="term-out t-ok">&#10003; 6 playbooks &middot; 42 tasks &middot; 0 errors</p>
-              <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cursor"></span></p>
-            </div>
-          </div>
-          </div>
+  <!-- HERO: scroll-scrubbed particle explode -->
+  <header class="explode-hero text-white" id="home" aria-label="Prasad S. Ghavghave — Linux System Administrator and IEEE AI Researcher">
+    <div class="explode-pin">
+      <div class="explode-glow" aria-hidden="true"></div>
+      <canvas id="heroParticleCanvas" aria-hidden="true"></canvas>
+
+      <div class="explode-step step-identity" data-step="0">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span class="mono uppercase tracking-widest text-xs">Online &bull; Open to Work</span>
         </div>
-        <div class="hero-visual-wrap" data-aos="zoom-in" data-aos-delay="200">
-        <div class="hero-visual" data-speed="0.16">
-          <div class="hero-photo">
-            <div class="photo-frame"><img src="abc/1725428819340%20(1).jpg" alt="Prasad S. Ghavghave" /></div>
-            <div class="photo-ring"></div>
-            <div class="spin-badge">
-              <svg viewBox="0 0 200 200">
-                <defs><path id="circlePath" d="M 100,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none"/></defs>
-                <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(232,121,249,0.25)" stroke-width="1"/>
-                <text fill="#E879F9" font-size="14.5" font-family="Orbitron" letter-spacing="3.5"><textPath href="#circlePath">OPEN TO WORK &bull; LINUX ADMIN &bull; DEVOPS &bull; RHEL &bull;</textPath></text>
-              </svg>
-              <div class="spin-badge-center"><i class="fas fa-terminal"></i></div>
-            </div>
-            <div class="float-chip chip-redhat" style="top:-16px; left:-24px;"><i class="fab fa-redhat" style="color:#E879F9;"></i></div>
-            <div class="float-chip chip-docker" style="bottom:64px; left:-46px;"><i class="fab fa-docker" style="color:#22D3EE;"></i></div>
-            <div class="float-chip chip-python" style="top:44%; right:-48px;"><i class="fab fa-python" style="color:#FBBF24;"></i></div>
-            <div class="absolute available-badge -bottom-4 -right-3 z-10 bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold py-2 px-5 rounded-full shadow-lg"><i class="fas fa-bolt mr-2"></i>Available</div>
-          </div>
-        </div>
+        <p class="hero-eyebrow mono">prasad@portfolio:~$ <span class="t-green">whoami</span></p>
+        <h1 class="giant-name">Prasad S.<br>Ghavghave</h1>
+      </div>
+
+      <div class="explode-step step-role" data-step="1">
+        <p class="hero-role mono text-cyan-300">Linux System Administrator &amp; IEEE AI Researcher</p>
+        <p class="hero-desc">I keep production systems running, automate everything with Ansible, and push computer-vision research with deep learning.</p>
+      </div>
+
+      <div class="explode-step step-chips" data-step="2">
+        <div class="flex flex-wrap gap-3 justify-center">
+          <span class="hero-chip mono text-xs"><i class="fab fa-redhat mr-2" style="color:#E879F9;"></i>RHEL 9</span>
+          <span class="hero-chip mono text-xs"><i class="fas fa-terminal mr-2" style="color:#22D3EE;"></i>Ansible</span>
+          <span class="hero-chip mono text-xs"><i class="fab fa-docker mr-2" style="color:#22D3EE;"></i>Docker</span>
+          <span class="hero-chip mono text-xs"><i class="fab fa-python mr-2" style="color:#FBBF24;"></i>Python</span>
+          <span class="hero-chip mono text-xs"><i class="fas fa-microchip mr-2" style="color:#F472B6;"></i>Deep Learning</span>
         </div>
       </div>
+
+      <div class="explode-step step-cta" data-step="3">
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="#projects" class="btn-primary px-7 py-3.5 rounded-full">View My Work <i class="fas fa-arrow-right ml-2"></i></a>
+          <a href="resume.pdf" class="btn-outline px-7 py-3.5 rounded-full" download>Download Resume <i class="fas fa-download ml-2"></i></a>
+        </div>
+        <div class="flex items-center justify-center gap-3 mt-7">
+          <a href="https://github.com/prasad111-dev" target="_blank" aria-label="GitHub" class="social-circle"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/prasad-ghavghave-b521a4357" target="_blank" aria-label="LinkedIn" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://scholar.google.com/citations?user=5gWoDTUAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" class="social-circle"><i class="fas fa-graduation-cap"></i></a>
+          <a href="https://ieeexplore.ieee.org/author/394379608471085" target="_blank" aria-label="IEEE" class="social-circle"><i class="fas fa-microchip"></i></a>
+          <a href="https://wa.me/919322860752" target="_blank" aria-label="WhatsApp" class="social-circle"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+        </div>
+      </div>
+
+      <div class="explode-step step-term" data-step="4">
+        <div class="term-card">
+          <div class="term-bar">
+            <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+            <span class="term-title mono">prasad@production: ~</span>
+          </div>
+          <div class="term-body mono">
+            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">whoami</span></p>
+            <p class="term-out">linux_sysadmin &middot; ieee_researcher</p>
+            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cmd">./deploy --stack ansible --env production</span></p>
+            <p class="term-out t-ok">&#10003; 6 playbooks &middot; 42 tasks &middot; 0 errors</p>
+            <p class="term-line"><span class="t-prompt">prasad@prod:~$</span> <span class="t-cursor"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="explode-hint mono"><span>scroll to defragment</span><i class="fas fa-chevron-down"></i></div>
     </div>
   </header>
 
@@ -1206,6 +1235,167 @@
       sections.forEach((sec) => { if (window.scrollY >= sec.offsetTop - 180) current = sec.id; });
       navLinks.forEach((link) => { link.classList.toggle('active', link.getAttribute('href') === '#' + current); });
     }, { passive: true });
+  </script>
+
+  <script>
+  /* ============ HERO PARTICLE EXPLODE ENGINE ============ */
+  (function () {
+    var canvas = document.getElementById('heroParticleCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.closest('.explode-hero');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var IMG_SRC = 'abc/1725428819340%20(1).jpg';
+    var IMG = 702;
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0, CX = 0, CY = 0, SCALE = 1;
+    var particles = [], loaded = false;
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.explode-step'));
+    var hint = document.querySelector('.explode-hint');
+    var prog = { p: 0, target: 0 };
+
+    var RANGES = [
+      [0.02, 0.18], [0.30, 0.48], [0.50, 0.64], [0.66, 0.82], [0.84, 1.02]
+    ];
+
+    function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function smooth3(x) { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); }
+
+    function explodeAmt(p) {
+      if (p < 0.10) return 0;
+      if (p < 0.30) return smooth3((p - 0.10) / 0.20);
+      if (p < 0.78) return 1;
+      return 1 - smooth3((p - 0.78) / 0.16);
+    }
+
+    function init() {
+      var w = window.innerWidth, h = window.innerHeight;
+      W = w; H = h;
+      canvas.width = Math.round(w * DPR);
+      canvas.height = Math.round(h * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      var target = w < 768 ? 2200 : 5200;
+      var area = Math.PI * (IMG / 2) * (IMG / 2);
+      var g = Math.max(3, Math.floor(Math.sqrt(area / target)));
+      SCALE = Math.min(w * 0.86, h * 0.52, 440) / IMG;
+      CX = w / 2;
+      CY = h * 0.47;
+      var off = document.createElement('canvas');
+      off.width = IMG; off.height = IMG;
+      var octx = off.getContext('2d');
+      octx.drawImage(imgEl, 0, 0, IMG, IMG);
+      var data = octx.getImageData(0, 0, IMG, IMG).data;
+      var R = IMG / 2 - 6, parts = [];
+      for (var y = 0; y < IMG; y += g) {
+        for (var x = 0; x < IMG; x += g) {
+          var dx = x - R, dy = y - R;
+          if (dx * dx + dy * dy > R * R) continue;
+          var i = (y * IMG + x) * 4;
+          if (data[i + 3] < 24) continue;
+          var r = data[i], gg = data[i + 1], b = data[i + 2];
+          if ((r * 0.2126 + gg * 0.7152 + b * 0.0722) / 255 > 0.985) continue;
+          var ang = Math.atan2(dy, dx);
+          var dist = R * SCALE * (1.3 + Math.random() * 1.4);
+          parts.push({
+            bx: CX + dx * SCALE, by: CY + dy * SCALE,
+            ex: CX + Math.cos(ang) * dist, ey: CY + Math.sin(ang) * dist,
+            x: CX + dx * SCALE, y: CY + dy * SCALE,
+            r: Math.max(1.4, SCALE * g * 0.75),
+            col: 'rgb(' + r + ',' + gg + ',' + b + ')',
+            tw: Math.random() * Math.PI * 2
+          });
+        }
+      }
+      particles = parts;
+      if (reduceMotion) draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      if (!loaded || particles.length === 0) {
+        drawFallback();
+        return;
+      }
+      var now = performance.now() / 1000;
+      var amt = reduceMotion ? 0 : explodeAmt(prog.p);
+      ctx.globalCompositeOperation = 'lighter';
+      for (var i = 0; i < particles.length; i++) {
+        var pt = particles[i];
+        var tx = lerp(pt.bx, pt.ex, amt);
+        var ty = lerp(pt.by, pt.ey, amt);
+        pt.x += (tx - pt.x) * 0.09;
+        pt.y += (ty - pt.y) * 0.09;
+        ctx.globalAlpha = 0.62 + 0.38 * Math.abs(Math.sin(now * 2 + pt.tw));
+        ctx.fillStyle = pt.col;
+        ctx.fillRect(pt.x - pt.r / 2, pt.y - pt.r / 2, pt.r, pt.r);
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    function drawFallback() {
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      var grd = ctx.createRadialGradient(CX, CY, 10, CX, CY, SCALE * IMG / 2);
+      grd.addColorStop(0, 'rgba(232,121,249,0.35)');
+      grd.addColorStop(1, 'rgba(139,92,246,0.05)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+      ctx.restore();
+    }
+
+    function updateSteps(p) {
+      for (var i = 0; i < steps.length; i++) {
+        var rg = RANGES[i];
+        var fade = 0.07;
+        var in_ = (p - rg[0]) / fade;
+        var out_ = (rg[1] - p) / fade;
+        var o = clamp(Math.min(in_, out_), 0, 1);
+        steps[i].style.opacity = o.toFixed(3);
+        steps[i].classList.toggle('on', o > 0.05);
+      }
+      if (hint) hint.style.opacity = (p < 0.22 ? 1 - p / 0.22 : 0).toFixed(3);
+    }
+
+    function frame(now) {
+      var dt = now - lastT;
+      lastT = now;
+      if (dt < 0 || dt > 100) dt = 16;
+      var rect = hero.getBoundingClientRect();
+      var total = hero.offsetHeight - window.innerHeight;
+      prog.target = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
+      prog.p += (prog.target - prog.p) * (1 - Math.exp(-dt * 0.009));
+      updateSteps(prog.p);
+      draw();
+      window.__pexplode = {
+        p: prog.p, amt: explodeAmt(prog.p),
+        count: particles.length,
+        sample: particles.length ? [particles[0].x, particles[0].y] : null
+      };
+      requestAnimationFrame(frame);
+    }
+    var lastT = performance.now();
+
+    var imgEl = new Image();
+    imgEl.onload = function () { loaded = true; init(); if (reduceMotion) return; requestAnimationFrame(frame); };
+    imgEl.onerror = function () { loaded = false; init(); if (reduceMotion) return; requestAnimationFrame(frame); };
+    imgEl.src = IMG_SRC;
+    setTimeout(function () {
+      if (!loaded && !reduceMotion) { init(); requestAnimationFrame(frame); }
+    }, 8000);
+
+    var rsT = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(rsT);
+      rsT = setTimeout(function () { if (loaded) init(); }, 200);
+    });
+    if (reduceMotion) {
+      hero.classList.add('explode-static');
+      updateSteps(1);
+      document.querySelector('.explode-hint').style.opacity = '0';
+    }
+  })();
   </script>
 
   <button id="chatbotBtn" class="hidden" aria-label="Chat with AI">
