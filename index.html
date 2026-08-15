@@ -27,7 +27,6 @@
     gtag('config', 'G-RZ5H5JW9MN');
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet"/>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
@@ -82,7 +81,6 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ============ FIXED LAYERS ============ */
-    #bg3d { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     #vignette { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at center, transparent 30%, rgba(5,6,10,0.9) 100%); }
     #progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); z-index: 1001; box-shadow: 0 0 14px rgba(232,121,249,0.6); }
 
@@ -239,6 +237,7 @@
     .drag-hint {
       position: absolute; bottom: -44px; left: 0; right: 0; text-align: center;
       font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #8b93a7; letter-spacing: 2px;
+      display: none;
     }
 
     /* ============ MOBILE PHOTO FIX ============ */
@@ -372,7 +371,6 @@
     <div class="orb-wrap" data-speed="-0.2" style="bottom:-120px; left:-120px; width:480px; height:480px;"><div class="orb two" style="background: radial-gradient(circle, rgba(34,211,238,0.32), transparent 70%);"></div></div>
     <div class="orb-wrap" data-speed="0.26" style="top:35%; left:52%; width:320px; height:320px;"><div class="orb three" style="background: radial-gradient(circle, rgba(232,121,249,0.32), transparent 70%);"></div></div>
   </div>
-  <div id="bg3d"></div>
   <div id="vignette"></div>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
@@ -469,8 +467,6 @@
             <div class="float-chip chip-python" style="top:44%; right:-48px;"><i class="fab fa-python" style="color:#FBBF24;"></i></div>
             <div class="absolute available-badge -bottom-4 -right-3 z-10 bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white font-bold py-2 px-5 rounded-full shadow-lg"><i class="fas fa-bolt mr-2"></i>Available</div>
           </div>
-          <div class="drag-overlay" id="dragOverlay" title="Drag to spin the 3D shape"></div>
-          <div class="drag-hint">&#9702; DRAG TO SPIN THE 3D OBJECT</div>
         </div>
         </div>
       </div>
@@ -917,386 +913,6 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- 3D SCENE -->
-  <script>
-    (function() {
-      const isMobile = window.innerWidth < 768;
-      const isLaptop = window.innerWidth >= 1200;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 120);
-      camera.position.z = 9;
-
-      const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.5));
-      document.getElementById('bg3d').appendChild(renderer.domElement);
-
-      /* Canvas texture helpers */
-      function radialTexture(stops) {
-        const c = document.createElement('canvas'); c.width = c.height = 256;
-        const g = c.getContext('2d');
-        const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
-        stops.forEach(s => grd.addColorStop(s[0], s[1]));
-        g.fillStyle = grd; g.fillRect(0, 0, 256, 256);
-        return new THREE.CanvasTexture(c);
-      }
-      const glowTex = radialTexture([[0,'rgba(255,255,255,1)'],[0.3,'rgba(255,255,255,0.4)'],[1,'rgba(255,255,255,0)']]);
-      const nebTex = radialTexture([[0,'rgba(255,255,255,1)'],[0.35,'rgba(255,255,255,0.35)'],[0.7,'rgba(255,255,255,0.08)'],[1,'rgba(255,255,255,0)']]);
-
-      /* Lights */
-      scene.add(new THREE.AmbientLight(0xffffff, 0.45));
-      const pl = new THREE.PointLight(0xe879f9, 2.4, 30);
-      pl.position.set(4, 2.5, 4);
-      scene.add(pl);
-      const pl2 = new THREE.PointLight(0x22d3ee, 1.8, 30);
-      pl2.position.set(-4, -1.5, 3);
-      scene.add(pl2);
-      const pl3 = new THREE.PointLight(0xfbbf24, 1.1, 26);
-      pl3.position.set(0, -3.5, 2);
-      scene.add(pl3);
-
-      /* Nebula backdrop */
-      const neb = new THREE.Sprite(new THREE.SpriteMaterial({ map: nebTex, color: 0x8b5cf6, transparent: true, opacity: 0.25, depthWrite: false, blending: THREE.AdditiveBlending }));
-      neb.position.set(0, 0, -14); neb.scale.set(46, 46, 1);
-      scene.add(neb);
-      const neb2 = new THREE.Sprite(new THREE.SpriteMaterial({ map: nebTex, color: 0x22d3ee, transparent: true, opacity: 0.18, depthWrite: false, blending: THREE.AdditiveBlending }));
-      neb2.position.set(6, 3, -12); neb2.scale.set(28, 28, 1);
-      scene.add(neb2);
-
-      /* Interactive hero object — positioned beside the photo (never behind it) */
-      const knotR = isMobile ? 1.0 : 1.5;
-      let heroTg = { x: 5.6, y: 0.3 };
-      function refreshHeroTarget() {
-        const W = window.innerWidth, H = window.innerHeight;
-        const halfTan = Math.tan((65 * Math.PI) / 180 / 2);
-        const depth = camera.position.z - (-2.4);
-        const pxPerUnit = (H / 2) / (halfTan * depth);
-        const photo = document.querySelector('.hero-photo');
-        const r = photo ? photo.getBoundingClientRect() : null;
-        let sx, sy;
-        if (W >= 1024) {
-          const rad = knotR * pxPerUnit;
-          const rectRight = r ? r.right : W * 0.78;
-          const rectY = r ? r.top + r.height / 2 : H * 0.42;
-          sx = Math.min(W - rad - 60, rectRight + rad + 26);
-          sy = rectY;
-        } else {
-          const rectBottom = r ? r.bottom : H * 0.6;
-          const rectH = r ? r.height : H * 0.5;
-          sx = W / 2;
-          sy = Math.min(H - 70, rectBottom + rectH * 0.55);
-        }
-        heroTg.x = camera.position.x + (sx - W / 2) / pxPerUnit;
-        heroTg.y = camera.position.y + (sy - H / 2) / pxPerUnit - (window.scrollY * 0.1) / pxPerUnit;
-      }
-      refreshHeroTarget();
-      window.addEventListener('resize', refreshHeroTarget);
-      window.addEventListener('scroll', refreshHeroTarget, { passive: true });
-      setInterval(refreshHeroTarget, 500);
-
-      const knot = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(knotR, knotR * 0.32, 170, 26),
-        new THREE.MeshStandardMaterial({ color: 0x8b5cf6, flatShading: true, roughness: 0.2, metalness: 0.75, emissive: 0x4c1d95, emissiveIntensity: 0.8 })
-      );
-      knot.position.set(heroTg.x, heroTg.y, -2.4);
-      scene.add(knot);
-
-      const shell = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(knotR * 1.04, knotR * 0.36, 140, 22),
-        new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.28 })
-      );
-      shell.position.copy(knot.position);
-      scene.add(shell);
-
-      /* Glow halo behind the knot */
-      const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0xe879f9, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending }));
-      halo.scale.set(7, 7, 1); halo.position.set(knot.position.x, knot.position.y, knot.position.z - 0.4);
-      scene.add(halo);
-
-      /* Rotating energy rings around the knot */
-      const rings = [];
-      [0, Math.PI / 3, -Math.PI / 3.5].forEach((rot, i) => {
-        const ring = new THREE.Mesh(
-          new THREE.TorusGeometry(knotR * 1.55 + i * 0.4, 0.03, 8, 72),
-          new THREE.MeshBasicMaterial({ color: i === 0 ? 0xe879f9 : (i === 1 ? 0x22d3ee : 0xfbbf24), transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false })
-        );
-        ring.rotation.x = Math.PI / 2 + rot;
-        ring.position.copy(knot.position);
-        ring.userData.speed = 0.008 + i * 0.004;
-        scene.add(ring); rings.push(ring);
-      });
-
-      /* Orbiting satellite + comet trail */
-      const orbitSat = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(0.24),
-        new THREE.MeshStandardMaterial({ color: 0xe879f9, flatShading: true, roughness: 0.25, metalness: 0.6, emissive: 0xe879f9, emissiveIntensity: 0.9 })
-      );
-      scene.add(orbitSat);
-      const TRAIL_LEN = isMobile ? 30 : 60;
-      const trailPos = new Float32Array(TRAIL_LEN * 3);
-      const trailGeo = new THREE.BufferGeometry();
-      trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPos, 3));
-      trailGeo.setDrawRange(0, 0);
-      const trailMat = new THREE.LineBasicMaterial({ color: 0xe879f9, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending });
-      const trail = new THREE.Line(trailGeo, trailMat);
-      scene.add(trail);
-
-      /* Orbiting sparks around the knot */
-      const sparksCount = reduceMotion ? 0 : (isMobile ? 40 : 180);
-      const sparks = [];
-      if (sparksCount > 0) {
-        const sGeo = new THREE.BufferGeometry();
-        const sPos = new Float32Array(sparksCount * 3);
-        const sCol = new Float32Array(sparksCount * 3);
-        const sSeed = new Float32Array(sparksCount);
-        const spal = [new THREE.Color(0xe879f9), new THREE.Color(0x22d3ee), new THREE.Color(0xfbbf24), new THREE.Color(0xf472b6)];
-        for (let i = 0; i < sparksCount; i++) {
-          const a = Math.random() * Math.PI * 2;
-          const r = (Math.random() * 1.6 + 0.6) * knotR;
-          sPos[i*3] = Math.cos(a) * r;
-          sPos[i*3+1] = Math.sin(a) * r * 0.6;
-          sPos[i*3+2] = (Math.random() - 0.5) * 1.6;
-          const cc = spal[Math.floor(Math.random() * spal.length)];
-          sCol[i*3] = cc.r; sCol[i*3+1] = cc.g; sCol[i*3+2] = cc.b;
-          sSeed[i] = Math.random() * Math.PI * 2;
-        }
-        sGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
-        sGeo.setAttribute('color', new THREE.BufferAttribute(sCol, 3));
-        const sMat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending });
-        const sparksObj = new THREE.Points(sGeo, sMat);
-        scene.add(sparksObj);
-        sparks.push(sparksObj);
-      }
-
-      /* Galaxy of twinkling particles */
-      const COUNT = reduceMotion ? 300 : (isMobile ? 900 : (isLaptop ? 2400 : 2000));
-      const gGeo = new THREE.BufferGeometry();
-      const gPos = new Float32Array(COUNT * 3);
-      const gCol = new Float32Array(COUNT * 3);
-      const gPhase = new Float32Array(COUNT);
-      const gSize = new Float32Array(COUNT);
-      const pal = [new THREE.Color(0xe879f9), new THREE.Color(0x22d3ee), new THREE.Color(0x8b5cf6), new THREE.Color(0xf472b6), new THREE.Color(0x60a5fa), new THREE.Color(0xfbbf24)];
-      for (let i = 0; i < COUNT; i++) {
-        const r = Math.random() * 16 + 2;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
-        gPos[i*3] = r * Math.sin(phi) * Math.cos(theta);
-        gPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.55;
-        gPos[i*3+2] = r * Math.cos(phi);
-        const c = pal[Math.floor(Math.random() * pal.length)];
-        gCol[i*3] = c.r; gCol[i*3+1] = c.g; gCol[i*3+2] = c.b;
-        gPhase[i] = Math.random() * Math.PI * 2;
-        gSize[i] = Math.random() * 0.6 + 0.3;
-      }
-      gGeo.setAttribute('position', new THREE.BufferAttribute(gPos, 3));
-      gGeo.setAttribute('aColor', new THREE.BufferAttribute(gCol, 3));
-      gGeo.setAttribute('aPhase', new THREE.BufferAttribute(gPhase, 1));
-      gGeo.setAttribute('aSize', new THREE.BufferAttribute(gSize, 1));
-      const gMat = new THREE.ShaderMaterial({
-        uniforms: { uTime: { value: 0 } },
-        vertexShader: `
-          attribute float aPhase; attribute float aSize; attribute vec3 aColor;
-          uniform float uTime; varying vec3 vColor; varying float vGlow;
-          void main(){
-            vColor = aColor;
-            float tw = 0.55 + 0.45 * sin(uTime * 1.8 + aPhase);
-            vGlow = tw;
-            vec4 mv = modelViewMatrix * vec4(position, 1.0);
-            gl_PointSize = aSize * (140.0 / -mv.z) * tw;
-            gl_Position = projectionMatrix * mv;
-          }
-        `,
-        fragmentShader: `
-          varying vec3 vColor; varying float vGlow;
-          void main(){
-            vec2 uv = gl_PointCoord - 0.5; float d = length(uv);
-            if (d > 0.5) discard;
-            float alpha = smoothstep(0.5, 0.05, d) * (0.25 + 0.75 * vGlow);
-            gl_FragColor = vec4(vColor, alpha);
-          }
-        `,
-        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
-      });
-      const galaxy = new THREE.Points(gGeo, gMat);
-      scene.add(galaxy);
-
-      /* Far floating shapes with glow sprites */
-      const far = [];
-      function addShape(geo, color, emissive, x, y, z, scale) {
-        const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color, flatShading: true, roughness: 0.28, metalness: 0.7, emissive, emissiveIntensity: 0.55 }));
-        m.position.set(x, y, z); m.scale.setScalar(scale);
-        scene.add(m); far.push(m);
-        const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color, transparent: true, opacity: 0.28, depthWrite: false, blending: THREE.AdditiveBlending }));
-        s.scale.set(scale * 3.2, scale * 3.2, 1); s.position.copy(m.position); s.position.z -= 0.6;
-        scene.add(s); far.push(s);
-        return m;
-      }
-      addShape(new THREE.OctahedronGeometry(0.7), 0xf472b6, 0x7a1a3c, -5.5, -1.5, -5, 1.1);
-      addShape(new THREE.DodecahedronGeometry(0.55), 0x60a5fa, 0x172554, 0.2, 3.8, -6, 1.2);
-      addShape(new THREE.IcosahedronGeometry(0.8), 0xe879f9, 0x4a0e5c, -2.4, -2.8, -5, 0.9);
-
-      /* Constellation lines */
-      if (!isMobile && !reduceMotion) {
-        const lc = 46, pts = [];
-        for (let i = 0; i < lc; i++) pts.push(new THREE.Vector3((Math.random()-0.5)*19, (Math.random()-0.5)*9, (Math.random()-0.5)*7));
-        const lp = [];
-        for (let i = 0; i < lc; i++) {
-          let best = null, bd = Infinity;
-          for (let j = 0; j < lc; j++) {
-            if (i === j) continue;
-            const d = pts[i].distanceTo(pts[j]);
-            if (d < bd) { bd = d; best = j; }
-          }
-          lp.push(pts[i].x, pts[i].y, pts[i].z, pts[best].x, pts[best].y, pts[best].z);
-        }
-        const lg = new THREE.BufferGeometry();
-        lg.setAttribute('position', new THREE.Float32BufferAttribute(lp, 3));
-        scene.add(new THREE.LineSegments(lg, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.06 })));
-      }
-
-      /* Drag-to-spin the knot */
-      let dragging = false, prevX = 0, prevY = 0, vx = 0, vy = 0;
-      const overlay = document.getElementById('dragOverlay');
-      overlay.addEventListener('pointerdown', (e) => { dragging = true; prevX = e.clientX; prevY = e.clientY; overlay.style.cursor = 'grabbing'; });
-      window.addEventListener('pointermove', (e) => {
-        if (dragging) {
-          const dx = e.clientX - prevX, dy = e.clientY - prevY;
-          knot.rotation.y += dx * 0.009;
-          knot.rotation.x += dy * 0.009;
-          vx = dx * 0.009; vy = dy * 0.009;
-          prevX = e.clientX; prevY = e.clientY;
-        }
-      }, { passive: true });
-      window.addEventListener('pointerup', () => { dragging = false; overlay.style.cursor = 'grab'; });
-
-      let mouseX = 0, mouseY = 0, scrollY = 0;
-      const lightTarget = new THREE.Vector3(0, 0, 0);
-      window.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        lightTarget.set(mouseX * 6, mouseY * 4, 3);
-      }, { passive: true });
-      window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-
-      const clock = new THREE.Clock();
-      let trailWrite = 0;
-      let renderPaused = false;
-      let loopActive = false;
-      function animate() {
-        if (renderPaused || loopActive) return;
-        loopActive = true;
-        const frame = () => {
-          if (renderPaused) { loopActive = false; return; }
-          const t = clock.getElapsedTime();
-        gMat.uniforms.uTime.value = t;
-        galaxy.rotation.y += 0.00035;
-        neb.rotation.z += 0.00015;
-        neb2.rotation.z -= 0.0002;
-        neb.material.opacity = 0.3 + Math.sin(t * 0.3) * 0.08;
-
-        if (!dragging) { knot.rotation.y += vx + 0.0025; knot.rotation.x += vy; }
-        else { vx = 0; vy = 0; }
-        vx *= 0.94; vy *= 0.94;
-        knot.material.emissiveIntensity = 0.7 + Math.sin(t * 1.6) * 0.25;
-        knot.material.emissive.setHSL(0.75 + Math.sin(t * 0.4) * 0.03, 0.8, 0.32);
-        shell.rotation.copy(knot.rotation);
-        const kx = heroTg.x + Math.sin(t * 0.5) * 0.12;
-        const ky = heroTg.y + Math.sin(t * 0.7) * 0.12;
-        knot.position.x = kx; knot.position.y = ky;
-        shell.position.set(kx, ky, -2.4);
-        halo.position.set(kx, ky, -2.8);
-        halo.scale.set(7 + Math.sin(t * 1.2) * 0.6, 7 + Math.sin(t * 1.2) * 0.6, 1);
-
-        rings.forEach((r, i) => {
-          r.rotation.z += r.userData.speed * (1 + i * 0.3);
-          r.position.set(kx, ky, -2.4);
-          r.material.opacity = 0.35 + Math.sin(t * 1.5 + i) * 0.15;
-        });
-
-        const sa = t * 0.9;
-        const satX = kx + Math.cos(sa) * 2.9;
-        const satY = ky + Math.sin(sa * 1.25) * 1.5;
-        const satZ = -2.4 + Math.sin(sa) * 2.9;
-        orbitSat.position.set(satX, satY, satZ);
-        orbitSat.rotation.x += 0.03; orbitSat.rotation.y += 0.04;
-
-        if (TRAIL_LEN > 0) {
-          trailPos.set([satX, satY, satZ], trailWrite * 3);
-          trailWrite = (trailWrite + 1) % TRAIL_LEN;
-          const posAttr = trailGeo.getAttribute('position');
-          for (let i = 0; i < TRAIL_LEN; i++) {
-            const src = ((trailWrite - 1 - i) % TRAIL_LEN + TRAIL_LEN) % TRAIL_LEN;
-            posAttr.array[i*3] = trailPos[src*3];
-            posAttr.array[i*3+1] = trailPos[src*3+1];
-            posAttr.array[i*3+2] = trailPos[src*3+2];
-          }
-          posAttr.needsUpdate = true;
-          trailGeo.setDrawRange(0, TRAIL_LEN);
-          trailMat.opacity = 0.4;
-        }
-
-        if (sparks.length) {
-          sparks[0].rotation.y += 0.012;
-          sparks[0].rotation.x += 0.004;
-          sparks[0].position.set(kx, ky, -2.4);
-        }
-
-        far.forEach((m, i) => {
-          if (m.isMesh) { m.rotation.x += 0.004 + i * 0.001; m.rotation.y += 0.005 - i * 0.001; }
-          else m.material.opacity = 0.22 + Math.sin(t * 1.3 + i) * 0.08;
-        });
-
-        pl.position.x += (lightTarget.x - pl.position.x) * 0.06;
-        pl.position.y += (lightTarget.y - pl.position.y) * 0.06;
-
-        const sy = scrollY * 0.0004;
-        galaxy.position.y = sy * 0.8;
-        knot.position.y = ky - sy * 0.6;
-        shell.position.y = ky - sy * 0.6;
-        halo.position.y = ky - sy * 0.6;
-        orbitSat.position.y = satY - sy * 0.6;
-        rings.forEach(r => r.position.y = ky - sy * 0.6);
-        if (sparks.length) sparks[0].position.y = ky - sy * 0.6;
-        far.forEach((m, i) => {
-          if (m.isMesh) {
-            const base = [-1.5, 3.8, -2.8][i];
-            m.position.y = base - sy * (0.4 + i * 0.25);
-          }
-        });
-
-        camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.04;
-        camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.04;
-        camera.lookAt(0, 0, 0);
-
-          renderer.render(scene, camera);
-          requestAnimationFrame(frame);
-        };
-        requestAnimationFrame(frame);
-      }
-      animate();
-
-      /* Pause the 3D renderer when the hero is off-screen or the tab is hidden */
-      const heroEl = document.querySelector('.hero-section');
-      if (heroEl && 'IntersectionObserver' in window) {
-        const heroObs = new IntersectionObserver((entries) => {
-          renderPaused = !entries[0].isIntersecting;
-          if (!renderPaused) animate();
-        }, { rootMargin: '600px 0px' });
-        heroObs.observe(heroEl);
-      }
-      document.addEventListener('visibilitychange', () => {
-        renderPaused = document.hidden;
-        if (!renderPaused) animate();
-      });
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    })();
-  </script>
 
   <!-- INTERACTIVE JS -->
   <script>
